@@ -36,7 +36,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
   return (
     <div className="flex justify-center items-center h-screen  flex-col bg-green-200">
       
-      <div className=" p-7 w-[80%] md:w-[40%] shadow-xl bg-white">
+      <div className=" p-7 w-[80%] md:w-[45%] shadow-xl bg-white">
         <div className = " flex justify-center">
             <img src={logo.src} width={180} height={100} />
         </div>
@@ -58,13 +58,13 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="name"
                     type="text"
                     placeholder="Name"
-                    className="min-w-14 border-2 to-black  w-[100%]"
+                    className="min-w-14 border to-black  w-[100%] p-1"
                   />
                   <div>
                     <ErrorMessage
                       name="name"
                       component="div"
-                      className="inline-block text-xs text text-blue-600"
+                      className="inline-block text-xs text text-blue-600 "
                     />
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="company"
                     type="text"
                     placeholder="Company"
-                    className="min-w-14 border-2 to-black  w-[100%]"
+                    className="min-w-14 border to-black  w-[100%] p-1"
                   />
                   <div>
                     <ErrorMessage
@@ -92,7 +92,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className="min-w-14  w-[100%] border-2 to-black"
+                    className="min-w-14  w-[100%] border to-black p-1"
                   />
                   <div>
                     <ErrorMessage
@@ -108,7 +108,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     Lorem Ipsum is simply dummy text of the printing and typesetting
                     industry. Lorem Ipsum has been the industry's standard dummy text
                     ever since the 1500s, Lorem Ipsum is simply dummy text of the printing
-                    and typesetting
+                    and typesetting 
               </div>
 
               <div className="mt-3 flex justify-center">

@@ -1,11 +1,42 @@
-type NumberInputTpe = {
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import {useState,useEffect} from 'react'
+import {useDispatch} from '../../store/store'
+
+type NumberInputType = {
     type:string, 
     placeholder:string,
-    unit:string
+    unit:string,
+    setNumber: ActionCreatorWithPayload<number,string>
   }
   
   
-  const NumberInput = ({type,placeholder,unit}:NumberInputTpe) => {
+  
+  const NumberInput = ({type,placeholder,unit,setNumber}:NumberInputType) => {
+
+    const [number,setVal] = useState(0)
+
+    // const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+    //   const currentVal = event.currentTarget.value
+    //   if(!isNaN(parseInt(currentVal,10))){
+    //     setVal(parseInt(currentVal,10))
+    //   }
+    // }
+
+    useEffect(() =>{
+      console.log(number)
+    },[number])
+    //REDUX 
+
+    const dispatch = useDispatch();
+
+    const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+      const currentVal = event.currentTarget.value
+      if(!isNaN(parseInt(currentVal,10))){
+        dispatch(setNumber(parseInt(currentVal,10)))
+      }
+    }
+
+
     return (
       <div className = "flex w-[100%] justify-center my-4">
         <input
@@ -13,7 +44,7 @@ type NumberInputTpe = {
           className="
           form-control
           block
-          w-[70%]
+          w-[50%]
           px-3
           py-1.5
           text-base
@@ -33,6 +64,7 @@ type NumberInputTpe = {
           focus:outline-none"
           placeholder={placeholder}
           min={0}
+          onChange = {handleChange}
   
           // className = {type === "baseline" ?  "bg-white": "bg-yellow"}
         />

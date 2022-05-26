@@ -1,7 +1,20 @@
 import logo from "../image/logo.png";
 import NumberInput from "./LCcomponents/NumberIput";
+import SliderInput from "./LCcomponents/SliderInput";
+import {useSelector} from '../store/store'
+import {getBaselineState,setbOne,setbTwo,setbThree,setbFour,setbFive,setbSix} from '../store/slices/baselineSlice'
+import { getForecastState,setfOne,setfTwo,setfThree,setFFour,setFFive,setFSix} from "../store/slices/forecastSlice";
+import CheckBox from "./LCcomponents/CheckBox";
+
+//useSelector => to get const values 
+
 
 const LightCalculator = () => {
+  const {bOne,bTwo, bThree ,bFour,bFive,bSix} = useSelector(getBaselineState)
+  const {fOne,fTwo, fThree,fFour,fFive,fSix} = useSelector(getForecastState)
+  console.log("baseline",bOne,bTwo,bThree,bFour,bFive)
+  console.log("forecast",fOne,fTwo,fThree,fFour,fFive)
+
   return (
     <div>
 
@@ -16,7 +29,7 @@ const LightCalculator = () => {
       </nav>
 
       <div className="grid  place-items-center min-h-screen  ">
-        <div className=" mt-10 p-4 max-w-5xl grid gap-4 xs:grid-cols-1 md:grid-cols-3  ">
+        <div className=" mt-10 p-4 max-w-6xl grid gap-4 xs:grid-cols-1 md:grid-cols-3  ">
 
           <h1 className="p-6 h-auto bg-slate-200 xs:col-span-1 md:col-span-3 mb-10 rounded-lg ">
             <div className="font-extrabold text-2xl w-[65%] ">
@@ -38,10 +51,66 @@ const LightCalculator = () => {
           </h1>
 
           <p> </p>
-          <p className="text-3xl font-semibold"> Baseline </p>
-          <p className="text-3xl font-semibold"> Forecast</p>
+          <p className="text-3xl font-semibold  mx-4"> Baseline </p>
+          <p className="text-3xl font-semibold  mx-4"> Forecast</p>
 
-          <div className="mb-3">
+          <div className="mb-3  mx-4">
+            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
+            <p className="text-gray-600">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. 
+            </p>
+          </div>
+          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg mx-4">
+            <NumberInput type = "baseline" placeholder=" place1 "  unit = "명" setNumber={setbOne}/>
+          </div>
+          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <NumberInput type = "forecast" placeholder=" place1 "  unit = "명" setNumber={setfOne}/>
+          </div>
+
+          <div className="mb-3  mx-4">
+            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
+            <p className="text-gray-600">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. 
+            </p>
+          </div>
+          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
+            <NumberInput type = "baseline" placeholder=" place2 "   unit = "대" setNumber={setbTwo} />
+          </div>
+          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <NumberInput type = "forecast" placeholder=" place2 "  unit = "대"  setNumber={setfTwo}/>
+          </div>
+
+          <div className="mb-3  mx-4">
+            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
+            <p className="text-gray-600">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's 
+            </p>
+          </div>
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
+            <SliderInput  type = "baseline" setNumber={setbThree}/>
+          </div>
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <SliderInput type = "forecast" setNumber={setfThree}/>
+          </div>
+
+          <div className="mb-3  mx-4">
+            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
+            <p className="text-gray-600">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. 
+            </p>
+          </div>
+          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
+            <NumberInput type = "baseline" placeholder=" placer4 "  unit = "만원" setNumber={setbFour}/>
+          </div>
+          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <NumberInput type = "forecast" placeholder="  place4 "  unit = "만원" setNumber={setFFour}/>
+          </div>
+
+          <div className="mb-3  mx-4">
             <h2 className="text-xl font-medium">Lorem Ipsum</h2>
             <p className="text-gray-600">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -49,14 +118,14 @@ const LightCalculator = () => {
               ever since the 1500s,
             </p>
           </div>
-          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "baseline" placeholder=" placeholder1 "  unit = "명"/>
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
+            <SliderInput type = "baseline" setNumber={setbFive}/>
           </div>
-          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "forecast" placeholder=" placeholder1 "  unit = "명"/>
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <SliderInput type = "forecast" setNumber={setFFive}/>
           </div>
 
-          <div className="mb-3">
+          <div className="mb-3  mx-4">
             <h2 className="text-xl font-medium">Lorem Ipsum</h2>
             <p className="text-gray-600">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -64,14 +133,14 @@ const LightCalculator = () => {
               ever since the 1500s,
             </p>
           </div>
-          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "baseline" placeholder=" placeholder2 "   unit = "대"/>
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
+            <CheckBox type = "baseline" label = "Option One" setChecked={setbSix}/>
           </div>
-          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "forecast" placeholder=" placeholder2 "  unit = "대"/>
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
+            <CheckBox type = "forecast" label = "Option Two" setChecked={setFSix}/>
           </div>
 
-          <div className="mb-3">
+          <div className="mb-3  mx-4">
             <h2 className="text-xl font-medium">Lorem Ipsum</h2>
             <p className="text-gray-600">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -79,74 +148,14 @@ const LightCalculator = () => {
               ever since the 1500s,
             </p>
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-
-          <div className="mb-3">
-            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
-            <p className="text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-          </div>
-          <div className="h-20 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "baseline" placeholder=" placeholder4 "  unit = "만원"/>
-          </div>
-          <div className="h-26 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            <NumberInput type = "forecast" placeholder="  placeholder4 "  unit = "만원"/>
-          </div>
-
-          <div className="mb-3">
-            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
-            <p className="text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-
-          <div className="mb-3">
-            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
-            <p className="text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-
-          <div className="mb-3">
-            <h2 className="text-xl font-medium">Lorem Ipsum</h2>
-            <p className="text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-            Content
-          </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
         
-          <div className="mb-3">
+          <div className="mb-3  mx-4">
             <h2 className="text-xl font-medium">Lorem Ipsum</h2>
             <p className="text-gray-600">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -154,14 +163,14 @@ const LightCalculator = () => {
               ever since the 1500s,
             </p>
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
 
-          <div className="mb-3">
+        <div className="mb-3  mx-4">
             <h2 className="text-xl font-medium">Lorem Ipsum</h2>
             <p className="text-gray-600">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -169,10 +178,10 @@ const LightCalculator = () => {
               ever since the 1500s,
             </p>
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
-          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg">
+          <div className="h-16 md:h-[100%] bg-cnri_light_green flex justify-center flex-col items-center rounded-lg  mx-4">
             Content
           </div>
 
