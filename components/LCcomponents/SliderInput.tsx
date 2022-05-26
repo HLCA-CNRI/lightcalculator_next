@@ -30,13 +30,14 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
 
 
     return(
-        <div className = "flex flex-col space-y-2 w-[80%]">
+        <div className = "flex flex-col space-y-2 w-[80%] py-3">
             <input 
                 type = "range"
                 className = " w-[100%]"
                 min = "1"
                 max = "6"
                 onChange={handleChange}
+              
                 // value ="0"
                  step = "1"/>
             <ul className = "flex justify-between w-full px-[10px]">

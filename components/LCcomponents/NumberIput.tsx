@@ -38,13 +38,13 @@ type NumberInputType = {
 
 
     return (
-      <div className = "flex w-[100%] justify-center my-4">
+      <div className = "flex w-[100%] justify-center my-4 pl-3">
         <input
           type="number"
           className="
           form-control
           block
-          w-[50%]
+          w-[25%]
           px-3
           py-1.5
           text-base

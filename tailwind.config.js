@@ -42,9 +42,9 @@ module.exports = {
       pink: colors.pink,
       rose: colors.rose,
       'cnri_dark_blue': '#0092d9',
-      'cnri_light_blue': '#1daddc',
+      'cnri_light_blue': '#DEF3FD',
       'cnri_dark_green':'#49b949',
-      'cnri_light_green': '#d0e57e'
+      'cnri_light_green': '#e8f4ea'
     }),
     columns: {
       auto: 'auto',
