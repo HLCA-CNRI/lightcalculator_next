@@ -74,9 +74,9 @@ const TransportationInput = ({ type }: TransportationInputType) => {
       <hr className="border-none h-1 bg-white"></hr>
 
       <div className="rounded-lg p-2  m-5">
-        <div className="w-[100%] bg-slate-400 h-4 rounded-lg">
-          <div className="rounded-l-lg w-[85%] bg-red-400 h-4  ">
-            <div className="rounded-l-lg w-[30%] bg-orange-400 h-4 "></div>
+        <div className="w-[100%] bg-slate-400 h-3 rounded-lg">
+          <div className="rounded-l-lg w-[85%] bg-red-400 h-3">
+            <div className="rounded-l-lg w-[30%] bg-orange-400 h-3"></div>
           </div>
         </div>
 
