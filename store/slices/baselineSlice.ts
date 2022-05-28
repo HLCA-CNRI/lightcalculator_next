@@ -32,27 +32,27 @@ export interface baselineState {
 }
 
 const initialBaselineState: baselineState = {
-  bCompanyEmployeeSize: 0,
+  bCompanyEmployeeSize: 100,
   bFuelType: {
     setDefault: false,
-    gasoline: 0,
-    diesel: 0,
-    lpg: 0,
-    hydrogen: 0,
-    electric: 0,
+    gasoline: 47,
+    diesel: 39,
+    lpg: 8,
+    hydrogen: 2,
+    electric: 4,
   },
-  bCompanyGasPrice: 0,
-  bCommutingDays: 0,
+  bCompanyGasPrice: 5000,
+  bCommutingDays: 5,
   bCommuting: {
     setDefault: false,
-    distance: 0,
-    car: 0,
-    publicTransit: 0,
-    walkOrBike: 0,
+    distance: 14,
+    car: 36,
+    publicTransit: 40,
+    walkOrBike: 24,
     
   },
   bUseRenewableEnergy: false,
-  bCompanysize:0,
+  bCompanysize:1000,
   bRoundTrip: {
     asia: 0,
     europe: 0,

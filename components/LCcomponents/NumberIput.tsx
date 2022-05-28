@@ -4,23 +4,24 @@ import { useDispatch } from "../../store/store";
 
 type NumberInputType = {
   type: string;
-  placeholder: string;
+  initial:string;
   unit: string;
   setNumber: ActionCreatorWithPayload<number, string>;
 };
 
 const NumberInput = ({
   type,
-  placeholder,
+  initial,
   unit,
-  setNumber,
+  setNumber
+ 
 }: NumberInputType) => {
   const [number, setVal] = useState(0);
 
   useEffect(() => {
-    // console.log(number);
+
   }, [number]);
-  //REDUX
+
 
   const dispatch = useDispatch();
 
@@ -32,17 +33,9 @@ const NumberInput = ({
   };
 
   return (
-    <div className="flex w-[100%] justify-center my-4 pl-3">
-      <input
-        type="number"
-        className="w-14 text-gray-700 bg-white rounded"
-        placeholder={placeholder}
-        min={0}
-        onChange={handleChange}
-
-        // className = {type === "baseline" ?  "bg-white": "bg-yellow"}
-      />
-      <div className="flex items-center justify-center p-3">{unit}</div>
+    <div className = "flex  m-2">
+      <input type = "number" className = "w-14 rounded" defaultValue={initial} min = "0" onChange={handleChange}></input>
+      <div className = "ml-1">{unit}</div>
     </div>
   );
 };

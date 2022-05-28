@@ -32,27 +32,27 @@ export interface forecastState {
 }
 
 const initialForecastState: forecastState = {
-  fCompanyEmployeeSize: 0,
+  fCompanyEmployeeSize: 100,
   fFuelType: {
     setDefault: false,
-    gasoline: 0,
-    diesel: 0,
-    lpg: 0,
-    hydrogen: 0,
-    electric: 0,
+    gasoline: 47,
+    diesel: 39,
+    lpg: 8,
+    hydrogen: 2,
+    electric: 4,
   },
-  fCompanyGasPrice: 0,
-  fCommutingDays: 0,
+  fCompanyGasPrice: 5000,
+  fCommutingDays: 5,
   fCommuting: {
     setDefault: false,
-    distance: 0,
-    car: 0,
-    publicTransit: 0,
-    walkOrBike: 0,
+    distance: 14,
+    car: 36,
+    publicTransit: 40,
+    walkOrBike: 24,
     
   },
   fUseRenewableEnergy: false,
-  fCompanysize:0,
+  fCompanysize:1000,
   fRoundTrip: {
     asia: 0,
     europe: 0,

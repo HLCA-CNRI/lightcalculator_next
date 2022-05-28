@@ -44,6 +44,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
         );
       } else {
         dispatch(
+          
           fSetCommuting({ ...fCommuting, distance: parseInt(currentVal, 10) })
         );
       }
@@ -63,23 +64,13 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
       <hr className="border-none h-1 bg-white"></hr>
 
-      <div className="flex my-3 m-6">
-        <div className="w-[60%] pl-3  flex flex-col justify-center text-lg items-center">
-          평균 출퇴근 거리{" "}
-        </div>
-        <input
-          type="number"
-          className="
-          w-14 text-gray-700 bg-white rounded
-          "
-          placeholder=""
-          min={0}
-          onChange={handleDistanceChange}
 
-          // className = {type === "baseline" ?  "bg-white": "bg-yellow"}
-        />
-        <div className="flex items-center justify-center p-3">km</div>
+      <div className = "flex justify-center m-2">
+        <div className = "mr-2">평균 출퇴근 거리</div>
+        <input type = "number" className = "w-12 mr-2 rounded" min = {0} onChange ={handleDistanceChange} ></input>
+        <div>km</div>
       </div>
+
       <hr className="border-none h-1 bg-white"></hr>
 
       <div className="rounded-lg p-2  m-5">
@@ -89,20 +80,11 @@ const TransportationInput = ({ type }: TransportationInputType) => {
           </div>
         </div>
 
-        <PercentInput
-          Objectkey="commuting"
-          value="car"
-          isBaseline={type == "baseline" ? true : false}
+        <PercentInput Objectkey="commuting" value="car" isBaseline={type == "baseline" ? true : false} title = "자동차"
         />
-        <PercentInput
-          Objectkey="commuting"
-          value="publicTransit"
-          isBaseline={type == "baseline" ? true : false}
+        <PercentInput Objectkey="commuting" value="publicTransit" isBaseline={type == "baseline" ? true : false} title = "대중교통"
         />
-        <PercentInput
-          Objectkey="commuting"
-          value="walkOrBike"
-          isBaseline={type == "baseline" ? true : false}
+        <PercentInput Objectkey="commuting" value="walkOrBike" isBaseline={type == "baseline" ? true : false} title = "도보 및 자전거"
         />
       </div>
     </div>

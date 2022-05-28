@@ -5,7 +5,6 @@ import { useSelector } from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 import Results from "./LCcomponents/Results";
 
-
 import {
   getBaselineState,
   bSetCompanyEmployeeSize,
@@ -33,6 +32,7 @@ import {
 import CheckBox from "./LCcomponents/CheckBox";
 import GasInput from "./LCcomponents/GasInput";
 import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
+import { number } from "yup";
 //useSelector => to get const values
 
 const LightCalculator = () => {
@@ -42,15 +42,20 @@ const LightCalculator = () => {
     bCompanyGasPrice: bCompanyGasPrice,
     bCommutingDays: bCommutingDays,
     bCommuting: bCommuting,
+    bUseRenewableEnergy:bUseRenewableEnergy,
+    bCompanysize:bCompanysize,
+    bRoundTrip:bRoundTrip
   } = useSelector(getBaselineState);
   const {
     fCompanyEmployeeSize: fCompanyEmployeeSize,
     fFuelType: fFuelType,
     fCompanyGasPrice: fCompanyGasPrice,
     fCommutingDays: fCommutingDays,
-    fCommuting,
+    fCommuting: fCommuting,
+    fUseRenewableEnergy:fUseRenewableEnergy,
+    fCompanysize:fCompanysize,
+    fRoundTrip:fRoundTrip
   } = useSelector(getForecastState);
-
 
   return (
     <div>
@@ -96,17 +101,17 @@ const LightCalculator = () => {
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
             <NumberInput
               type="baseline"
-              placeholder=" place1 "
               unit="명"
               setNumber={bSetCompanyEmployeeSize}
+              initial = {bCompanyEmployeeSize.toString()}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <NumberInput
               type="forecast"
-              placeholder=" place1 "
               unit="명"
               setNumber={fSetCompanyEmployeeSize}
+              initial = {fCompanyEmployeeSize.toString()}
             />
           </div>
 
@@ -134,17 +139,17 @@ const LightCalculator = () => {
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
             <NumberInput
               type="baseline"
-              placeholder=" placer4 "
               unit="만원"
               setNumber={bSetCompanyGasPrice}
+              initial = {bCompanyGasPrice.toString()}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <NumberInput
               type="forecast"
-              placeholder="  place4 "
               unit="만원"
               setNumber={fSetCompanyGasPrice}
+              initial = {fCompanyGasPrice.toString()}
             />
           </div>
 
@@ -187,14 +192,14 @@ const LightCalculator = () => {
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
             <CheckBox
               type="baseline"
-              label="Option One"
+              label="신재생 애너지 사용"
               setChecked={bSetUseRenewableEnergy}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <CheckBox
               type="forecast"
-              label="Option Two"
+              label="신재생 애너지 사용"
               setChecked={fSetUseRenewableEnergy}
             />
           </div>
@@ -207,20 +212,10 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  ">
-            <NumberInput
-              type="baseline"
-              placeholder=""
-              unit="m"
-              setNumber={bSetCompanySize}
-            />
+            <NumberInput type="baseline" unit="m" setNumber={bSetCompanySize} initial = {bCompanysize.toString()}  />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-            <NumberInput
-              type="forecast"
-              placeholder=""
-              unit="m"
-              setNumber={fSetCompanySize}
-            />
+            <NumberInput type="forecast" unit="m" setNumber={fSetCompanySize} initial = {fCompanysize.toString()}/>
           </div>
 
           <div className="mb-3   ">
@@ -237,37 +232,14 @@ const LightCalculator = () => {
             <BuisnessTripInfo type="forecast" />
           </div>
 
-          <h1 className=" p-6 h-[35vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 ">
-           
+          <h1 className=" p-6 h-[36vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 "></h1>
+          {/* fixed */}
+          <h1 className=" max-w-5xl h-[36vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
+            <div className=" md:w-[65%]"></div>
+            <Results />
           </h1>
-
-
-          <h1 className=" max-w-5xl h-[35vh] fixed   bg-slate-200 xs:col-span-1 md:col-span-3  rounded-lg bottom-0 mt-3">
-      
-            <div className=" md:w-[65%]">
-           
-            </div>
-            <Results/>            
-
-        
-          </h1>
-
-
-          {/* <h1 className =  "h-50 font-extrabold bg-yellow-300 xs:col-span-1 md:col-span-3 mb-10">
-              <div className='grid  place-items-center'>
-              <div className=' p-2 max-w-5xl grid gap-4 xs:grid-cols-1 md:grid-cols-3 '>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                  <div className="h-30 bg-blue-500"></div>
-                  <div className="h-30 bg-red-300 "></div>
-              </div>
-            </div>
-          </h1> */}
         </div>
-
-    
-        
       </div>
-      
     </div>
   );
 };
