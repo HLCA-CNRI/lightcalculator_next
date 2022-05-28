@@ -14,7 +14,7 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
     const [num,setNum] = useState(0)
 
     useEffect(() =>{
-        console.log(num)
+        // console.log(num)
 
     },[num])
 
@@ -24,7 +24,7 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
         if(!isNaN(parseInt(currentVal,10))){
             let numberCurrent = parseInt(currentVal,10) - 1 
             dispatch(setNumber(numberCurrent))
-            console.log(numberCurrent)
+            // console.log(numberCurrent)
         }
     })
 

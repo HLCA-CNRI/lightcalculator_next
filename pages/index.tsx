@@ -10,7 +10,7 @@ import UserCard from '../components/UserCard'
 
 
 const Home: NextPage = () => {
-  const [authenticate,setAuthenticate] = useState(false)
+  const [authenticate,setAuthenticate] = useState(true)
 
   return (
     <div >

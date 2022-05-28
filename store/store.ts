@@ -1,13 +1,15 @@
 
 import { configureStore } from '@reduxjs/toolkit';
-import userSlice from './slices/userSlice';
+import baselineSlice from './slices/baselineSlice';
+import forecastSlice from './slices/forecastSlice';
+import  baselineResultSlice from './slices/baslineResultSlice';
+import forecastResultSlice from './slices/forecastResultSlice'
+
 import {
   useDispatch as useDispatchBase,
   useSelector as useSelectorBase,
 } from 'react-redux';
-import otherUserSlice from './slices/otherUserSlice';
-import baselineSlice from './slices/baselineSlice';
-import forecastSlice from './slices/forecastSlice';
+
 
 /**
  * Creates a store and includes all the slices as reducers.
@@ -15,9 +17,9 @@ import forecastSlice from './slices/forecastSlice';
 export const store = configureStore({
   reducer: {
     baseline : baselineSlice,
-    forecast : forecastSlice
-    // user: userSlice,
-    // otherUser : otherUserSlice,
+    forecast : forecastSlice,
+    baselineResultSlice : baselineResultSlice,
+    forecastResultSlice : forecastResultSlice,
   },
 });
 

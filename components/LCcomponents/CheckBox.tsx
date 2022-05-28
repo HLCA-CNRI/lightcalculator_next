@@ -15,7 +15,7 @@ const CheckBox = ({type,label,setChecked}:CheckBoxType) =>{
 
     const [check,setCheck] = useState(false)
     useEffect(()=>{
-        console.log(check)
+        // console.log(check)
     },[check])
 
     const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{

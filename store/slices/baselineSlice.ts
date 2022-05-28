@@ -1,77 +1,140 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 
 export interface baselineState {
-  bOne: number;
-  bTwo: number;
-  bThree: number;
-  bFour:number;
-  bFive:number;
-  bSix:boolean;
-  // bTwo:number,
-  // bThree:{
-  //     bThreeOne:number,
-  //     bThreeTwo:number,
-  //     bThreeThree:number,
-  //     bThreeFour:number
-  // },
-  // bFour:number
+  bCompanyEmployeeSize: number;
+  bFuelType: {
+    setDefault: boolean;
+    gasoline: number;
+    diesel: number;
+    lpg: number;
+    hydrogen: number;
+    electric: number;
+  };
+  bCompanyGasPrice: number;
+  bCommutingDays: number;
+  bCommuting: {
+    setDefault: boolean;
+    distance: number;
+    car: number;
+    publicTransit: number;
+    walkOrBike: number;
+  };
+  bUseRenewableEnergy: boolean;
+  bCompanysize:number,
+  bRoundTrip: {
+    asia: number,
+    europe: number,
+    northAmerica: number,
+    southAmerica: number,
+    oceana: number,
+    africa: number,
+  };
 }
 
 const initialBaselineState: baselineState = {
-  bOne: 0,
-  bTwo: 0,
-  bThree:0,
-  bFour:0,
-  bFive:0,
-  bSix:false,
+  bCompanyEmployeeSize: 0,
+  bFuelType: {
+    setDefault: false,
+    gasoline: 0,
+    diesel: 0,
+    lpg: 0,
+    hydrogen: 0,
+    electric: 0,
+  },
+  bCompanyGasPrice: 0,
+  bCommutingDays: 0,
+  bCommuting: {
+    setDefault: false,
+    distance: 0,
+    car: 0,
+    publicTransit: 0,
+    walkOrBike: 0,
+    
+  },
+  bUseRenewableEnergy: false,
+  bCompanysize:0,
+  bRoundTrip: {
+    asia: 0,
+    europe: 0,
+    northAmerica: 0,
+    southAmerica: 0,
+    oceana: 0,
+    africa: 0,
+  },
 };
 
 export const baselineSlice = createSlice({
   name: "baseline",
   initialState: initialBaselineState,
   reducers: {
-    setbOne: (
+    bSetCompanyEmployeeSize: (
       state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bOne>
+      action: PayloadAction<typeof initialBaselineState.bCompanyEmployeeSize>
     ) => {
-      state.bOne = action.payload;
+      console.log(action);
+      state.bCompanyEmployeeSize = action.payload;
     },
-    setbTwo: (
+    bSetFuelType: (
       state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bTwo>
+      action: PayloadAction<typeof initialBaselineState.bFuelType>
     ) => {
-      state.bTwo = action.payload;
+      state.bFuelType = action.payload;
     },
-    setbThree: (
+    bSetCompanyGasPrice: (
       state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bThree>
+      action: PayloadAction<typeof initialBaselineState.bCompanyGasPrice>
     ) => {
-      state.bThree = action.payload;
+      state.bCompanyGasPrice = action.payload;
     },
-    setbFour : (
+    bSetCommuntingDays: (
       state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bFour>
-    ) =>{
-      state.bFour = action.payload
-    }, 
-    setbFive:(
-      state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bFive>
-    ) =>{
-      state.bFive = action.payload
+      action: PayloadAction<typeof initialBaselineState.bCommutingDays>
+    ) => {
+      state.bCommutingDays = action.payload;
     },
-    setbSix:(
+    bSetCommuting: (
       state: Draft<typeof initialBaselineState>,
-      action: PayloadAction<typeof initialBaselineState.bSix>
-    ) =>{
-      state.bSix = action.payload
-    }
+      action: PayloadAction<typeof initialBaselineState.bCommuting>
+    ) => {
+      state.bCommuting = action.payload;
+    },
+    bSetUseRenewableEnergy: (
+      state: Draft<typeof initialBaselineState>,
+      action: PayloadAction<typeof initialBaselineState.bUseRenewableEnergy>
+    ) => {
+      console.log(state.bUseRenewableEnergy);
+      state.bUseRenewableEnergy = action.payload;
+    },
+    bSetCompanySize: (
+      state: Draft<typeof initialBaselineState>,
+      action: PayloadAction<typeof initialBaselineState.bCompanysize>
+    ) => {
+      console.log(action);
+      state.bCompanysize = action.payload;
+    },
+    bSetRoundTrip: (
+      state: Draft<typeof initialBaselineState>,
+      action: PayloadAction<typeof initialBaselineState.bRoundTrip>
+    ) => {
+      state.bRoundTrip = action.payload;
+    },
   },
 });
 
 export const getBaselineState = (state: { baseline: baselineState }) =>
   state.baseline;
 
-export const { setbOne,setbTwo,setbThree,setbFour,setbFive ,setbSix} = baselineSlice.actions;
+export const {
+  bSetCompanyEmployeeSize: bSetCompanyEmployeeSize,
+  bSetFuelType: bSetFuelType,
+  bSetCompanyGasPrice: bSetCompanyGasPrice,
+  bSetCommuntingDays: bSetCommuntingDays,
+  bSetCommuting: bSetCommuting,
+  bSetUseRenewableEnergy: bSetUseRenewableEnergy,
+  bSetRoundTrip: bSetRoundTrip,
+  bSetCompanySize:bSetCompanySize
+} = baselineSlice.actions;
+
+// export const { bSetCompanySize: bSetCompanySize,bSetCompanyCarCount: bSetCompanyCarCount,bSetFuelType: setbThree,bSetCompanyGasPrice: setbFour,bSetCommuntingDays: setbFive ,bSetCommuting: setbSeven} = baselineSlice.actions;
 
 export default baselineSlice.reducer;
