@@ -9,7 +9,10 @@ type FlightResultType = {
 const FlightResult = ({type}: FlightResultType) => {
   return (
     <div>
-      <div>Flight</div>
+      <div className = "flex justify-between">
+        <div>Flight</div>
+        <div>value</div>
+    </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-2 rounded-lg">
           <div className="rounded-l-lg w-[45%] bg-red-400 h-2  "></div>

@@ -9,7 +9,11 @@ type CommunityResultType = {
 const CommunityResult = ({type}: CommunityResultType) => {
   return (
     <div>
-      <div>Community</div>
+    <div className = "flex justify-between">
+        <div>Community</div>
+        <div>value</div>
+    </div>
+    
       <div className="">
         <div className="w-[100%] bg-slate-400 h-2 rounded-lg">
           <div className="rounded-l-lg w-[45%] bg-red-400 h-2  "></div>

@@ -6,10 +6,13 @@ type RemoteWorkType = {
   type: string;
 };
 
-const RemoteWork = ({type}: RemoteWorkType) => {
+const RemoteWork = ({ type }: RemoteWorkType) => {
   return (
     <div>
-      <div>Remote Work</div>
+      <div className="flex justify-between">
+        <div>Remote Work</div>
+        <div>value</div>
+      </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-2 rounded-lg">
           <div className="rounded-l-lg w-[45%] bg-red-400 h-2  "></div>
