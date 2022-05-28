@@ -5,8 +5,6 @@ import styles from '../styles/Home.module.css'
 import LightCalculator from '../components/LightCalculator'
 import UserInfo from '../components/UserInfo'
 import { useState } from 'react'
-import UserCard from '../components/UserCard'
-
 
 
 const Home: NextPage = () => {

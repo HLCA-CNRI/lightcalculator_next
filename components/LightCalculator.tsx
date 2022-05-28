@@ -11,7 +11,7 @@ import {
   bSetCompanyEmployeeSize,
   bSetFuelType,
   bSetCompanyGasPrice,
-  bSetCommuntingDays,
+  bSetCommutingDays,
   bSetCompanySize,
   bSetCommuting,
   bSetUseRenewableEnergy,
@@ -30,15 +30,6 @@ import {
   fSetCompanySize,
 } from "../store/slices/forecastSlice";
 
-// import {
-//   getForecastState,
-//   setfOne,
-//   setfTwo,
-//   setfThree,
-//   setFFour,
-//   setFFive,
-//   setFSix,
-// } from "../store/slices/forecastSlice";
 import CheckBox from "./LCcomponents/CheckBox";
 import GasInput from "./LCcomponents/GasInput";
 import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
@@ -59,12 +50,11 @@ const LightCalculator = () => {
     fCommutingDays: fCommutingDays,
     fCommuting,
   } = useSelector(getForecastState);
-  // console.log("baseline", bOne, bTwo, bThree, bFour, bFive);
-  // console.log("forecast", fOne, fTwo, fThree, fFour, fFive);
+
 
   return (
     <div>
-      <nav className="flex place-items-center justify-between h-[6em] min-w-[100%] bg-white ">
+      <nav className="flex place-items-center justify-between h-[6em] min-w-[100%] bg-white">
         <div className="m-10">
           <img src={logo.src} width={180} height={70} />
         </div>
@@ -166,7 +156,7 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className="bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
-            <SliderInput type="baseline" setNumber={bSetCommuntingDays} />
+            <SliderInput type="baseline" setNumber={bSetCommutingDays} />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <SliderInput type="forecast" setNumber={fSetCommuntingDays} />

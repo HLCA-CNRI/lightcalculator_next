@@ -85,7 +85,7 @@ export const forecastSlice = createSlice({
     ) => {
       state.fCompanyGasPrice = action.payload;
     },
-    fSetCommuntingDays: (
+    fSetCommutingDays: (
       state: Draft<typeof initialForecastState>,
       action: PayloadAction<typeof initialForecastState.fCommutingDays>
     ) => {
@@ -127,7 +127,7 @@ export const {
   fSetCompanyEmployeeSize: fSetCompanyEmployeeSize,
   fSetFuelType: fSetFuelType,
   fSetCompanyGasPrice: fSetCompanyGasPrice,
-  fSetCommuntingDays: fSetCommuntingDays,
+  fSetCommutingDays: fSetCommuntingDays,
   fSetCommuting: fSetCommuting,
   fSetUseRenewableEnergy: fSetUseRenewableEnergy,
   fSetRoundTrip: fSetRoundTrip,

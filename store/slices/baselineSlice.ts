@@ -86,7 +86,7 @@ export const baselineSlice = createSlice({
     ) => {
       state.bCompanyGasPrice = action.payload;
     },
-    bSetCommuntingDays: (
+    bSetCommutingDays: (
       state: Draft<typeof initialBaselineState>,
       action: PayloadAction<typeof initialBaselineState.bCommutingDays>
     ) => {
@@ -128,7 +128,7 @@ export const {
   bSetCompanyEmployeeSize: bSetCompanyEmployeeSize,
   bSetFuelType: bSetFuelType,
   bSetCompanyGasPrice: bSetCompanyGasPrice,
-  bSetCommuntingDays: bSetCommuntingDays,
+  bSetCommutingDays: bSetCommutingDays,
   bSetCommuting: bSetCommuting,
   bSetUseRenewableEnergy: bSetUseRenewableEnergy,
   bSetRoundTrip: bSetRoundTrip,

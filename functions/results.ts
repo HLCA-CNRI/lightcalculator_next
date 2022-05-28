@@ -1,1 +1,0 @@
-export const buildingFunction = (people:number, commutingDay:number,) =>{}
