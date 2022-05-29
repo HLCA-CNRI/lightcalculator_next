@@ -67,7 +67,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
       <div className = "flex justify-center m-2">
         <div className = "mr-2">평균 출퇴근 거리</div>
-        <input type = "number" className = "w-12 mr-2 rounded" min = {0} onChange ={handleDistanceChange} ></input>
+        <input type = "number" className = "w-12 mr-2 rounded" min = {0} onChange ={handleDistanceChange}  defaultValue = {type == "baseline" ? bCommuting.distance:fCommuting.distance}></input>
         <div>km</div>
       </div>
 

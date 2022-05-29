@@ -1,52 +1,60 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 
 export interface forecastResultState {
-    fBuilding:number; 
-    fCar:number; 
-    fRemoteWork:number;
-    fCommunity:number;
-    fFlights:number;
+    fAnnual:number,
+    fCalculateBuilding:number; 
+    fCalculateCar:number; 
+    fCalculateRemoteWork:number;
+    fCalculateCommuting:number;
+    fCalculateFlights:number;
 }
 
 const initialForecastResults : forecastResultState = {
-    fBuilding:0,
-    fCar:0,
-    fRemoteWork:0,
-    fCommunity:0,
-    fFlights:0,
+    fAnnual:0,
+    fCalculateBuilding:0,
+    fCalculateCar:0,
+    fCalculateRemoteWork:0,
+    fCalculateCommuting:0,
+    fCalculateFlights:0,
 }
 
 export const forecastResultSlice = createSlice({
     name: "forecastResult",
     initialState:initialForecastResults,
     reducers:{
+        fSetAnnualResult:(
+            state:Draft<typeof initialForecastResults>,
+            action: PayloadAction<typeof initialForecastResults.fAnnual>
+        ) =>{
+            state.fAnnual = action.payload
+        },
         fSetBuildingResult:(
             state:Draft<typeof initialForecastResults>,
-            action: PayloadAction<typeof initialForecastResults.fBuilding>
+            action: PayloadAction<typeof initialForecastResults.fCalculateBuilding>
         ) =>{
-            state.fBuilding = action.payload
+            state.fCalculateBuilding = action.payload
         },
         fSetCarResult:(
             state:Draft<typeof initialForecastResults>,
-            action: PayloadAction<typeof initialForecastResults.fCar>
+            action: PayloadAction<typeof initialForecastResults.fCalculateCar>
         ) =>{
-            state.fCar = action.payload
+            state.fCalculateCar = action.payload
         },
         fSetRemoteWorkResult:(
             state:Draft<typeof initialForecastResults>,
-            action: PayloadAction<typeof initialForecastResults.fRemoteWork>
+            action: PayloadAction<typeof initialForecastResults.fCalculateRemoteWork>
         ) =>{
-            state.fRemoteWork = action.payload
-        },fSetCommunityResult:(
+            state.fCalculateRemoteWork = action.payload
+        },fsetCommutingResult:(
             state:Draft<typeof initialForecastResults>,
-            action: PayloadAction<typeof initialForecastResults.fCommunity>
+            action: PayloadAction<typeof initialForecastResults.fCalculateCommuting>
         ) =>{
-            state.fCommunity = action.payload
+            state.fCalculateCommuting = action.payload
         },fSetFlightResult:(
             state:Draft<typeof initialForecastResults>,
-            action: PayloadAction<typeof initialForecastResults.fFlights>
+            action: PayloadAction<typeof initialForecastResults.fCalculateFlights>
         ) =>{
-            state.fFlights = action.payload
+            state.fCalculateFlights = action.payload
         }
     }
 })
@@ -55,10 +63,11 @@ export const  getForecastResultState = (state:{forecast:forecastResultState}) =>
 
 
 export const {
+    fSetAnnualResult:fSetAnnualResult,
     fSetBuildingResult:fSetBuildingResult,
     fSetCarResult:fSetCarResult,
     fSetRemoteWorkResult:fSetRemoteWorkResult,
-    fSetCommunityResult:fSetCommunityResult,
+    fsetCommutingResult:fSetCommunityResult,
     fSetFlightResult:fSetFlightResult
 } = forecastResultSlice.actions
 

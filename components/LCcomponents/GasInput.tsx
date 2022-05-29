@@ -13,17 +13,6 @@ type GasInputType = {
 const GasInput = ({type}:GasInputType) => {
   const  {bFuelType}  = useSelector(getBaselineState)
   const {fFuelType} = useSelector(getForecastState)
-
- 
-
-  // const percentValues = {
-  //   fuelType : type == "baseline" ? bFuelType:fFuelType,
-  //   gasolinePValue : function(){return this.fuelType.gasoline}, 
-  //   dieselPValue : function(){return this.gasolinePValue() + this.fuelType.diesel },
-  //   lpgPValue: function(){return this.dieselPValue() + this.fuelType.lpg},
-  //   hydrogenPValue: function(){return this.lpgPValue()+ this.fuelType.hydrogen},
-  //   electricPValue: function(){return this.hydrogenPValue() + this.fuelType.electric}
-  // }
  
   const dispatch = useDispatch()
 

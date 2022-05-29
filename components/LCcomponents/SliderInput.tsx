@@ -31,6 +31,7 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
             <input 
                 type = "range"
                 className = " w-[100%]"
+                defaultValue = "6"
                 min = "1"
                 max = "6"
                 onChange={handleChange}

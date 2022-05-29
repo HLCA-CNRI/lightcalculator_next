@@ -234,7 +234,7 @@ const LightCalculator = () => {
 
           <h1 className=" p-6 h-[36vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 "></h1>
           {/* fixed */}
-          <h1 className=" max-w-5xl h-[36vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
+          <h1 className=" fixed max-w-5xl h-[36vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>
