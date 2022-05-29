@@ -8,9 +8,14 @@ import RemoteWork from "./ResultComponents/RemoteWork";
 const Results = () => {
   return (
     <div className="grid gap-4 grid-cols-3 border shadow-md">
-      <div className= "w-[100%] px-3  pb-3">
-        <div className = "pt-3">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+      <div className="w-[100%] px-3  pb-3">
+        <div className="pt-3">
+          <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, Lorem Ipsum is simply dummy text of the
+            printing and typesetting
+          </div>
         </div>
       </div>
       <div className="w-[100%] px-3  pb-3">
@@ -27,7 +32,7 @@ const Results = () => {
         </div>
       </div>
 
-      <div className= "w-[100%] px-3 pb-3">
+      <div className="w-[100%] px-3 pb-3">
         <AnnualResult type="Forecast" />
 
         <div>
