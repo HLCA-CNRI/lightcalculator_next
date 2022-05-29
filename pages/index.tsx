@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 
 const Home: NextPage = () => {
-  const [authenticate,setAuthenticate] = useState(true)
+  const [authenticate,setAuthenticate] = useState(false)
 
   return (
     <div >
