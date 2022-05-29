@@ -62,7 +62,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
         <span className="ml-2">기본 값 적용</span>
       </label>
 
-      <hr className="border-none h-1 bg-white"></hr>
+      <hr className="border-none h-[2px] bg-white"></hr>
 
 
       <div className = "flex justify-center m-2">
@@ -71,7 +71,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
         <div>km</div>
       </div>
 
-      <hr className="border-none h-1 bg-white"></hr>
+      <hr className="border-none  h-[2px] bg-white"></hr>
 
       <div className="rounded-lg p-2  m-5">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

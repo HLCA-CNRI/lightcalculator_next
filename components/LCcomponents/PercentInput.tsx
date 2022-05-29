@@ -29,36 +29,26 @@ const PercentInput = ({ Objectkey, value, isBaseline,title }: percentInputType) 
   const { fFuelType, fCommuting } = useSelector(getForecastState);
   const dispatch = useDispatch();
 
-  let initialFuelObject = bFuelType
-  let initialCommutingObject = bCommuting
+  let initialFuelObject = isBaseline ? bFuelType : fFuelType
+  let initialCommutingObject = isBaseline ? bCommuting:fCommuting
   //TODO: Not good implementation 
   const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!isNaN(parseInt(currentVal, 10))) {
       if (Objectkey == "commuting" && isBaseline) {
-        initialCommutingObject = bCommuting
         dispatch(bSetCommuting({ ...bCommuting, [value]: event.target.value }));
       } else if (Objectkey == "fuel" && isBaseline) {
-        initialFuelObject = bFuelType
         dispatch(bSetFuelType({ ...bFuelType, [value]: event.target.value }));
       } else if (Objectkey == "commuting" && !isBaseline) {
-        initialCommutingObject = fCommuting
         dispatch(fSetCommuting({ ...fCommuting, [value]: event.target.value }));
       } else if (Objectkey == "fuel" && !isBaseline) {
-        initialFuelObject = fFuelType
         dispatch(fSetFuelType({ ...fFuelType, [value]: event.target.value }));
       }
     }
   };
   //TODO: Not good implementation 
-  let defaultValue = "0"
-  if(Objectkey == "commuting"){
-    defaultValue = initialCommutingObject[value as keyof typeof bCommuting].toString()
-  }else{
-    defaultValue = initialFuelObject[value as keyof typeof bFuelType].toString()
-  }
-
- 
+  let defaultValue = Objectkey == "commuting" ? initialCommutingObject[value as keyof typeof bCommuting].toString() : initialFuelObject[value as keyof typeof bFuelType].toString()
+  
 
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">

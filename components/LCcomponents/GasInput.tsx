@@ -14,8 +14,16 @@ const GasInput = ({type}:GasInputType) => {
   const  {bFuelType}  = useSelector(getBaselineState)
   const {fFuelType} = useSelector(getForecastState)
 
+ 
 
-
+  // const percentValues = {
+  //   fuelType : type == "baseline" ? bFuelType:fFuelType,
+  //   gasolinePValue : function(){return this.fuelType.gasoline}, 
+  //   dieselPValue : function(){return this.gasolinePValue() + this.fuelType.diesel },
+  //   lpgPValue: function(){return this.dieselPValue() + this.fuelType.lpg},
+  //   hydrogenPValue: function(){return this.lpgPValue()+ this.fuelType.hydrogen},
+  //   electricPValue: function(){return this.hydrogenPValue() + this.fuelType.electric}
+  // }
  
   const dispatch = useDispatch()
 
@@ -36,20 +44,14 @@ const GasInput = ({type}:GasInputType) => {
       <hr className="border-none h-[2px] bg-white"></hr>
 
       <div className="rounded-lg p-2  m-5">
-        {/* <div className="w-[type==baseline ? bFuelType.gasoline/100  fFuelType.gasoline/100 %] bg-slate-400 h-3 rounded-lg">
-          <div className="rounded-l-lg w-[85%] bg-red-400 h-3">
-            <div className="rounded-l-lg w-[70%] bg-orange-400 h-3">
-              <div className="rounded-l-lg w-[40%] bg-emerald-400 h-3"></div>
-            </div>
-          </div>
-        </div> */}
+       
 
-        <div className = "relative bg-slate-400 h-3 rounded-lg">
-           <div className = "absolute bg-red-400 h-3 rounded-lg w-[100%]"></div>
-           <div className = "absolute bg-blue-400 h-3 rounded-l-lg w-[80%]"></div>
-           <div className = "absolute bg-green-400 h-3 rounded-l-lg w-[60%]"></div>
-           <div className = "absolute bg-yellow-400 h-3 rounded-l-lg w-[40%]"></div>
-           <div className = "absolute bg-orange-400 h-3 rounded-l-lg w-[20%]"></div>
+        <div className = "relative h-3 rounded-lg">
+           <div id = "gas_input_red" className = "absolute bg-red-400 h-3 rounded-lg w-[100%]"></div>
+           <div className = "absolute bg-blue-400 h-3 rounded-l-lg w-[53%]"></div>
+           <div className = "absolute bg-green-400 h-3 rounded-l-lg w-[14%]"></div>
+           <div className = "absolute bg-yellow-400 h-3 rounded-l-lg w-[6%]"></div>
+           <div className = "absolute bg-orange-400 h-3 rounded-l-lg w-[4%]"></div>
         </div>
        
 
