@@ -47,7 +47,7 @@ const BuissnessTripInput = ({
           type="number"
           className="w-12 rounded"
           min={0}
-          defaultValue={bRoundTrip[sVal]}
+          defaultValue={isBaseline ? bRoundTrip[sVal]:fRoundTrip[sVal]}
           onChange={handleChange}
         ></input>
         <div>회</div>

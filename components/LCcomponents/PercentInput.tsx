@@ -56,6 +56,7 @@ const PercentInput = ({ Objectkey, value, isBaseline,title }: percentInputType) 
       <div className="mr-3 via-green-100 flex">
         <input
           type="number"
+          min={0}
           defaultValue = {defaultValue}
           className="w-12 text-gray-700 bg-white rounded"
           onChange={handleDefaultChange}

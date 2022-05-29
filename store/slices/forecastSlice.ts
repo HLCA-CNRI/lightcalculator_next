@@ -1,67 +1,7 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import { forecastState,DefualtForecast } from "../../functions/Defaults";
 
-export interface forecastState {
-  fCompanyEmployeeSize: number;
-  fFuelType: {
-    setDefault: boolean;
-    gasoline: number;
-    diesel: number;
-    lpg: number;
-    hydrogen: number;
-    electric: number;
-  };
-  fCompanyGasPrice: number;
-  fCommutingDays: number;
-  fCommuting: {
-    setDefault: boolean;
-    distance: number;
-    car: number;
-    publicTransit: number;
-    walkOrBike: number;
-  };
-  fUseRenewableEnergy: boolean;
-  fCompanysize:number,
-  fRoundTrip: {
-    asia: number,
-    europe: number,
-    northAmerica: number,
-    southAmerica: number,
-    oceana: number,
-    africa: number,
-  };
-}
-
-const initialForecastState: forecastState = {
-  fCompanyEmployeeSize: 100,
-  fFuelType: {
-    setDefault: false,
-    gasoline: 47,
-    diesel: 39,
-    lpg: 8,
-    hydrogen: 2,
-    electric: 4,
-  },
-  fCompanyGasPrice: 5000,
-  fCommutingDays: 5,
-  fCommuting: {
-    setDefault: false,
-    distance: 14,
-    car: 36,
-    publicTransit: 40,
-    walkOrBike: 24,
-    
-  },
-  fUseRenewableEnergy: false,
-  fCompanysize:1000,
-  fRoundTrip: {
-    asia: 0,
-    europe: 0,
-    northAmerica: 0,
-    southAmerica: 0,
-    oceana: 0,
-    africa: 0,
-  },
-};
+const initialForecastState: forecastState = DefualtForecast
 
 export const forecastSlice = createSlice({
   name: "forecast",

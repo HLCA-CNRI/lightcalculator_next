@@ -34,7 +34,7 @@ const NumberInput = ({
 
   return (
     <div className = "flex  m-2">
-      <input type = "number" className = "w-14 rounded" defaultValue={initial} min = "0" onChange={handleChange}></input>
+      <input type = "number" className = "w-14 rounded" defaultValue={initial} min={0} onChange={handleChange}></input>
       <div className = "ml-1">{unit}</div>
     </div>
   );
