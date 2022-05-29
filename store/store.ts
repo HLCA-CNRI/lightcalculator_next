@@ -18,8 +18,8 @@ export const store = configureStore({
   reducer: {
     baseline : baselineSlice,
     forecast : forecastSlice,
-    baselineResultSlice : baselineResultSlice,
-    forecastResultSlice : forecastResultSlice,
+    baselineResult : baselineResultSlice,
+    forecastResult : forecastResultSlice,
   },
 });
 

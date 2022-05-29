@@ -59,7 +59,7 @@ export const forecastResultSlice = createSlice({
     }
 })
 
-export const  getForecastResultState = (state:{forecast:forecastResultState}) => state.forecast
+export const  getForecastResultState = (state:{forecastResult:forecastResultState}) => state.forecastResult
 
 
 export const {

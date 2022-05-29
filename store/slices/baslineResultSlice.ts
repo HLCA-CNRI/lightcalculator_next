@@ -59,7 +59,7 @@ export const baselineResultSlice = createSlice({
     }
 })
 
-export const  getBaselineResultState = (state:{baseline:baselineResultState}) => state.baseline
+export const  getBaselineResultState = (state:{baselineResult:baselineResultState}) => state.baselineResult
 
 
 export const {
