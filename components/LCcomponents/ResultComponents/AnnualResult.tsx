@@ -12,25 +12,25 @@ type AnnualResultType ={
 }
 
 const AnnualResult = ({type}:AnnualResultType) => {
-  const {bCalculateBuilding,bCalculateCar,bCalculteRemoteWork,bCalculateCommuting,bClaculateFlights} = useSelector(getBaselineResultState)
-  const {fCalculateBuilding,fCalculateCar,fCalculateRemoteWork,fCalculateCommuting,fCalculateFlights} = useSelector(getForecastResultState)
+  // const {bCalculateBuilding,bCalculateCar,bCalculteRemoteWork,bCalculateCommuting,bClaculateFlights} = useSelector(getBaselineResultState)
+  // const {fCalculateBuilding,fCalculateCar,fCalculateRemoteWork,fCalculateCommuting,fCalculateFlights} = useSelector(getForecastResultState)
 
-  const currentCBuilding = type == "baseline" ? bCalculateBuilding : fCalculateBuilding
-  const currentCCar = type =="baseline" ? bCalculateCar:fCalculateCar
-  const curentCRemoteWork = type == "baseline" ?  bCalculteRemoteWork:fCalculateRemoteWork
-  const currentCCommuting = type == "baseline" ? bCalculateCommuting :fCalculateCommuting
-  const currentCFlights = type =="baseline" ? bClaculateFlights:fCalculateFlights
-  const currentAction = type == "baseline" ? bSetAnnualResult:fSetAnnualResult
+  // const currentCBuilding = type == "baseline" ? bCalculateBuilding : fCalculateBuilding
+  // const currentCCar = type =="baseline" ? bCalculateCar:fCalculateCar
+  // const curentCRemoteWork = type == "baseline" ?  bCalculteRemoteWork:fCalculateRemoteWork
+  // const currentCCommuting = type == "baseline" ? bCalculateCommuting :fCalculateCommuting
+  // const currentCFlights = type =="baseline" ? bClaculateFlights:fCalculateFlights
+  // const currentAction = type == "baseline" ? bSetAnnualResult:fSetAnnualResult
 
-  const [value,setValue]= useState(annualTotal(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights))
-  console.log(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights)
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    const num = annualTotal(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights)
-    setValue(Math.round(num * 100) / 100)
-    dispatch(currentAction(value))
-    console.log(num)
-  },[])
+  // const [value,setValue]= useState(annualTotal(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights))
+  // console.log(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights)
+  // const dispatch = useDispatch()
+  // useEffect(()=>{
+  //   const num = annualTotal(currentCBuilding,currentCCar,curentCRemoteWork,currentCCommuting,currentCFlights)
+  //   setValue(Math.round(num * 100) / 100)
+  //   dispatch(currentAction(value))
+  //   console.log(num)
+  // },[])
 
   return (
     <div>
@@ -39,7 +39,7 @@ const AnnualResult = ({type}:AnnualResultType) => {
           <div className="font-semibold">{type} Annual</div>
           {/* <div className="font-light">(tCO2e)</div> */}
         </div>
-        <div>{value}</div>
+        <div>Bug</div>
       </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">
