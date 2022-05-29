@@ -102,12 +102,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
               </div>
 
               <div className = "border to-black text-sm my-3">
-                    <div>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy text
-                    ever since the 1500s, Lorem Ipsum is simply dummy text of the printing
-                    and typesetting 
-                    </div>
+                    
               </div>
 
               <div className="mt-3 flex justify-center">

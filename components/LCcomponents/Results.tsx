@@ -10,12 +10,7 @@ const Results = () => {
     <div className="grid gap-4 grid-cols-3 border shadow-md">
       <div className="w-[100%] px-3  pb-3">
         <div className="pt-3">
-          <div>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, Lorem Ipsum is simply dummy text of the
-            printing and typesetting
-          </div>
+          
         </div>
       </div>
       <div className="w-[100%] px-3  pb-3">
