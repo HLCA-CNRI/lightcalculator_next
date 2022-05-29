@@ -80,7 +80,7 @@ const LightCalculator = () => {
               COVID-19 이후 재택근무의 비율이 급격히 증가했습니다.
               탄소중립연구원의 기후 임팩트 계산기는 의사결정에 따른 기후 변화
               영향력을 측정합니다. 아래 간단한 항목들에 답해보시고 귀사의 기후
-              변화 영향력을 측정해보세요.{" "}
+              변화 영향력을 측정해보세요.
             </div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5 w-40">
               시작하기
