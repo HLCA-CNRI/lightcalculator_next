@@ -62,7 +62,7 @@ const CarResult = ({ type }: CarResultType) => {
         {/* Change so that it reads the redux val  */}
         <div className="flex">
            <div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}</div>
-          {/* <AddForcastInfo/> */}
+          <AddForcastInfo type ="carResult"/>
         </div>
       </div>
       <div className="">

@@ -49,7 +49,7 @@ const AnnualResult = ({title,type}:AnnualResultType) => {
             {value}
             {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
           </div>
-          {/* {type == "forecast" ? <AddForcastInfo type = "annualResult" />:"" } */}
+          {type == "forecast" ? <AddForcastInfo type = "annualResult" />:"" }
         </div>
       </div>
       <div>
