@@ -163,8 +163,7 @@ const LightCalculator = () => {
           <div className="mb-3   ">
             <h2 className="text-xl font-semibold">근무 형태</h2>
             <p className="text-gray-600">
-              최근 재택근무를 시행하는 기업이 많아지고 있습니다. 평균적으로
-              임직원 한 명당 일주일에 며칠씩 사무실로 출근하시나요?
+            최근 재택근무를 시행하는 기업이 많아지고 있습니다. 귀사는 평균적으로 주 며칠 출근하는 형태이신가요?
             </p>
           </div>
           <div className="bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
@@ -249,9 +248,9 @@ const LightCalculator = () => {
             <BuisnessTripInfo type="forecast" />
           </div>
 
-          <h1 className=" p-6 h-[36vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 "></h1>
+          <h1 className=" p-6 h-[40vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 "></h1>
 
-          <h1 className=" max-w-6xl h-[36vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
+          <h1 className="fixed max-w-6xl h-[40vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>

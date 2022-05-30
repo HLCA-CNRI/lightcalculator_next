@@ -13,33 +13,38 @@ const AddForcastInfo =({type}:AddForcastInfoType) =>{
     
     const {bAnnual,bCalculateCar,bCalculateBuilding,bCalculteRemoteWork,bCalculateCommuting,bClaculateFlights} = useSelector(getBaselineResultState)
     const {fAnnual,fCalculateCar,fCalculateBuilding,fCalculateRemoteWork,fCalculateCommuting,fCalculateFlights} = useSelector(getForecastResultState)
-    const[value,setVal] =useState(0)
+  
+
+    const[value,setVal] = useState(0)
+
+    console.log(value)
 
 
     useEffect(()=>{
+   
+    
+        console.log(value)
 
-        switch(type){
-            case "annualResult":
-                setVal(Math.round((((fAnnual - bAnnual)/bAnnual)*100) * 10) / 10)
-            case "carResult":
-                setVal(Math.round((((bCalculateCar - fCalculateCar)/bCalculateCar)*100) * 10) / 10)
-            case "buildingResult":
-                setVal(Math.round((((bCalculateBuilding - fCalculateBuilding)/bCalculateBuilding)*100) * 10) / 10)
-            case "remoteResult":
-                setVal(Math.round((((bCalculteRemoteWork - fCalculateRemoteWork)/bCalculteRemoteWork)*100) * 10) / 10)
-            case "commutingResult":
-                setVal(Math.round((((bCalculateCommuting - fCalculateCommuting)/bCalculateCommuting)*100) * 10) / 10)
-            case "flightResult":
-                setVal(Math.round((((bClaculateFlights - fCalculateFlights)/bClaculateFlights)*100) * 10) / 10)
-                
-        }
+        console.log("HERHEHHERHEHR",bCalculteRemoteWork,bClaculateFlights,bCalculateCommuting,fCalculateRemoteWork,fCalculateFlights,fCalculateCommuting)
+       if(type ==  "annualResult"){
+        setVal(Math.round((((fAnnual - bAnnual)/bAnnual)*100) * 10) / 10)
+       } else if(type ==  "carResult" && bCalculateCar!=0){
+        setVal(Math.round((((fCalculateCar - bCalculateCar)/bCalculateCar)*100) * 10) / 10)
+       }else if(type == "buildingResult" && bCalculateBuilding!=0){
+        setVal(Math.round((((fCalculateBuilding - bCalculateBuilding)/bCalculateBuilding)*100) * 10) / 10)
+       }else if(type == "commutingResult" && bCalculateCommuting!=0){
+        setVal(Math.round((((fCalculateCommuting - bCalculateCommuting)/bCalculateCommuting)*100) * 10) / 10)
+       }
 
+       else{
+           setVal(0)
+       }
 
-    },[value,bAnnual,fAnnual])
+    },[bAnnual,bCalculateCar,bCalculateBuilding,bCalculteRemoteWork,bCalculateCommuting,bClaculateFlights,fAnnual,fCalculateCar,fCalculateBuilding,fCalculateRemoteWork,fCalculateCommuting,fCalculateFlights])
 
 
     return (
-        <div className="ml-2 border-2">
+        <div className="ml-2">
 
              <div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}</div>
         </div>

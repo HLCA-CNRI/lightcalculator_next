@@ -73,12 +73,15 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
       <hr className="border-none  h-[2px] bg-white"></hr>
 
+
+
       <div className="rounded-lg p-2  m-5">
-        <div className="w-[100%] bg-slate-400 h-3 rounded-lg">
-          <div className="rounded-l-lg w-[85%] bg-red-400 h-3">
-            <div className="rounded-l-lg w-[30%] bg-orange-400 h-3"></div>
-          </div>
+      <div className = "relative h-3 rounded-lg">
+           <div id = "gas_input_red" className = "absolute bg-[#bdd7ee] h-3 rounded-lg w-[100%]"></div>
+           <div className = "absolute bg-[#5b9bd5] h-3 rounded-l-lg w-[76%]"></div>
+           <div className = "absolute bg-[#2f5597] h-3 rounded-l-lg w-[36%]"></div>
         </div>
+        
 
         <PercentInput Objectkey="commuting" value="car" isBaseline={type == "baseline" ? true : false} title = "자동차" unit = "%"/>
         <PercentInput Objectkey="commuting" value="publicTransit" isBaseline={type == "baseline" ? true : false} title = "대중교통" unit = "%"/>

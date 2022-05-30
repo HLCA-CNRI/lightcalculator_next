@@ -58,16 +58,23 @@ const CarResult = ({ type }: CarResultType) => {
   return (
     <div>
       <div className="flex justify-between">
-        <div>Car</div>
+        <div className="flex">
+          <div className="mr-2 text-2xl ">&#x2022;</div>
+          <div>차량</div>
+        </div>
         {/* Change so that it reads the redux val  */}
         <div className="flex">
-           <div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}</div>
-          <AddForcastInfo type ="carResult"/>
+          <div>
+            {value}
+            {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
+          </div>
+          {type == "forecast" ? <AddForcastInfo type="carResult" /> : ""}
         </div>
       </div>
       <div className="">
-        <div className="w-[100%] bg-slate-400 h-3 rounded-lg">
-          <div className="rounded-l-lg w-[45%] bg-red-400 h-3  "></div>
+        <div className="relative h-3 rounded-lg">
+          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[80%]"></div>
         </div>
       </div>
     </div>

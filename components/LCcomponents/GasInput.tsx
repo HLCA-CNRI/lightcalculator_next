@@ -36,11 +36,11 @@ const GasInput = ({type}:GasInputType) => {
        
 
         <div className = "relative h-3 rounded-lg">
-           <div id = "gas_input_red" className = "absolute bg-red-400 h-3 rounded-lg w-[100%]"></div>
-           <div className = "absolute bg-blue-400 h-3 rounded-l-lg w-[53%]"></div>
-           <div className = "absolute bg-green-400 h-3 rounded-l-lg w-[14%]"></div>
-           <div className = "absolute bg-yellow-400 h-3 rounded-l-lg w-[6%]"></div>
-           <div className = "absolute bg-orange-400 h-3 rounded-l-lg w-[4%]"></div>
+           <div id = "gas_input_red" className = "absolute bg-[#bdd7ee] h-3 rounded-lg w-[100%]"></div>
+           <div className = "absolute bg-[#9dc3e6] h-3 rounded-l-lg w-[96%]"></div>
+           <div className = "absolute bg-[#5b9bd5] h-3 rounded-l-lg w-[94%]"></div>
+           <div className = "absolute bg-[#2e75b6] h-3 rounded-l-lg w-[86%]"></div>
+           <div className = "absolute bg-[#2f5597] h-3 rounded-l-lg w-[47%]"></div>
         </div>
       
 

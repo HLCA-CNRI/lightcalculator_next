@@ -19,20 +19,26 @@ type percentInputType = {
   Objectkey: string;
   value: string;
   isBaseline: boolean;
-  title:string;
-  unit:string
+  title: string;
+  unit: string;
   // defaultVal:string;
 };
 
 //TODO: Change implementation
-const PercentInput = ({ Objectkey, value, isBaseline,title,unit}: percentInputType) => {
+const PercentInput = ({
+  Objectkey,
+  value,
+  isBaseline,
+  title,
+  unit,
+}: percentInputType) => {
   const { bFuelType, bCommuting } = useSelector(getBaselineState);
   const { fFuelType, fCommuting } = useSelector(getForecastState);
   const dispatch = useDispatch();
 
-  let initialFuelObject = isBaseline ? bFuelType : fFuelType
-  let initialCommutingObject = isBaseline ? bCommuting:fCommuting
-  //TODO: Not good implementation 
+  let initialFuelObject = isBaseline ? bFuelType : fFuelType;
+  let initialCommutingObject = isBaseline ? bCommuting : fCommuting;
+  //TODO: Not good implementation
   const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!isNaN(parseInt(currentVal, 10))) {
@@ -47,18 +53,26 @@ const PercentInput = ({ Objectkey, value, isBaseline,title,unit}: percentInputTy
       }
     }
   };
-  //TODO: Not good implementation 
-  let defaultValue = Objectkey == "commuting" ? initialCommutingObject[value as keyof typeof bCommuting].toString() : initialFuelObject[value as keyof typeof bFuelType].toString()
-  
+  //TODO: Not good implementation
+  let defaultValue =
+    Objectkey == "commuting"
+      ? initialCommutingObject[value as keyof typeof bCommuting].toString()
+      : initialFuelObject[value as keyof typeof bFuelType].toString();
 
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">
-      <div>{title}</div>
+      <div className="flex flex-col border-4 content-center">
+        <div className = "flex ">
+          <div className="mr-2 text-2xl ">&#x2022;</div>
+          <div>{title}</div>
+        </div>
+      </div>
+
       <div className="mr-3 via-green-100 flex">
         <input
           type="number"
           min={0}
-          defaultValue = {defaultValue}
+          defaultValue={defaultValue}
           className="w-12 text-gray-700 bg-white rounded"
           onChange={handleDefaultChange}
         ></input>
