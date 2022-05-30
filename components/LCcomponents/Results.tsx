@@ -17,7 +17,7 @@ const Results = () => {
         </div>
       </div>
       <div className="w-[100%] px-3  pb-3">
-        <AnnualResult type="Baseline" />
+        <AnnualResult type="baseline" title = "Baseline"/>
         <div className = "mt-2">
           <CarResult type="baseline" />
           <BuildingResult type="baseline" />
@@ -28,7 +28,7 @@ const Results = () => {
       </div>
 
       <div className="w-[100%] px-3 pb-3">
-        <AnnualResult type="Forecast" />
+        <AnnualResult type="forecast" title = "Forecast"/>
 
         <div className = "mt-2">
           <CarResult type="forecast" />

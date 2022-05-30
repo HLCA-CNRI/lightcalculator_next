@@ -12,7 +12,6 @@ export const baselineSlice = createSlice({
       state: Draft<typeof initialBaselineState>,
       action: PayloadAction<typeof initialBaselineState.bCompanyEmployeeSize>
     ) => {
-      console.log(action);
       state.bCompanyEmployeeSize = action.payload;
     },
     bSetFuelType: (
@@ -43,14 +42,12 @@ export const baselineSlice = createSlice({
       state: Draft<typeof initialBaselineState>,
       action: PayloadAction<typeof initialBaselineState.bUseRenewableEnergy>
     ) => {
-      console.log(state.bUseRenewableEnergy);
       state.bUseRenewableEnergy = action.payload;
     },
     bSetCompanySize: (
       state: Draft<typeof initialBaselineState>,
       action: PayloadAction<typeof initialBaselineState.bCompanysize>
     ) => {
-      console.log(action);
       state.bCompanysize = action.payload;
     },
     bSetRoundTrip: (

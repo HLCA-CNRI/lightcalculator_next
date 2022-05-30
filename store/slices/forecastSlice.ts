@@ -41,14 +41,12 @@ export const forecastSlice = createSlice({
       state: Draft<typeof initialForecastState>,
       action: PayloadAction<typeof initialForecastState.fUseRenewableEnergy>
     ) => {
-      console.log(state.fUseRenewableEnergy);
       state.fUseRenewableEnergy = action.payload;
     },
     fSetCompanySize: (
       state: Draft<typeof initialForecastState>,
       action: PayloadAction<typeof initialForecastState.fCompanysize>
     ) => {
-      console.log(action);
       state.fCompanysize = action.payload;
     },
     fSetRoundTrip: (

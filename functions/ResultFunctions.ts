@@ -6,7 +6,6 @@ export const calculateBuilding = (employee:number,commuteDays:number,companySize
 export const calculateCars = (gasoline:number,diesel:number,lpg:number,hydrogen:number,electric:number,companyGasPrice:number) =>{
     const first = (((2586.81/11.76) * gasoline) + ((3062.93/11.28)*diesel) + ((2124.03/8.77)*lpg) + ((4939.64/93.81)*hydrogen) + ((337.69/5.5)*electric))
     const second = ((10*companyGasPrice)/(((2001/11.76)*gasoline) + ((2003/11.28)*diesel) + ((1133/8.77)*lpg) + ((8800/93.81)*hydrogen) + ((300/5.5)*electric)))
-    console.log(first*second)
     return (first*second)
 }
 
@@ -25,7 +24,5 @@ export const calculateFlight = (asia:number,europe:number,northAmerica:number,so
 }
 
 export const annualTotal = (building:number, cars:number, remoteWork:number, commuting:number, flights:number) =>{
-    console.log(building,cars,remoteWork,commuting,flights ,"=" ,building + cars + remoteWork + commuting + flights)
-
     return (building + cars + remoteWork + commuting + flights)
 }

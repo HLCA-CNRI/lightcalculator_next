@@ -27,7 +27,6 @@ const BuildingResult = ({ type }: BuildingResultType) => {
   
   useEffect(()=>{
     const num = calculateBuilding(currentEmployeeSize,currentCommutingDays,currentCompanySize,currentRenewableEnergy)
-    console.log((Math.round(num * 100) / 100)%1 == 0  ,typeof parseFloat(num.toString()).toFixed(2))
     setValue(Math.round(num * 100) / 100)
     dispatch(currentAction(value))
 
@@ -36,7 +35,10 @@ const BuildingResult = ({ type }: BuildingResultType) => {
     <div>
       <div className="flex justify-between">
         <div>Building</div>
-        <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
+        <div className="flex">
+           <div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}</div>
+          {/* <AddForcastInfo/> */}
+        </div>
       </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

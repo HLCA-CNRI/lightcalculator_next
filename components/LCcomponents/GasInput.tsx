@@ -42,12 +42,11 @@ const GasInput = ({type}:GasInputType) => {
            <div className = "absolute bg-yellow-400 h-3 rounded-l-lg w-[6%]"></div>
            <div className = "absolute bg-orange-400 h-3 rounded-l-lg w-[4%]"></div>
         </div>
-       
-
+      
 
         <PercentInput Objectkey="fuel" value = "gasoline" isBaseline = {type == "baseline" ? true:false} title = "휘발유" unit = "대"/>
         <PercentInput Objectkey="fuel" value = "diesel" isBaseline = {type == "baseline" ? true:false} title = "경유" unit = "대"/>
-        <PercentInput Objectkey="fuel" value = "lpg" isBaseline = {type == "baseline" ? true:false} title = "lpg" unit = "대"/> 
+        <PercentInput Objectkey="fuel" value = "lpg" isBaseline = {type == "baseline" ? true:false} title = "LPG" unit = "대"/> 
         <PercentInput Objectkey="fuel" value = "hydrogen" isBaseline = {type == "baseline" ? true:false} title = "수소" unit = "대"/>
         <PercentInput Objectkey="fuel" value = "electric" isBaseline = {type == "baseline" ? true:false} title = "전기" unit = "대"/>
       </div>

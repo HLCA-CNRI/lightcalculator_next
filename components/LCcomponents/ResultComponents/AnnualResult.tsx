@@ -5,13 +5,15 @@ import {getBaselineResultState,bSetAnnualResult} from "../../../store/slices/bas
 import {getForecastResultState,fSetAnnualResult} from "../../../store/slices/forecastResultSlice"
 import {useSelector} from "react-redux"
 import {annualTotal} from "../../../functions/ResultFunctions"
+import AddForcastInfo from "./AddForcastInfo";
 
 
 type AnnualResultType ={ 
     type:string
+    title:string
 }
 
-const AnnualResult = ({type}:AnnualResultType) => {
+const AnnualResult = ({title,type}:AnnualResultType) => {
 
   const {bAnnual,bCalculateBuilding,bCalculateCar,bCalculteRemoteWork,bCalculateCommuting,bClaculateFlights} = useSelector(getBaselineResultState)
   const {fAnnual,fCalculateBuilding,fCalculateCar,fCalculateRemoteWork,fCalculateCommuting,fCalculateFlights} = useSelector(getForecastResultState)
@@ -29,14 +31,8 @@ const AnnualResult = ({type}:AnnualResultType) => {
  
   
   useEffect(()=>{
-    // console.log("HERE",currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
-    // const timer = setTimeout(() => {
-    //   console.log('This will run after 1 second!')
-    // }, 100);
-    
     const num = annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
-    setValue(Math.round(num * 100) / 100)
-    // setValue(Math.round(num * 100) / 100)
+    setValue(Math.round(num * 10) / 10)
     // console.log("annual total",annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight))
     dispatch(currentAction(value))
   },[currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight])
@@ -45,10 +41,16 @@ const AnnualResult = ({type}:AnnualResultType) => {
     <div>
       <div className="w-[100%] flex justify-between pt-3 ">
         <div className="flex">
-          <div className="font-semibold text-base">{type} Annual (kgCO<sub>2</sub>e)</div>
+          <div className="font-semibold text-base">{title} Annual (kgCO<sub>2</sub>e)</div>
           {/* <div className="font-light">(tCO2e)</div> */}
         </div>
-        <div className = "font-semibold mb-2">{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
+        <div className="flex">
+          <div >
+            {value}
+            {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
+          </div>
+          {/* {type == "forecast" ? <AddForcastInfo type = "annualResult" />:"" } */}
+        </div>
       </div>
       <div>
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

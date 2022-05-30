@@ -25,7 +25,7 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
 
   useEffect(()=>{
     const num = calculateRemoteWork(currentCompanyEmployeeSize,currentCommutingDays)
-    setValue(Math.round(num * 100) / 100)
+    setValue(Math.round(num * 10) / 10)
     dispatch(currentAction(value))
 
   },[currentCompanyEmployeeSize,currentCommutingDays])
@@ -33,7 +33,10 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
     <div>
       <div className="flex justify-between">
         <div>Remote Work</div>
-        <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
+        <div className="flex">
+           <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".0":""}</div>
+          {/* <AddForcastInfo/> */}
+        </div>
       </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

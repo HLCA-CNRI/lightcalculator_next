@@ -27,7 +27,7 @@ const CommutingResult = ({type}: CommutingResultType) => {
 
   useEffect(()=>{
     const num = calculateCommutingDays(currentCompanyEmployeeSize,currentCommutingDays,currentCommuting.distance,currentCommuting.car,currentCommuting.publicTransit)
-    setValue(Math.round(num * 100) / 100)
+    setValue(Math.round(num * 10) / 10)
     dispatch(currentAction(value))
 
   },[currentCompanyEmployeeSize,currentCommutingDays,currentCommuting])
@@ -36,7 +36,10 @@ const CommutingResult = ({type}: CommutingResultType) => {
     <div>
     <div className = "flex justify-between">
         <div>Commuting</div>
-        <div>{value}</div>
+        <div className="flex">
+           <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".0":""}</div>
+          {/* <AddForcastInfo/> */}
+        </div>
     </div>
     
       <div className="">
