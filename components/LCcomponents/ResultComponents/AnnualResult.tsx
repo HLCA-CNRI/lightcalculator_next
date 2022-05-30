@@ -22,13 +22,22 @@ const AnnualResult = ({type}:AnnualResultType) => {
   const currentCommuting = type == "baseline" ? bCalculateCommuting:fCalculateCommuting
   const currentFlight = type == "baseline" ? bClaculateFlights:fCalculateFlights
   const currentAction = type =="baseline" ? bSetAnnualResult : fSetAnnualResult
-  
-  const [value,setValue] = useState(annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight))
-
   const dispatch = useDispatch()
+  //change value to redux val Do not use useState 
+  const [value,setValue] = useState(0)
+  // console.log("HERE",currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
+ 
+  
   useEffect(()=>{
+    // console.log("HERE",currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
+    // const timer = setTimeout(() => {
+    //   console.log('This will run after 1 second!')
+    // }, 100);
+    
     const num = annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
-    setValue(Math.round(num * 100)/100)
+    setValue(Math.round(num * 100) / 100)
+    // setValue(Math.round(num * 100) / 100)
+    // console.log("annual total",annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight))
     dispatch(currentAction(value))
   },[currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight])
 
@@ -36,12 +45,12 @@ const AnnualResult = ({type}:AnnualResultType) => {
     <div>
       <div className="w-[100%] flex justify-between pt-3 ">
         <div className="flex">
-          <div className="font-semibold">{type} Annual</div>
+          <div className="font-semibold text-base">{type} Annual (kgCO<sub>2</sub>e)</div>
           {/* <div className="font-light">(tCO2e)</div> */}
         </div>
-        <div>{value}</div>
+        <div className = "font-semibold mb-2">{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
       </div>
-      <div className="">
+      <div>
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">
           <div className="rounded-l-lg w-[85%] bg-red-400 h-3 ">
             <div className="rounded-l-lg w-[70%] bg-orange-400 h-3">

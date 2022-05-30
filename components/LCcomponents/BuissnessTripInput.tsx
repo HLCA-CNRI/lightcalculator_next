@@ -40,19 +40,19 @@ const BuissnessTripInput = ({
   let sVal = value as keyof typeof bRoundTrip;
 
   return (
-    <div className="grid  place-items-center gap-2 grid-cols-3  m-3">
-      <div>{country}</div>
+    <div className="grid gap-2 grid-cols-2  m-3  w-[100%]">
+      <div className = "mr-4">{country}</div>
       <div className="flex">
         <input
           type="number"
-          className="w-12 rounded"
+          className="ml-4 w-12 rounded"
           min={0}
           defaultValue={isBaseline ? bRoundTrip[sVal]:fRoundTrip[sVal]}
           onChange={handleChange}
         ></input>
         <div>회</div>
       </div>
-      <div>왕복비행</div>
+    
     </div>
 
   );

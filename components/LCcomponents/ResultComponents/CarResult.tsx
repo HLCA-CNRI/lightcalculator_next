@@ -39,7 +39,7 @@ const CarResult = ({type}: CarResultType) => {
       <div className = "flex justify-between">
         <div>Car</div>
         {/* Change so that it reads the redux val  */}
-        <div>{value}</div>
+        <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
     </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

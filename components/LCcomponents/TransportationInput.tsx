@@ -80,12 +80,9 @@ const TransportationInput = ({ type }: TransportationInputType) => {
           </div>
         </div>
 
-        <PercentInput Objectkey="commuting" value="car" isBaseline={type == "baseline" ? true : false} title = "자동차"
-        />
-        <PercentInput Objectkey="commuting" value="publicTransit" isBaseline={type == "baseline" ? true : false} title = "대중교통"
-        />
-        <PercentInput Objectkey="commuting" value="walkOrBike" isBaseline={type == "baseline" ? true : false} title = "도보 및 자전거"
-        />
+        <PercentInput Objectkey="commuting" value="car" isBaseline={type == "baseline" ? true : false} title = "자동차" unit = "%"/>
+        <PercentInput Objectkey="commuting" value="publicTransit" isBaseline={type == "baseline" ? true : false} title = "대중교통" unit = "%"/>
+        <PercentInput Objectkey="commuting" value="walkOrBike" isBaseline={type == "baseline" ? true : false} title = "도보 및 자전거" unit = "%"/>
       </div>
     </div>
   );

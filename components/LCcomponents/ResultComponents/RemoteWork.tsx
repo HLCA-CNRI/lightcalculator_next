@@ -33,7 +33,7 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
     <div>
       <div className="flex justify-between">
         <div>Remote Work</div>
-        <div>{value}</div>
+        <div>{value}{(Math.round(value * 100) / 100)%1 == 0 ? ".00":""}</div>
       </div>
       <div className="">
         <div className="w-[100%] bg-slate-400 h-3 rounded-lg">

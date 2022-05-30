@@ -45,11 +45,11 @@ const GasInput = ({type}:GasInputType) => {
        
 
 
-        <PercentInput Objectkey="fuel" value = "gasoline" isBaseline = {type == "baseline" ? true:false} title = "휘발류" />
-        <PercentInput Objectkey="fuel" value = "diesel" isBaseline = {type == "baseline" ? true:false} title = "경유"/>
-        <PercentInput Objectkey="fuel" value = "lpg" isBaseline = {type == "baseline" ? true:false} title = "lpg"/> 
-        <PercentInput Objectkey="fuel" value = "hydrogen" isBaseline = {type == "baseline" ? true:false} title = "수소"/>
-        <PercentInput Objectkey="fuel" value = "electric" isBaseline = {type == "baseline" ? true:false} title = "전기"/>
+        <PercentInput Objectkey="fuel" value = "gasoline" isBaseline = {type == "baseline" ? true:false} title = "휘발류" unit = "대"/>
+        <PercentInput Objectkey="fuel" value = "diesel" isBaseline = {type == "baseline" ? true:false} title = "경유" unit = "대"/>
+        <PercentInput Objectkey="fuel" value = "lpg" isBaseline = {type == "baseline" ? true:false} title = "lpg" unit = "대"/> 
+        <PercentInput Objectkey="fuel" value = "hydrogen" isBaseline = {type == "baseline" ? true:false} title = "수소" unit = "대"/>
+        <PercentInput Objectkey="fuel" value = "electric" isBaseline = {type == "baseline" ? true:false} title = "전기" unit = "대"/>
       </div>
     </div>
   );

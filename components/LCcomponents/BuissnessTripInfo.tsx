@@ -8,7 +8,7 @@ type BuisnessTripInfoType = {
 }
 const BuisnessTripInfo = ({type}:BuisnessTripInfoType) =>{
     return(
-        <div>
+        <div className = "width-[100%]">
             <BuissnessTripInput country = "아시아" value='asia' isBaseline={type == "baseline" ? true : false}/>
             <BuissnessTripInput country = "유럽" value='europe' isBaseline={type == "baseline" ? true : false}/>
             <BuissnessTripInput country = "북미" value='northAmerica' isBaseline={type == "baseline" ? true : false}/>

@@ -225,7 +225,7 @@ const LightCalculator = () => {
               연간 총 해외 출장은 몇 번이신가요?
             </p>
           </div>
-          <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg ">
+          <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
             <BuisnessTripInfo type="baseline" />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg ">

@@ -10,38 +10,32 @@ const Results = () => {
     <div className="grid gap-4 grid-cols-3 border shadow-md rounded-lg">
       <div className="w-[100%] px-3  pb-3">
         <div className="pt-3">
-        개인, 기업, 기관 소유 차량이 전기차로 빠르게 전환되고 있고
-         COVID-19 이후 재택근무의 비율이 급격히 증가했습니다. 탄소중립연구원의 기후 
-         임팩트 계산기는 의사결정에 따른 기후 변화 영향력을 측정합니다. 아래 간단한 
-         항목들에 답해보시고 귀사의 기후 변화 영향력을 측정해보세요.
+          개인, 기업, 기관 소유 차량이 전기차로 빠르게 전환되고 있고 COVID-19
+          이후 재택근무의 비율이 급격히 증가했습니다. 탄소중립연구원의 기후
+          임팩트 계산기는 의사결정에 따른 기후 변화 영향력을 측정합니다. 아래
+          간단한 항목들에 답해보시고 귀사의 기후 변화 영향력을 측정해보세요.
         </div>
       </div>
       <div className="w-[100%] px-3  pb-3">
-        <AnnualResult type="baseline" />
-        <div>
-          <div className="font-normal">WorkPlace</div>
-          <div className="ml-2">
-            <CarResult type="baseline" />
-            <BuildingResult type="baseline" />
-            <CommutingResults type="baseline" />
-            <FlightResult type="baseline" />
-            <RemoteWork type="baseline" />
-          </div>
+        <AnnualResult type="Baseline" />
+        <div className = "mt-2">
+          <CarResult type="baseline" />
+          <BuildingResult type="baseline" />
+          <CommutingResults type="baseline" />
+          <FlightResult type="baseline" />
+          <RemoteWork type="baseline" />
         </div>
       </div>
 
       <div className="w-[100%] px-3 pb-3">
         <AnnualResult type="Forecast" />
 
-        <div>
-          <div className="font-normal">WorkPlace</div>
-          <div className="ml-2">
-            <CarResult type="forecast" />
-            <BuildingResult type="forecast" />
-            <CommutingResults type="forecast" />
-            <FlightResult type="forecast" />
-            <RemoteWork type="forecast" />
-          </div>
+        <div className = "mt-2">
+          <CarResult type="forecast" />
+          <BuildingResult type="forecast" />
+          <CommutingResults type="forecast" />
+          <FlightResult type="forecast" />
+          <RemoteWork type="forecast" />
         </div>
       </div>
     </div>

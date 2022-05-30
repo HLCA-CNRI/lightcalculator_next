@@ -22,6 +22,7 @@ const NumberInput = ({
 
   }, [number]);
 
+ 
 
   const dispatch = useDispatch();
 
@@ -31,11 +32,14 @@ const NumberInput = ({
       dispatch(setNumber(parseInt(currentVal, 10)));
     }
   };
+  //TODO: FIX --> when m2 is taken in, slice it and 적용해
+  // There are no m units so when m is added to units it automatically changes the unit to m^2
 
   return (
     <div className = "flex  m-2">
       <input type = "number" className = "w-14 rounded" defaultValue={initial} min={0} onChange={handleChange}></input>
-      <div className = "ml-1">{unit}</div>
+      <div className = "ml-1">{unit}{unit == "m" ? <sup>2</sup>:""}</div>
+      {/* <div className = "ml-1">{unit}{ unit=="m2" ? <sup>2</sup>:""}</div> */}
     </div>
   );
 };

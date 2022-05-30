@@ -20,11 +20,12 @@ type percentInputType = {
   value: string;
   isBaseline: boolean;
   title:string;
+  unit:string
   // defaultVal:string;
 };
 
 //TODO: Change implementation
-const PercentInput = ({ Objectkey, value, isBaseline,title }: percentInputType) => {
+const PercentInput = ({ Objectkey, value, isBaseline,title,unit}: percentInputType) => {
   const { bFuelType, bCommuting } = useSelector(getBaselineState);
   const { fFuelType, fCommuting } = useSelector(getForecastState);
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const PercentInput = ({ Objectkey, value, isBaseline,title }: percentInputType) 
           className="w-12 text-gray-700 bg-white rounded"
           onChange={handleDefaultChange}
         ></input>
-        <div className="ml-2">%</div>
+        <div className="ml-2">{unit}</div>
       </div>
     </div>
   );
