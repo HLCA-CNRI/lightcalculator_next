@@ -59,7 +59,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
           className="form-checkbox h-4 w-4"
           onChange={handleDefaultChange}
         />
-        <span className="ml-2">기본 값 적용</span>
+        <span className="ml-2">기본값 적용</span>
       </label>
 
       <hr className="border-none h-[2px] bg-white"></hr>

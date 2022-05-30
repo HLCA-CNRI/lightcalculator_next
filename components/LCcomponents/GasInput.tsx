@@ -28,7 +28,7 @@ const GasInput = ({type}:GasInputType) => {
     <div className="w-[100%]">
       <label className="inline-flex items-center w-[100%] justify-start pt-2 pl-3 ml-6 my-3">
         <input type="checkbox" className="form-checkbox h-4 w-4" onChange={handleDefaultChange}/>
-        <span className="ml-2">기본 값 적용</span>
+        <span className="ml-2">기본값 적용</span>
       </label>
       <hr className="border-none h-[2px] bg-white"></hr>
 
@@ -45,7 +45,7 @@ const GasInput = ({type}:GasInputType) => {
        
 
 
-        <PercentInput Objectkey="fuel" value = "gasoline" isBaseline = {type == "baseline" ? true:false} title = "휘발류" unit = "대"/>
+        <PercentInput Objectkey="fuel" value = "gasoline" isBaseline = {type == "baseline" ? true:false} title = "휘발유" unit = "대"/>
         <PercentInput Objectkey="fuel" value = "diesel" isBaseline = {type == "baseline" ? true:false} title = "경유" unit = "대"/>
         <PercentInput Objectkey="fuel" value = "lpg" isBaseline = {type == "baseline" ? true:false} title = "lpg" unit = "대"/> 
         <PercentInput Objectkey="fuel" value = "hydrogen" isBaseline = {type == "baseline" ? true:false} title = "수소" unit = "대"/>
