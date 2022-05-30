@@ -13,7 +13,6 @@ import {
 } from "../../store/slices/forecastSlice";
 
 import PercentInput from "./PercentInput";
-import { addColors } from "winston/lib/winston/config";
 
 type TransportationInputType = {
   type: string;
