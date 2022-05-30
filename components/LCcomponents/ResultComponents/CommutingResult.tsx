@@ -54,10 +54,9 @@ const CommutingResult = ({ type }: CommutingResultType) => {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex">
-          <div className="mr-2 text-2xl ">&#x2022;</div>
-          <div>출퇴근</div>
-        </div>
+        <li className="text-[#916aff]">
+          <span className="text-black">출퇴근</span>
+        </li>
 
         <div className="flex">
           <div>

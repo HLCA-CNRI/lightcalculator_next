@@ -248,9 +248,12 @@ const LightCalculator = () => {
             <BuisnessTripInfo type="forecast" />
           </div>
 
-          <h1 className=" p-6 h-[40vh] xs:col-span-1 md:col-span-3  rounded-lg  mt-=3 "></h1>
+          <h1 className="  max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg ">
+            <div className=" md:w-[65%]"></div>
+            <Results />
+          </h1>
 
-          <h1 className="fixed max-w-6xl h-[40vh] bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-0">
+          <h1 className=" fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>

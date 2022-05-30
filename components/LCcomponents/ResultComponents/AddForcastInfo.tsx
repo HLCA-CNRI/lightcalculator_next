@@ -4,6 +4,7 @@ import { getForecastResultState } from "../../../store/slices/forecastResultSlic
 import { useSelector } from "../../../store/store";
 import React, { useState, useEffect } from "react";
 import classnames from "tailwindcss-classnames";
+import AnnualResult from "./AnnualResult";
 
 
 type AddForcastInfoType = {
@@ -23,9 +24,9 @@ const AddForcastInfo =({type}:AddForcastInfoType) =>{
     useEffect(()=>{
    
     
-        console.log(value)
+        // console.log(value)
 
-        console.log("HERHEHHERHEHR",bCalculteRemoteWork,bClaculateFlights,bCalculateCommuting,fCalculateRemoteWork,fCalculateFlights,fCalculateCommuting)
+        // console.log("HERHEHHERHEHR",bCalculteRemoteWork,bClaculateFlights,bCalculateCommuting,fCalculateRemoteWork,fCalculateFlights,fCalculateCommuting)
        if(type ==  "annualResult"){
         setVal(Math.round((((fAnnual - bAnnual)/bAnnual)*100) * 10) / 10)
        } else if(type ==  "carResult" && bCalculateCar!=0){
@@ -44,9 +45,13 @@ const AddForcastInfo =({type}:AddForcastInfoType) =>{
 
 
     return (
+        //TODO : combine by setting conditional to style
         <div className="ml-2">
+            {type == "annualResult" ? 
+            <div className = " rounded-full px-1 bg-green-200">{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}%</div>:<div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}%</div>
+            }
 
-             <div>{value}{(Math.round(value * 10) / 10)%1 == 0 ? ".0":""}</div>
+             
         </div>
     )
 }

@@ -8,17 +8,24 @@ import RemoteWork from "./ResultComponents/RemoteWork";
 const Results = () => {
   return (
     <div className="grid gap-4 grid-cols-3 border shadow-md rounded-lg">
-      <div className="w-[100%] px-3  pb-3">
-        <div className="pt-3">
-          개인, 기업, 기관 소유 차량이 전기차로 빠르게 전환되고 있고 COVID-19
-          이후 재택근무의 비율이 급격히 증가했습니다. 탄소중립연구원의 기후
-          임팩트 계산기는 의사결정에 따른 기후 변화 영향력을 측정합니다. 아래
-          간단한 항목들에 답해보시고 귀사의 기후 변화 영향력을 측정해보세요.
+      <div className="w-[100%] h-[95%] px-3  pb-3 ">
+        <div className="pt-5 pl-2 h-[80%] text-lg font-semibold">
+          Forecast 상황에 따르면 연간 배출량이 (x) kgCO2e만큼 약 (y) %
+          줄어듭니다. 이는 내연기관차 (x/2228.3)대가 전기차로 전환되는 효과와
+          같습니다.
+        </div>
+        <div className="flex h-[100%]border-2 mt-4 justify-start">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4">
+            Button1
+          </button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Button2
+          </button>
         </div>
       </div>
       <div className="w-[100%] px-3  pb-3">
-        <AnnualResult type="baseline" title = "Baseline"/>
-        <div className = "mt-2">
+        <AnnualResult type="baseline" title="Baseline" />
+        <div className="mt-2">
           <CarResult type="baseline" />
           <BuildingResult type="baseline" />
           <CommutingResults type="baseline" />
@@ -28,9 +35,9 @@ const Results = () => {
       </div>
 
       <div className="w-[100%] px-3 pb-3">
-        <AnnualResult type="forecast" title = "Forecast"/>
+        <AnnualResult type="forecast" title="Forecast" />
 
-        <div className = "mt-2">
+        <div className="mt-2">
           <CarResult type="forecast" />
           <BuildingResult type="forecast" />
           <CommutingResults type="forecast" />

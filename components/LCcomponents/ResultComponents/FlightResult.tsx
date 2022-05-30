@@ -56,10 +56,9 @@ const FlightResult = ({ type }: FlightResultType) => {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex">
-          <div className="mr-2 text-2xl ">&#x2022;</div>
-          <div>출장</div>
-        </div>
+      <li className="text-[#ffa573]">
+          <span className="text-black">출장</span>
+        </li>
 
         <div className="flex">
           <div>

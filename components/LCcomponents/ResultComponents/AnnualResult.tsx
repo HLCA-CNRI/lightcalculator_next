@@ -75,10 +75,10 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
     <div>
       <div className="w-[100%] flex justify-between pt-3 ">
         <div className="flex">
-          <div className = "flex flex-col align-bottom border-4">
-          <div className="flex text-base font-black ">
+          <div className = "flex flex-col">
+          <div className="flex text-base font-[2000]">
             <div>{title} Annual</div>
-            <div className = "text-xs ml-1">(kgCO<sub>2</sub>e)</div> 
+            <div className = "text-xs font-[2000] ml-1 pt-1">(kgCO<sub>2</sub>e)</div> 
           </div>
 
           </div>

@@ -57,12 +57,13 @@ const CarResult = ({ type }: CarResultType) => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="flex">
-          <div className="mr-2 text-2xl ">&#x2022;</div>
-          <div>차량</div>
-        </div>
-        {/* Change so that it reads the redux val  */}
+      <div className="flex justify-between my-1">
+
+        <li className = "text-[#11c28d]">
+          <span className="text-black">차량</span>
+        </li>
+        {/* TODO Change so that it reads the redux val  */}
+
         <div className="flex">
           <div>
             {value}

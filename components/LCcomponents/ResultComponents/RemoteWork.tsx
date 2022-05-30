@@ -42,10 +42,9 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex">
-          <div className="mr-2 text-2xl ">&#x2022;</div>
-          <div>재택근무</div>
-        </div>
+      <li className="text-[#ffeb84]">
+          <span className="text-black">재택근무</span>
+        </li>
 
         <div className="flex">
           <div>

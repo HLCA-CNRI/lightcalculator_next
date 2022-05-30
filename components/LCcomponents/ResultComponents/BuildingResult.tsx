@@ -71,10 +71,9 @@ const BuildingResult = ({ type }: BuildingResultType) => {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex">
-          <div className="mr-2 text-2xl ">&#x2022;</div>
-          <div>건물</div>
-        </div>
+        <li className="text-[#59afff]">
+          <span className="text-black">건물</span>
+        </li>
 
         <div className="flex">
           <div>
