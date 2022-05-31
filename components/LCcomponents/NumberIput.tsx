@@ -37,7 +37,7 @@ const NumberInput = ({
 
   return (
     <div className = "flex  m-2">
-      <input type = "number" className = "w-16 rounded text-right" defaultValue={initial} min={0} onChange={handleChange}></input>
+      <input type = "number" className = "w-20 rounded text-right" defaultValue={initial} min={0} onChange={handleChange}></input>
       <div className = "ml-1">{unit}{unit == "m" ? <sup>2</sup>:""}</div>
       {/* <div className = "ml-1">{unit}{ unit=="m2" ? <sup>2</sup>:""}</div> */}
     </div>

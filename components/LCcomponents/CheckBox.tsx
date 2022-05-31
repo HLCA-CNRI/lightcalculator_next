@@ -26,7 +26,12 @@ const CheckBox = ({type,label,setChecked}:CheckBoxType) =>{
     return (
     <div className = "w-[100%] p-8">
       <label className="inline-flex items-center w-[100%] ">
-        <input type="checkbox" className="form-checkbox h-4 w-4" onChange={handleChange}/>
+        {
+          type == "baseline" ? 
+          <input type="checkbox" className="form-checkbox h-4 w-4 " onChange={handleChange}/> :
+          <input type="checkbox" className="form-checkbox h-4 w-4 accent-[#548235] " onChange={handleChange}/>
+        }
+        
         <span className="ml-2">{label}</span>
       </label>
     </div>

@@ -30,10 +30,13 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
             <div className = "flex justify-center">{type == "baseline" ? bCommutingDays :fCommutingDays} days/week</div>
             <input 
                 type = "range"
-                className = " w-[100%]"
+                className = {`${type == "baseline" ? '':'accent-[#548235]'} w-[100%] `}
+
+                // {`bg-[${color}]`}
                 defaultValue = "6"
                 min = "1"
                 max = "6"
+                
                 onChange={handleChange}
                  step = "1"/>
             <ul className = "flex justify-between w-full px-[10px]">

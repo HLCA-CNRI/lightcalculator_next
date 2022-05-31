@@ -54,16 +54,17 @@ const TransportationInput = ({ type }: TransportationInputType) => {
   return (
     <div className=" w-[100%] ">
       <label className="inline-flex items-center w-[100%] justify-start pt-3 pl-3 ml-6 my-3">
-        <input
-          type="checkbox"
-          className="form-checkbox h-4 w-4"
-          onChange={handleDefaultChange}
-        />
+      {
+          type == "baseline" ? 
+          <input type="checkbox" className="form-checkbox h-4 w-4 " onChange={handleDefaultChange}/> :
+          <input type="checkbox" className="form-checkbox h-4 w-4 accent-[#548235] " onChange={handleDefaultChange}/>
+        }
         <span className="ml-2">기본값 적용</span>
       </label>
       <hr className="border-none h-[2px] bg-white"></hr>
-      <div className="flex justify-center m-2">
-        <div className="mr-2">평균 출퇴근 거리</div>
+      <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between pr-11 pl-14">
+        <div className="mr-9">평균 출퇴근 거리</div>
+        <div className = "flex">
         <input
           type="number"
           className="w-12 mr-2 rounded"
@@ -74,6 +75,9 @@ const TransportationInput = ({ type }: TransportationInputType) => {
           }
         ></input>
         <div>km</div>
+
+        </div>
+
       </div>
       <hr className="border-none  h-[2px] bg-white"></hr>
       {type == "baseline" ? (
