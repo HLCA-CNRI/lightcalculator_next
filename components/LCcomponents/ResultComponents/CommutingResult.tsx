@@ -48,7 +48,7 @@ const CommutingResult = ({ type }: CommutingResultType) => {
       currentCommuting.publicTransit
     );
     setValue(Math.round(num * 10) / 10);
-    dispatch(currentAction(value));
+    dispatch(currentAction(num));
   }, [currentCompanyEmployeeSize, currentCommutingDays, currentCommuting]);
 
   return (

@@ -41,9 +41,9 @@ const PercentInput = ({
   const { fFuelType, fCommuting } = useSelector(getForecastState);
   const dispatch = useDispatch();
 
-  const Dot = styled.li`
-  color:${color}; 
-`
+//   const Dot = styled.li`
+//   color:${color}; 
+// `
 
   let initialFuelObject = isBaseline ? bFuelType : fFuelType;
   let initialCommutingObject = isBaseline ? bCommuting : fCommuting;
@@ -73,15 +73,21 @@ const PercentInput = ({
       : initialFuelObject[value as keyof typeof bFuelType].toString();
 
 
+      // <Dot>
+      // {/* <span className={`text-${color}`}>{color}</span> */}
+      //   <span className="text-black">{title}</span>
+      // </Dot>   
+
  
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">
       <div className="flex flex-col content-center">
         {/* <div className = {`bg-[${color}]`}>${color}</div> */}
-        <Dot>
-        {/* <span className={`text-${color}`}>{color}</span> */}
+   
+
+        <li>
           <span className="text-black">{title}</span>
-        </Dot>
+        </li>
       </div>
 
       <div className="mr-3 via-green-100 flex">

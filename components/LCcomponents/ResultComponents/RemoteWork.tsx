@@ -37,7 +37,7 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
       currentCommutingDays
     );
     setValue(Math.round(num * 10) / 10);
-    dispatch(currentAction(value));
+    dispatch(currentAction(num));
   }, [currentCompanyEmployeeSize, currentCommutingDays]);
   return (
     <div>
@@ -51,7 +51,7 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
             {value}
             {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
           </div>
-          {type == "forecast" ? <AddForcastInfo type="remoteResult" /> : ""}
+          {type == "forecast" ? <AddForcastInfo type="remoteWorkResult" /> : ""}
         </div>
       </div>
       <div className="">

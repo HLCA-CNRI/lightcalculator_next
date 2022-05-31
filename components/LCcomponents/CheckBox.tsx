@@ -13,11 +13,6 @@ const CheckBox = ({type,label,setChecked}:CheckBoxType) =>{
 
     const dispatch = useDispatch();
 
-    const [check,setCheck] = useState(false)
-    useEffect(()=>{
-        // console.log(check)
-    },[check])
-
     const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
         dispatch(setChecked(event.target.checked))
     }

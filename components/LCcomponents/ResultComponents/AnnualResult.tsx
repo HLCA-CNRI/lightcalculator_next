@@ -9,6 +9,10 @@ import {
   getForecastResultState,
   fSetAnnualResult,
 } from "../../../store/slices/forecastResultSlice";
+import {
+  bSetRoundTrip,
+  getBaselineState,
+} from "../../../store/slices/baselineSlice";
 import { useSelector } from "react-redux";
 import { annualTotal } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
@@ -35,6 +39,17 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
     fCalculateCommuting,
     fCalculateFlights,
   } = useSelector(getForecastResultState);
+
+  const { bRoundTrip } = useSelector(getBaselineState);
+
+
+  // console.log(bAnnual,
+  //   bCalculateBuilding,
+  //   bCalculateCar,
+  //   bCalculteRemoteWork,
+  //   bCalculateCommuting,
+  //   bClaculateFlights,)
+
   const currentAnnual = type == "baseline" ? bAnnual : fAnnual;
   const currentBuilding =
     type == "baseline" ? bCalculateBuilding : fCalculateBuilding;
@@ -52,7 +67,21 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
   const [value, setValue] = useState(0);
   // console.log("HERE",currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
 
+  // console.log("건물1",currentBuilding,
+  //     "차1",currentCar,
+  //     "재택1",currentRemoteWork,
+  //     "출퇴근1",currentCommuting,
+  //     "출장1",currentFlight)
+
+
   useEffect(() => {
+
+    // console.log("건물2",currentBuilding,
+    //   "차2",currentCar,
+    //   "재택2",currentRemoteWork,
+    //   "출퇴근2",currentCommuting,
+    //   "출장2",currentFlight)
+    
     const num = annualTotal(
       currentBuilding,
       currentCar,
@@ -60,10 +89,12 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
       currentCommuting,
       currentFlight
     );
-    setValue(Math.round(num * 10) / 10);
-    // console.log("annual total",annualTotal(currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight))
-    dispatch(currentAction(value));
+    setValue(num)
+
+    setValue(Math.round(num * 10) / 10); 
+    dispatch(currentAction(num));
   }, [
+    bRoundTrip,
     currentBuilding,
     currentCar,
     currentRemoteWork,
@@ -75,14 +106,15 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
     <div>
       <div className="w-[100%] flex justify-between pt-3 ">
         <div className="flex">
-          <div className = "flex flex-col">
-          <div className="flex text-base font-[2000]">
-            <div>{title} Annual</div>
-            <div className = "text-xs font-[2000] ml-1 pt-1">(kgCO<sub>2</sub>e)</div> 
+          <div className="flex flex-col">
+            <div className="flex text-base font-[2000]">
+              <div>{title} Annual</div>
+              <div className="text-xs font-[2000] ml-1 pt-1">
+                (kgCO<sub>2</sub>e)
+              </div>
+            </div>
           </div>
 
-          </div>
-         
           {/* <div className="font-light">(tCO2e)</div> */}
         </div>
         <div className="flex">

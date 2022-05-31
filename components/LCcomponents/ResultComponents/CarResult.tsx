@@ -52,7 +52,7 @@ const CarResult = ({ type }: CarResultType) => {
       currentGasType
     );
     setValue(Math.round(num * 10) / 10);
-    dispatch(currentAction(value));
+    dispatch(currentAction(num));
   }, [value, currentFuelType, currentGasType]);
 
   return (

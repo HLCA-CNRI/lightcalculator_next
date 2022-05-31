@@ -253,7 +253,7 @@ const LightCalculator = () => {
             <Results />
           </h1>
 
-          <h1 className="fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
+          <h1 className=" fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>

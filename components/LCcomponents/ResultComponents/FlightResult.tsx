@@ -50,7 +50,7 @@ const FlightResult = ({ type }: FlightResultType) => {
       currentRoundTrip.africa
     );
     setValue(Math.round(num * 10) / 10);
-    dispatch(currentAction(value));
+    dispatch(currentAction(num));
   }, [currentRoundTrip]);
 
   return (
@@ -65,7 +65,7 @@ const FlightResult = ({ type }: FlightResultType) => {
             {value}
             {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
           </div>
-          {type == "forecast" ? <AddForcastInfo type="flightResult" /> : ""}
+          {type == "forecast" ? <AddForcastInfo type="flightsResult" /> : ""}
         </div>
       </div>
       <div className="">

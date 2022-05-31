@@ -61,7 +61,7 @@ const BuildingResult = ({ type }: BuildingResultType) => {
       currentRenewableEnergy
     );
     setValue(Math.round(num * 100) / 100);
-    dispatch(currentAction(value));
+    dispatch(currentAction(num));
   }, [
     currentEmployeeSize,
     currentCommutingDays,
