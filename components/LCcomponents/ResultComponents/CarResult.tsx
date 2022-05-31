@@ -75,7 +75,7 @@ const CarResult = ({ type }: CarResultType) => {
       <div className="">
         <div className="relative h-3 rounded-lg">
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[80%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[40%]"></div>
         </div>
       </div>
     </div>

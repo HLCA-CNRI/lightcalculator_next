@@ -27,12 +27,10 @@ const SliderInput = ({type,setNumber}:SliderInputType) =>{
 
     return(
         <div className = "flex flex-col space-y-2 w-[80%] py-3">
-            <div className = "flex justify-center">{type == "baseline" ? bCommutingDays :fCommutingDays} days/week</div>
+            <div className = "flex justify-center">주 {type == "baseline" ? bCommutingDays :fCommutingDays}일 출근</div>
             <input 
                 type = "range"
-                className = {`${type == "baseline" ? '':'accent-[#548235]'} w-[100%] `}
-
-                // {`bg-[${color}]`}
+                className = {`${type == "baseline" ? '':'accent-[#548235]'} w-[100%] border-none `}
                 defaultValue = "6"
                 min = "1"
                 max = "6"

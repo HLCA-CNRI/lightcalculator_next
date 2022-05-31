@@ -42,7 +42,6 @@ const GasInput = ({ type }: GasInputType) => {
           <input type="checkbox" className="form-checkbox h-4 w-4 " onChange={handleDefaultChange}/> :
           <input type="checkbox" className="form-checkbox h-4 w-4 accent-[#548235] " onChange={handleDefaultChange}/>
         }
-        
         <span className="ml-2">기본값 적용</span>
       </label>
       <hr className="border-none h-[2px] bg-white"></hr>

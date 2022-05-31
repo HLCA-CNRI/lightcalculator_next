@@ -99,8 +99,8 @@ const LightCalculator = () => {
           <p className="text-3xl font-semibold "> Baseline </p>
           <p className="text-3xl font-semibold "> Forecast</p>
 
-          <div className="mb-3 ">
-            <h2 className="text-xl font-semibold">임직원 수</h2>
+          <div className="mb-3 mr-2 pr-10">
+            <h2 className="text-xl font-semibold mb-2 ">임직원 수</h2>
             <p className="text-gray-600">
               귀사에 종사하고 있는 임직원은 몇 명인가요?
             </p>
@@ -122,8 +122,8 @@ const LightCalculator = () => {
             />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">차량 종류별 대수</h2>
+          <div className="mb-3 pr-10 ">
+            <h2 className="text-xl font-semibold mb-2">차량 종류별 대수</h2>
             <p className="text-gray-600">
               최근 다양한 종류의 차량이 많이 상용화되고 있습니다. 귀사의 차량
               종류별 대수는 어떻게 되시나요?
@@ -136,8 +136,8 @@ const LightCalculator = () => {
             <GasInput type="forecast" />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">차량 연료 비용</h2>
+          <div className="mb-3 pr-10  ">
+            <h2 className="text-xl font-semibold mb-2">차량 연료 비용</h2>
             <p className="text-gray-600">
               다양한 종류의 차량이 생기며 차량 연료도 다양해지고 있습니다.
               귀사에서 연간 소비하고 있는 총 차량 연료 비용을 입력해주세요.
@@ -160,10 +160,10 @@ const LightCalculator = () => {
             />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">근무 형태</h2>
+          <div className="mb-3 pr-10  ">
+            <h2 className="text-xl font-semibold mb-2">근무 형태</h2>
             <p className="text-gray-600">
-            최근 재택근무를 시행하는 기업이 많아지고 있습니다. 귀사는 평균적으로 주 며칠 출근하는 형태이신가요?
+            최근 재택근무를 시행하는 기업이 많아지고 있습니다. 귀사는 평균적으로 오피스 출근이 얼마나 되시나요??
             </p>
           </div>
           <div className="bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
@@ -173,8 +173,8 @@ const LightCalculator = () => {
             <SliderInput type="forecast" setNumber={fSetCommuntingDays} />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">출퇴근 거리 및 방식</h2>
+          <div className="mb-3 pr-10  ">
+            <h2 className="text-xl font-semibold mb-2">출퇴근 거리 및 방식</h2>
             <p className="text-gray-600">
               평균적인 출퇴근 거리와 방식이 어떻게 되나요? 자동차를 통한
               출퇴근은 버스나 지하철 같은 대중교통에 비해 많은 탄소 배출이
@@ -188,8 +188,8 @@ const LightCalculator = () => {
             <TransportationInput type="forecast" />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">신재생 에너지</h2>
+          <div className="mb-3  pr-10 ">
+            <h2 className="text-xl font-semibold mb-2">신재생 에너지</h2>
             <p className="text-gray-600">
               현재 귀사에 공급되는 전기는 신재생 에너지입니까? 신재생 에너지로의
               전환은 탄소 배출 감소에 도움이 될 수 있습니다.
@@ -210,8 +210,8 @@ const LightCalculator = () => {
             />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">사무실 면적</h2>
+          <div className="mb-3 pr-10  ">
+            <h2 className="text-xl font-semibold mb-2">사무실 면적</h2>
             <p className="text-gray-600">
               큰 사무실일수록 전기와 난방으로 인한 배출량이 많습니다. 귀사의
               사무실 면적은 어떻게 되나요?
@@ -234,8 +234,8 @@ const LightCalculator = () => {
             />
           </div>
 
-          <div className="mb-3   ">
-            <h2 className="text-xl font-semibold">왕복 비행 출장</h2>
+          <div className="mb-3  pr-10 ">
+            <h2 className="text-xl font-semibold mb-2">왕복 비행 출장</h2>
             <p className="text-gray-600">
               글로벌 시대인만큼 해외로의 출장도 많아지고 있습니다.귀사에서의
               연간 총 해외 출장은 몇 번이신가요?
@@ -253,7 +253,7 @@ const LightCalculator = () => {
             <Results />
           </h1>
 
-          <h1 className=" fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
+          <h1 className="fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>
