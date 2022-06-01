@@ -5,6 +5,7 @@ import { useSelector } from "../../../store/store";
 import React, { useState, useEffect } from "react";
 import classnames from "tailwindcss-classnames";
 import AnnualResult from "./AnnualResult";
+import { calculateForecastInfo } from "../../../functions/ResultFunctions";
 
 type AddForcastInfoType = {
   type: string;
@@ -28,31 +29,22 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
   } = useSelector(getForecastResultState);
 
   const [value, setVal] = useState(0);
+  
 
   //TODO: Not good implementation
   useEffect(() => {
     if (type == "annualResult") {
-      setVal(Math.round(((fAnnual - bAnnual) / bAnnual) * 100 * 10) / 10);
+      setVal(calculateForecastInfo(fAnnual, bAnnual));
     } else if (type == "carResult" && bCalculateCar != 0) {
-      setVal(
-        Math.round(
-          ((fCalculateCar - bCalculateCar) / bCalculateCar) * 100 * 10) / 10 );
+      setVal(calculateForecastInfo(fCalculateCar, bCalculateCar));
     } else if (type == "buildingResult" && bCalculateBuilding != 0) {
-      setVal(
-        Math.round(
-          ((fCalculateBuilding - bCalculateBuilding) / bCalculateBuilding) * 100 *10) / 10);
+      setVal(calculateForecastInfo(fCalculateBuilding, bCalculateBuilding));
     } else if (type == "commutingResult" && bCalculateCommuting != 0) {
-      setVal(
-        Math.round(
-          ((fCalculateCommuting - bCalculateCommuting) / bCalculateCommuting) *100 *10) / 10);
+      setVal(calculateForecastInfo(fCalculateCommuting, bCalculateCommuting));
     } else if (type == "flightsResult") {
-      setVal(
-        Math.round(
-          ((fCalculateFlights - bClaculateFlights) / bClaculateFlights) *100 *10) / 10);
+      setVal(calculateForecastInfo(fCalculateFlights, bClaculateFlights));
     } else if (type == "remoteWorkResult" && bCalculateCommuting != 0) {
-      setVal(
-        Math.round(
-          ((fCalculateRemoteWork - bCalculteRemoteWork) / bCalculteRemoteWork) *100 *10) / 10);
+      setVal(calculateForecastInfo(fCalculateRemoteWork, bCalculteRemoteWork));
     } else {
       setVal(0);
     }
@@ -73,17 +65,45 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
 
   return (
     //TODO : combine by setting conditional to style
+    //TODO : allow -infinity by setting second condition to isFinite instead of value > 0
     <div className="ml-2">
-
       {type == "annualResult" ? (
-        <div className={` rounded-full px-1 ${(value > 0 ) ? `bg-red-200`:`bg-green-200 `}`}>
-          {isNaN(value) ? "0.0":(value > 0 ) ? "+"+value:value}
-          {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}%
+        <div
+          className={` rounded-full px-1 ${
+            (value < 0.05 && value > -0.05)
+              ? `bg-gray-200`
+              : value > 0.05
+              ? `bg-red-200 `
+              :`bg-green-200`
+          }`}
+        >
+          {isNaN(value)
+            ? "0.00%"
+            : value > 0
+            ? "+" + (isFinite(value) ? value.toFixed(2) : "∞")
+            : value == 0
+            ? "0.00"
+            : value.toFixed(2)}
+          {!isFinite(value) ? "" : "%"}
         </div>
       ) : (
-        <div className = {`${(value > 0 ) ? `text-red-900`:`text-green-900`}`}>
-          {isNaN(value) ? "0.0":(value > 0 ) ? "+"+value:value}
-          {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}%
+        <div
+          className={`${
+            ((value < 0.05 && value > -0.05) || isNaN(value))
+              ? `text-gray-600`
+              : value > 0.05
+              ? `text-red-600 `
+              : `text-green-600`
+          }`}
+        >
+          {isNaN(value)
+            ? "0.00%"
+            : value > 0
+            ? "+" + (isFinite(value) ? value.toFixed(2) : "∞")
+            : value == 0
+            ? "0.00"
+            : value.toFixed(2)}
+          {!isFinite(value) ? "" : "%"}
         </div>
       )}
     </div>

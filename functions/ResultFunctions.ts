@@ -1,3 +1,6 @@
+//TODO: ROUND VALUES HERE ex --> calculateForecastInfo
+//TODO : Number(val.toFixed(2)) instead of calculating
+
 export const calculateBuilding = (employee:number,commuteDays:number,companySize:number,useRenewableEnergy:boolean) =>{
     const calculateRenewableEnergy = useRenewableEnergy ? 1:0
     return (employee * 38.04 * commuteDays + companySize * (39.9 - 30.7584 * calculateRenewableEnergy))
@@ -26,3 +29,30 @@ export const calculateFlight = (asia:number,europe:number,northAmerica:number,so
 export const annualTotal = (building:number, cars:number, remoteWork:number, commuting:number, flights:number) =>{
     return (building + cars + remoteWork + commuting + flights)
 }
+
+export const calculateForecastInfo = (forecastVal:number, baselineVal:number) =>{
+    const val = ((forecastVal - baselineVal) / baselineVal) * 100
+    return (val)
+}
+
+export const annualEmissions = (forecastAnnual:number , baselineAnnual:number) =>{
+
+    const val = forecastAnnual - baselineAnnual
+    return val
+}
+
+export const annualEmissionsReduction = (forecastAnnual:number,baselineAnnual:number) =>{
+    const val = calculateForecastInfo(forecastAnnual,baselineAnnual)
+    return val
+}
+
+export const GreenEmissionToVehicleComp = (forecastAnnual:number , baselineAnnual:number) =>{
+    const val = annualEmissions(forecastAnnual,baselineAnnual)
+    return val/2228.3
+}
+
+export const RedEmissionToVehicleComp  = (forecastAnnual:number, baselineAnnual:number) =>{
+    const val = annualEmissions(forecastAnnual,baselineAnnual)
+    return val/3091.1
+}
+
