@@ -78,12 +78,12 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
           }`}
         >
           {isNaN(value)
-            ? "0.00%"
+            ? "0.0%"
             : value > 0
-            ? "+" + (isFinite(value) ? value.toFixed(2) : "∞")
+            ? "+" + (isFinite(value) ? value.toFixed(1) : "∞")
             : value == 0
-            ? "0.00"
-            : value.toFixed(2)}
+            ? "0.0"
+            : value.toFixed(1)}
           {!isFinite(value) ? "" : "%"}
         </div>
       ) : (
@@ -97,12 +97,12 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
           }`}
         >
           {isNaN(value)
-            ? "0.00%"
+            ? "0.0%"
             : value > 0
-            ? "+" + (isFinite(value) ? value.toFixed(2) : "∞")
+            ? "+" + (isFinite(value) ? value.toFixed(1) : "∞")
             : value == 0
-            ? "0.00"
-            : value.toFixed(2)}
+            ? "0.0"
+            : value.toFixed(1)}
           {!isFinite(value) ? "" : "%"}
         </div>
       )}
