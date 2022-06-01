@@ -71,7 +71,7 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
         <div
           className={` rounded-full px-1 ${
             (value < 0.05 && value > -0.05)
-              ? `bg-gray-200`
+              ? ``
               : value > 0.05
               ? `bg-red-200 `
               :`bg-green-200`
@@ -90,7 +90,7 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
         <div
           className={`${
             ((value < 0.05 && value > -0.05) || isNaN(value))
-              ? `text-gray-600`
+              ? ``
               : value > 0.05
               ? `text-red-600 `
               : `text-green-600`
