@@ -14,6 +14,7 @@ import {
 import { useSelector } from "react-redux";
 import { calculateBuilding } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
+import AnnualResult from "./AnnualResult";
 
 type BuildingResultType = {
   type: string;
@@ -21,10 +22,12 @@ type BuildingResultType = {
 
 const BuildingResult = ({ type }: BuildingResultType) => {
   const {
+    
     bCompanyEmployeeSize,
     bCommutingDays,
     bCompanysize,
     bUseRenewableEnergy,
+    
   } = useSelector(getBaselineState);
   const {
     fCompanyEmployeeSize,
@@ -32,6 +35,15 @@ const BuildingResult = ({ type }: BuildingResultType) => {
     fCompanysize,
     fUseRenewableEnergy,
   } = useSelector(getForecastState);
+
+  const { 
+    bAnnual
+  } = useSelector(getBaselineResultState)
+  const { 
+    fAnnual
+  } = useSelector(getForecastResultState)
+
+  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
 
   const currentEmployeeSize =
     type == "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
@@ -52,6 +64,7 @@ const BuildingResult = ({ type }: BuildingResultType) => {
       currentRenewableEnergy
     )
   );
+  
 
   useEffect(() => {
     const num = calculateBuilding(
@@ -61,6 +74,7 @@ const BuildingResult = ({ type }: BuildingResultType) => {
       currentRenewableEnergy
     );
     setValue(Math.round(num * 100) / 100);
+
     dispatch(currentAction(num));
   }, [
     currentEmployeeSize,
@@ -86,7 +100,8 @@ const BuildingResult = ({ type }: BuildingResultType) => {
       <div className="">
         <div className="relative h-3 rounded-lg">
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[80%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg " style={{width:`${(value/currentAnnual)*100}%`}}></div>
+       
         </div>
       </div>
     </div>

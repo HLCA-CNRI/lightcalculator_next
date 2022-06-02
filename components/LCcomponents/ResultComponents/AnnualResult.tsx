@@ -1,4 +1,3 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "../../../store/store";
 import {
@@ -42,14 +41,6 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
 
   const { bRoundTrip } = useSelector(getBaselineState);
 
-
-  // console.log(bAnnual,
-  //   bCalculateBuilding,
-  //   bCalculateCar,
-  //   bCalculteRemoteWork,
-  //   bCalculateCommuting,
-  //   bClaculateFlights,)
-
   const currentAnnual = type == "baseline" ? bAnnual : fAnnual;
   const currentBuilding =
     type == "baseline" ? bCalculateBuilding : fCalculateBuilding;
@@ -65,23 +56,9 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
   const dispatch = useDispatch();
   //change value to redux val Do not use useState
   const [value, setValue] = useState(0);
-  // console.log("HERE",currentBuilding,currentCar,currentRemoteWork,currentCommuting,currentFlight)
-
-  // console.log("건물1",currentBuilding,
-  //     "차1",currentCar,
-  //     "재택1",currentRemoteWork,
-  //     "출퇴근1",currentCommuting,
-  //     "출장1",currentFlight)
 
 
   useEffect(() => {
-
-    // console.log("건물2",currentBuilding,
-    //   "차2",currentCar,
-    //   "재택2",currentRemoteWork,
-    //   "출퇴근2",currentCommuting,
-    //   "출장2",currentFlight)
-    
     const num = annualTotal(
       currentBuilding,
       currentCar,
@@ -126,12 +103,12 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
         </div>
       </div>
       <div>
-        <div className="relative h-3 rounded-lg mt-2">
-          <div className="absolute bg-[#ffeb84] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#ffa573] h-3 rounded-l-lg w-[80%]"></div>
-          <div className="absolute bg-[#916aff] h-3 rounded-l-lg w-[60%]"></div>
-          <div className="absolute bg-[#59afff] h-3 rounded-l-lg w-[40%]"></div>
-          <div className="absolute bg-[#11c28d] h-3 rounded-l-lg w-[20%]"></div>
+        <div  className="w-[100%] mt-2 flex">
+          <div className=" bg-[#11c28d] h-3 rounded-l-lg" style={{width: `${(currentCar/currentAnnual*100)}%`}}></div>
+          <div className=" bg-[#59afff] h-3" style={{width: `${(currentBuilding/currentAnnual*100)}%`}}></div>
+          <div className=" bg-[#916aff] h-3" style={{width: `${(currentCommuting/currentAnnual*100)}%`}}></div>
+          <div className=" bg-[#ffa573] h-3" style={{width: `${(currentFlight/currentAnnual*100)}%`}}></div>
+          <div className=" bg-[#ffeb84] h-3 rounded-r-lg" style={{width: `${(currentRemoteWork/currentAnnual*100)}%`}}></div>
         </div>
       </div>
     </div>

@@ -1,8 +1,9 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { useDispatch } from "../../store/store";
 import PercentInput from "./PercentInput";
 import { useSelector } from "../../store/store";
+import { defaultBaseline,DefualtForecast } from "../../functions/Defaults";
 import {
   getBaselineState,
   bSetFuelType,
@@ -11,6 +12,14 @@ import {
   getForecastState,
   fSetFuelType,
 } from "../../store/slices/forecastSlice";
+import {
+  getBaselineResultState,
+  bSetAnnualResult,
+} from "../../store/slices/baslineResultSlice";
+import {
+  getForecastResultState,
+  fSetAnnualResult,
+} from"../../store/slices/forecastResultSlice";
 
 type GasInputType = {
   type: string;
@@ -19,14 +28,40 @@ type GasInputType = {
 const GasInput = ({ type }: GasInputType) => {
   const { bFuelType } = useSelector(getBaselineState);
   const { fFuelType } = useSelector(getForecastState);
+  const {bAnnual}  = useSelector(getBaselineResultState);
+  const {fAnnual} = useSelector(getForecastResultState)
+  
+  const [total,setTotal] = useState(0)
+
+
+  const currentAnnual = type == "baseline" ? bAnnual : fAnnual;
+
+  useEffect(()=>{
+    if(type == "baseline"){
+      setTotal((bFuelType.diesel) + (bFuelType.electric) + (bFuelType.gasoline) + (bFuelType.hydrogen) + (bFuelType.lpg))
+    }else{
+      setTotal((fFuelType.diesel) + (fFuelType.electric) + (fFuelType.gasoline) + (fFuelType.hydrogen) + (fFuelType.lpg))
+    }
+    
+
+
+  },[bFuelType,fFuelType])
 
   const dispatch = useDispatch();
 
   const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
     if (type == "baseline") {
-      dispatch(
-        bSetFuelType({ ...bFuelType, setDefault: event.target.checked })
-      );
+      const getInputElement = (id:string) =>{
+        const input = document.getElementById('id') as HTMLInputElement | null;
+
+      }
+      dispatch(bSetFuelType({ ...bFuelType, setDefault: event.target.checked }));
+
+
+        // dispatch(bSetFuelType({ ...bFuelType, gasoline:defaultBaseline.bFuelType.gasoline}))
+
+
     } else {
       dispatch(
         fSetFuelType({ ...fFuelType, setDefault: event.target.checked })
@@ -37,26 +72,39 @@ const GasInput = ({ type }: GasInputType) => {
   return (
     <div className="w-[100%]">
       <label className="inline-flex items-center w-[100%] justify-start pt-2 pl-3 ml-6 my-3">
-      {
-          type == "baseline" ? 
-          <input type="checkbox" className="form-checkbox h-4 w-4 " onChange={handleDefaultChange}/> :
-          <input type="checkbox" className="form-checkbox h-4 w-4 accent-[#548235] " onChange={handleDefaultChange}/>
-        }
+        {type == "baseline" ? (
+          <input
+            type="checkbox"
+            className="form-checkbox h-4 w-4 "
+            onChange={handleDefaultChange}
+          />
+        ) : (
+          <input
+            type="checkbox"
+            className="form-checkbox h-4 w-4 accent-[#548235] "
+            onChange={handleDefaultChange}
+          />
+        )}
         <span className="ml-2">기본값 적용</span>
       </label>
       <hr className="border-none h-[2px] bg-white"></hr>
 
+     
+
+
+    
+
+
+
       {type == "baseline" ? (
         <div className="rounded-lg p-2  m-5">
-          <div className="relative h-3 rounded-lg">
-            <div
-              id="gas_input_red"
-              className="absolute bg-[#bdd7ee] h-3 rounded-lg w-[100%]"
-            ></div>
-            <div className="absolute bg-[#9dc3e6] h-3 rounded-l-lg w-[96%]"></div>
-            <div className="absolute bg-[#5b9bd5] h-3 rounded-l-lg w-[94%]"></div>
-            <div className="absolute bg-[#2e75b6] h-3 rounded-l-lg w-[86%]"></div>
-            <div className="absolute bg-[#2f5597] h-3 rounded-l-lg w-[47%]"></div>
+
+          <div className="w-[100%] mt-2 flex">
+            <div className = {`bg-[#2f5597] h-3 rounded-l-lg`} style={{width: `${((bFuelType.gasoline/total)*100)}%`}}/>
+            <div className = {`bg-[#2e75b6] h-3`} style={{width: `${(bFuelType.diesel/total)*100}%`}}/>
+            <div className = "bg-[#5b9bd5] h-3"  style={{width: `${(bFuelType.lpg/total)*100}%`}}/>
+            <div className = "bg-[#9dc3e6] h-3 w-[2%]"  style={{width: `${(bFuelType.hydrogen/total)*100}%`}}/>
+            <div className = "bg-[#bdd7ee] h-3 w-[4%] rounded-r-lg"  style={{width: `${(bFuelType.electric/total)*100}%`}}/>
           </div>
 
           <PercentInput
@@ -102,15 +150,12 @@ const GasInput = ({ type }: GasInputType) => {
         </div>
       ) : (
         <div className="rounded-lg p-2  m-5">
-          <div className="relative h-3 rounded-lg">
-            <div
-              id="gas_input_red"
-              className="absolute bg-[#c5e0b4] h-3 rounded-lg w-[100%]"
-            ></div>
-            <div className="absolute bg-[#a9d18e] h-3 rounded-l-lg w-[96%]"></div>
-            <div className="absolute bg-[#70ad47] h-3 rounded-l-lg w-[94%]"></div>
-            <div className="absolute bg-[#548235] h-3 rounded-l-lg w-[86%]"></div>
-            <div className="absolute bg-[#385723] h-3 rounded-l-lg w-[47%]"></div>
+          <div className="w-[100%] mt-2 flex">
+            <div className = {`bg-[#385723] h-3 rounded-l-lg`} style={{width: `${((fFuelType.gasoline/total)*100)}%`}}/>
+            <div className = {`bg-[#548235] h-3`} style={{width: `${(fFuelType.diesel/total)*100}%`}}/>
+            <div className = "bg-[#70ad47] h-3"  style={{width: `${(fFuelType.lpg/total)*100}%`}}/>
+            <div className = "bg-[#a9d18e] h-3 w-[2%]"  style={{width: `${(fFuelType.hydrogen/total)*100}%`}}/>
+            <div className = "bg-[#c5e0b4] h-3 w-[4%] rounded-r-lg"  style={{width: `${(fFuelType.electric/total)*100}%`}}/>
           </div>
 
           <PercentInput

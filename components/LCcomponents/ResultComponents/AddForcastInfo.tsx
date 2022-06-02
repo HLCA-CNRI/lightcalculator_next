@@ -92,7 +92,7 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
             ((value < 0.05 && value > -0.05) || isNaN(value))
               ? ``
               : value > 0.05
-              ? `text-red-600 `
+              ? `text-red-400 `
               : `text-green-600`
           }`}
         >

@@ -25,6 +25,14 @@ const CarResult = ({ type }: CarResultType) => {
   const { bCalculateCar } = useSelector(getBaselineResultState);
   const { fCalculateCar } = useSelector(getForecastResultState);
 
+  const { 
+    bAnnual
+  } = useSelector(getBaselineResultState)
+  const { 
+    fAnnual
+  } = useSelector(getForecastResultState)
+
+  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
   const currentFuelType = type == "baseline" ? bFuelType : fFuelType;
   const currentGasType =
     type == "baseline" ? bCompanyGasPrice : fCompanyGasPrice;
@@ -51,6 +59,7 @@ const CarResult = ({ type }: CarResultType) => {
       currentFuelType.electric,
       currentGasType
     );
+
     setValue(Math.round(num * 10) / 10);
     dispatch(currentAction(num));
   }, [value, currentFuelType, currentGasType]);
@@ -75,7 +84,7 @@ const CarResult = ({ type }: CarResultType) => {
       <div className="">
         <div className="relative h-3 rounded-lg">
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[40%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg "style={{width:`${(value/currentAnnual)*100}%`}}></div>
         </div>
       </div>
     </div>

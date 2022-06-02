@@ -9,8 +9,8 @@ import {
   fSetRoundTrip,
   getForecastState,
 } from "../../../store/slices/forecastSlice";
-import { bSetFlightResult } from "../../../store/slices/baslineResultSlice";
-import { fSetFlightResult } from "../../../store/slices/forecastResultSlice";
+import { getBaselineResultState,bSetFlightResult } from "../../../store/slices/baslineResultSlice";
+import {getForecastResultState, fSetFlightResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
 import { calculateFlight } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
@@ -26,6 +26,17 @@ const FlightResult = ({ type }: FlightResultType) => {
   const currentRoundTrip = type == "baseline" ? bRoundTrip : fRoundTrip;
   const currentAction =
     type == "baseline" ? bSetFlightResult : fSetFlightResult;
+
+
+  const { 
+    bAnnual
+  } = useSelector(getBaselineResultState)
+  const { 
+    fAnnual
+  } = useSelector(getForecastResultState)
+
+  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
+
 
   const dispatch = useDispatch();
 
@@ -71,7 +82,7 @@ const FlightResult = ({ type }: FlightResultType) => {
       <div className="">
         <div className="relative h-3 rounded-lg">
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[20%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg" style={{width:`${(value/currentAnnual)*100}%`}}></div>
         </div>
       </div>
     </div>

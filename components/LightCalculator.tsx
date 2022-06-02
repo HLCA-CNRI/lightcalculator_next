@@ -6,6 +6,8 @@ import { useSelector } from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 import Results from "./LCcomponents/Results";
 
+
+
 import {
   getBaselineState,
   bSetCompanyEmployeeSize,
@@ -176,7 +178,7 @@ const LightCalculator = () => {
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">출퇴근 거리 및 방식</h2>
             <p className="text-gray-600">
-              평균적인 출퇴근 거리와 방식이 어떻게 되나요? 자동차를 통한
+              귀사 임직원의 평균적인평균적인 출퇴근 거리와 방식이 어떻게 되나요? 자동차를 통한
               출퇴근은 버스나 지하철 같은 대중교통에 비해 많은 탄소 배출이
               발생합니다.
             </p>

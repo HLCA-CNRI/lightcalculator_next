@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "../../../store/store";
 import { getBaselineState } from "../../../store/slices/baselineSlice";
 import { getForecastState } from "../../../store/slices/forecastSlice";
-import { bSetCommunityResult } from "../../../store/slices/baslineResultSlice";
-import { fSetCommunityResult } from "../../../store/slices/forecastResultSlice";
+import { getBaselineResultState,bSetCommunityResult } from "../../../store/slices/baslineResultSlice";
+import { getForecastResultState,fSetCommunityResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
 import { calculateCommutingDays } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
@@ -18,6 +18,17 @@ const CommutingResult = ({ type }: CommutingResultType) => {
     useSelector(getBaselineState);
   const { fCompanyEmployeeSize, fCommutingDays, fCommuting } =
     useSelector(getForecastState);
+    
+    const { 
+      bAnnual
+    } = useSelector(getBaselineResultState)
+    const { 
+      fAnnual
+    } = useSelector(getForecastResultState)
+  
+  
+  
+  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
 
   const currentCompanyEmployeeSize =
     type == "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
@@ -70,7 +81,7 @@ const CommutingResult = ({ type }: CommutingResultType) => {
       <div className="">
         <div className="relative h-3 rounded-lg">
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[60%]"></div>
+          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg w-[60%]" style={{width:`${(value/currentAnnual)*100}%`}}></div>
         </div>
       </div>
     </div>
