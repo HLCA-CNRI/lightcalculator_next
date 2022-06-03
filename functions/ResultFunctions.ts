@@ -16,9 +16,9 @@ export const calculateRemoteWork = (employeeSize:number,commutingDays:number) =>
     return (employeeSize * 101.65 * (5-commutingDays))
 }
 
-export const calculateCommutingDays = (employeeSize:number,commutingDays:number,commutingDistance:number,car:number,publicTransit:number) =>{
-    const initial = employeeSize * commutingDays * commutingDistance * (26.856 * car + 7.394 * publicTransit)
-    return (initial/100)
+export const calculateCommuting = (employeeSize:number,commutingDays:number,commutingDistance:number,car:number,publicTransit:number, walkOrBike:number) =>{
+    const initial = employeeSize * commutingDays * commutingDistance * (26.856 * car + 7.394 * publicTransit + 0*walkOrBike)/(car + publicTransit + walkOrBike)
+    return (initial)
 }
 
 export const calculateFlight = (asia:number,europe:number,northAmerica:number,southAmerica:number,oceana:number,africa:number) =>{
@@ -56,3 +56,7 @@ export const RedEmissionToVehicleComp  = (forecastAnnual:number, baselineAnnual:
     return val/3091.1
 }
 
+//Adding Comma
+export const numberWithCommas = (val:number)=>{
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

@@ -28,13 +28,11 @@ type GasInputType = {
 const GasInput = ({ type }: GasInputType) => {
   const { bFuelType } = useSelector(getBaselineState);
   const { fFuelType } = useSelector(getForecastState);
-  const {bAnnual}  = useSelector(getBaselineResultState);
-  const {fAnnual} = useSelector(getForecastResultState)
-  
   const [total,setTotal] = useState(0)
 
-
-  const currentAnnual = type == "baseline" ? bAnnual : fAnnual;
+  const fcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
+  const bcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
+  
 
   useEffect(()=>{
     if(type == "baseline"){
@@ -42,26 +40,29 @@ const GasInput = ({ type }: GasInputType) => {
     }else{
       setTotal((fFuelType.diesel) + (fFuelType.electric) + (fFuelType.gasoline) + (fFuelType.hydrogen) + (fFuelType.lpg))
     }
-    
-
-
   },[bFuelType,fFuelType])
+
+
+  useEffect(()=>{
+    if(bcheckBox.current!=undefined && bcheckBox.current.checked){
+      bcheckBox.current.checked = false
+      dispatch(bSetFuelType({...bFuelType,setDefault:false}))
+    }
+  },[bFuelType.diesel,bFuelType.electric,bFuelType.gasoline,bFuelType.hydrogen,bFuelType.lpg])
+
+  useEffect(()=>{
+    if(fcheckBox.current!=undefined && fcheckBox.current.checked){
+      fcheckBox.current.checked = false
+      dispatch(fSetFuelType({...fFuelType,setDefault:false}))
+    }
+  },[fFuelType.diesel,fFuelType.electric,fFuelType.gasoline,fFuelType.hydrogen,fFuelType.lpg])
 
   const dispatch = useDispatch();
 
   const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     if (type == "baseline") {
-      const getInputElement = (id:string) =>{
-        const input = document.getElementById('id') as HTMLInputElement | null;
-
-      }
       dispatch(bSetFuelType({ ...bFuelType, setDefault: event.target.checked }));
-
-
-        // dispatch(bSetFuelType({ ...bFuelType, gasoline:defaultBaseline.bFuelType.gasoline}))
-
-
     } else {
       dispatch(
         fSetFuelType({ ...fFuelType, setDefault: event.target.checked })
@@ -72,30 +73,18 @@ const GasInput = ({ type }: GasInputType) => {
   return (
     <div className="w-[100%]">
       <label className="inline-flex items-center w-[100%] justify-start pt-2 pl-3 ml-6 my-3">
-        {type == "baseline" ? (
           <input
             type="checkbox"
-            className="form-checkbox h-4 w-4 "
+            ref = {type == "baseline" ? bcheckBox : fcheckBox}
+            className={`form-checkbox h-4 w-4 ${type == "baseline" ? "":"accent-[#548235]"} `}
             onChange={handleDefaultChange}
           />
-        ) : (
-          <input
-            type="checkbox"
-            className="form-checkbox h-4 w-4 accent-[#548235] "
-            onChange={handleDefaultChange}
-          />
-        )}
+       
         <span className="ml-2">기본값 적용</span>
       </label>
       <hr className="border-none h-[2px] bg-white"></hr>
 
      
-
-
-    
-
-
-
       {type == "baseline" ? (
         <div className="rounded-lg p-2  m-5">
 

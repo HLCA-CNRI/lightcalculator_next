@@ -6,7 +6,7 @@ import { getForecastState } from "../../../store/slices/forecastSlice";
 import { getBaselineResultState,bSetCommunityResult } from "../../../store/slices/baslineResultSlice";
 import { getForecastResultState,fSetCommunityResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateCommutingDays } from "../../../functions/ResultFunctions";
+import { calculateCommuting,numberWithCommas } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type CommutingResultType = {
@@ -41,22 +41,24 @@ const CommutingResult = ({ type }: CommutingResultType) => {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(
-    calculateCommutingDays(
+    calculateCommuting(
       currentCompanyEmployeeSize,
       currentCommutingDays,
       currentCommuting.distance,
       currentCommuting.car,
-      currentCommuting.publicTransit
+      currentCommuting.publicTransit,
+      currentCommuting.walkOrBike
     )
   );
 
   useEffect(() => {
-    const num = calculateCommutingDays(
+    const num = calculateCommuting(
       currentCompanyEmployeeSize,
       currentCommutingDays,
       currentCommuting.distance,
       currentCommuting.car,
-      currentCommuting.publicTransit
+      currentCommuting.publicTransit,
+      currentCommuting.walkOrBike
     );
     setValue(Math.round(num * 10) / 10);
     dispatch(currentAction(num));
@@ -71,7 +73,7 @@ const CommutingResult = ({ type }: CommutingResultType) => {
 
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="commutingResult" /> : ""}

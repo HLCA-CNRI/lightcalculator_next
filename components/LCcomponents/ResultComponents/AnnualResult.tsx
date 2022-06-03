@@ -15,6 +15,8 @@ import {
 import { useSelector } from "react-redux";
 import { annualTotal } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
+import {numberWithCommas} from "../../../functions/ResultFunctions"
+
 
 type AnnualResultType = {
   type: string;
@@ -96,7 +98,7 @@ const AnnualResult = ({ title, type }: AnnualResultType) => {
         </div>
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="annualResult" /> : ""}

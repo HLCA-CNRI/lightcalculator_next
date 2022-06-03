@@ -12,7 +12,7 @@ import {
   fSetBuildingResult,
 } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateBuilding } from "../../../functions/ResultFunctions";
+import { calculateBuilding,numberWithCommas } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 import AnnualResult from "./AnnualResult";
 
@@ -57,6 +57,7 @@ const BuildingResult = ({ type }: BuildingResultType) => {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(
+
     calculateBuilding(
       currentEmployeeSize,
       currentCommutingDays,
@@ -91,7 +92,7 @@ const BuildingResult = ({ type }: BuildingResultType) => {
 
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="buildingResult" /> : ""}

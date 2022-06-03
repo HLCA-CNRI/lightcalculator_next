@@ -12,7 +12,7 @@ import {
   fSetCarResult,
 } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateCars } from "../../../functions/ResultFunctions";
+import { calculateCars,numberWithCommas } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type CarResultType = {
@@ -75,7 +75,7 @@ const CarResult = ({ type }: CarResultType) => {
 
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="carResult" /> : ""}

@@ -71,7 +71,7 @@ const AddForcastInfo = ({ type }: AddForcastInfoType) => {
         <div
           className={` rounded-full px-1 ${
             (value < 0.05 && value > -0.05)
-              ? ``
+              ? `bg-slate-300`
               : value > 0.05
               ? `bg-red-200 `
               :`bg-green-200`

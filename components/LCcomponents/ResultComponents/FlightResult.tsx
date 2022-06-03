@@ -12,7 +12,7 @@ import {
 import { getBaselineResultState,bSetFlightResult } from "../../../store/slices/baslineResultSlice";
 import {getForecastResultState, fSetFlightResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateFlight } from "../../../functions/ResultFunctions";
+import { calculateFlight,numberWithCommas } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type FlightResultType = {
@@ -73,7 +73,7 @@ const FlightResult = ({ type }: FlightResultType) => {
 
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="flightsResult" /> : ""}

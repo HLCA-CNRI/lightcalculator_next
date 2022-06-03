@@ -6,7 +6,7 @@ import { getForecastState } from "../../../store/slices/forecastSlice";
 import {getBaselineResultState, bSetRemoteWorkResult } from "../../../store/slices/baslineResultSlice";
 import { getForecastResultState,fSetRemoteWorkResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateRemoteWork } from "../../../functions/ResultFunctions";
+import { calculateRemoteWork,numberWithCommas } from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type RemoteWorkType = {
@@ -58,7 +58,7 @@ const RemoteWork = ({ type }: RemoteWorkType) => {
 
         <div className="flex">
           <div>
-            {value}
+            {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
           </div>
           {type == "forecast" ? <AddForcastInfo type="remoteWorkResult" /> : ""}
