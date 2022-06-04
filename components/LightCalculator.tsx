@@ -5,8 +5,7 @@ import SliderInput from "./LCcomponents/SliderInput";
 import { useSelector } from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 import Results from "./LCcomponents/Results";
-
-
+import { useRef } from "react";
 
 import {
   getBaselineState,
@@ -36,9 +35,16 @@ import CheckBox from "./LCcomponents/CheckBox";
 import GasInput from "./LCcomponents/GasInput";
 import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
 import { number } from "yup";
+import { scrollBehavior } from "tailwindcss-classnames";
 //useSelector => to get const values
 
 const LightCalculator = () => {
+  const surveyStart = useRef<null | HTMLParagraphElement>(null);
+  const executeScroll = () => {
+    if (surveyStart.current != undefined) {
+      surveyStart.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const {
     bCompanyEmployeeSize: bCompanyEmployeeSize,
     bFuelType: bFuelType,
@@ -75,7 +81,7 @@ const LightCalculator = () => {
       <div className="grid  place-items-center min-h-screen  ">
         <div className=" mt-10  max-w-6xl grid gap-4 xs:grid-cols-1 md:grid-cols-3  ">
           <h1 className=" h-auto bg-slate-200 xs:col-span-1 md:col-span-3 mb-10 rounded-lg ">
-            <div className = "px-6">
+            <div className="px-6">
               <div className="font-extrabold text-4xl w-[65%] ">
                 <br></br>
                 전기차로의 전환, 재택근무로 인한 <br></br>기후 변화 영향력 측정
@@ -89,7 +95,10 @@ const LightCalculator = () => {
                 <br></br>아래 간단한 항목들에 답해보시고 귀사의 기후 변화
                 영향력을 측정해보세요.
               </div>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5 w-40">
+              <button
+                onClick={executeScroll}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5 w-40"
+              >
                 시작하기
               </button>
             </div>
@@ -97,7 +106,7 @@ const LightCalculator = () => {
             <img src={titleImage.src} className="rounded-lg " />
           </h1>
 
-          <p> </p>
+          <p ref={surveyStart}></p>
           <p className="text-3xl font-semibold "> Baseline </p>
           <p className="text-3xl font-semibold "> Forecast</p>
 
@@ -165,7 +174,8 @@ const LightCalculator = () => {
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">근무 형태</h2>
             <p className="text-gray-600">
-            최근 재택근무를 시행하는 기업이 많아지고 있습니다. 귀사는 평균적으로 오피스 출근이 얼마나 되시나요??
+              최근 재택근무를 시행하는 기업이 많아지고 있습니다. 귀사는
+              평균적으로 오피스 출근이 얼마나 되시나요??
             </p>
           </div>
           <div className="bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
@@ -178,9 +188,9 @@ const LightCalculator = () => {
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">출퇴근 거리 및 방식</h2>
             <p className="text-gray-600">
-              귀사 임직원의 평균적인 출퇴근 거리와 방식이 어떻게 되나요? 자동차를 통한
-              출퇴근은 버스나 지하철 같은 대중교통에 비해 많은 탄소 배출이
-              발생합니다.
+              귀사 임직원의 평균적인 출퇴근 거리와 방식이 어떻게 되나요?
+              자동차를 통한 출퇴근은 버스나 지하철 같은 대중교통에 비해 많은
+              탄소 배출이 발생합니다.
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-start rounded-lg    ">
@@ -255,10 +265,24 @@ const LightCalculator = () => {
             <Results />
           </h1>
 
-          <h1 className=" fixed max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
+          <h1 className="  max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>
+
+          <div className = "max-w-6xl h-auto xs:col-span-1 md:col-span-3  rounded-lg accordion ">
+            <div className = "accordion-item">
+              <h2 className = "accordion-header"> 
+                <button className = "accordion-button relative">
+                  Accordion Item #1
+
+                </button>
+
+              </h2>
+
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

@@ -120,9 +120,9 @@ const PercentInput = ({
     }
   }, [fFuelType.setDefault]);
 
-  const Dot = styled.li`
-    color: ${color};
-  `;
+  // const Dot = styled.li`
+  //   color: ${color};
+  // `;
 
   let initialFuelObject = isBaseline ? bFuelType : fFuelType;
   let initialCommutingObject = isBaseline ? bCommuting : fCommuting;
@@ -165,18 +165,18 @@ const PercentInput = ({
       ? initialCommutingObject[value as keyof typeof bCommuting].toString()
       : initialFuelObject[value as keyof typeof bFuelType].toString();
 
-  <Dot>
-    {/* <span className={`text-${color}`}>{color}</span> */}
-    <span className="text-black">{title}</span>
-  </Dot>;
+  // <Dot>
+  //   {/* <span className={`text-${color}`}>{color}</span> */}
+  //   <span className="text-black">{title}</span>
+  // </Dot>;
 
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">
       <div className="flex flex-col content-center">
-        <Dot>
-          {/* <span className={`text-${color}`}>{color}</span> */}
-          <span className="text-black">{title}</span>
-        </Dot>
+        <li>
+        <span className="text-black">{title}</span>
+        </li>
+   
 
         {/* <li className= {`text-${color}`}>
           <span>{title}</span>
