@@ -101,7 +101,7 @@ const LightCalculator = () => {
       <hr className="border-none h-[1px] bg-slate-400"></hr>
 
       <div className="grid  place-items-center min-h-screen  ">
-        <div className=" mt-10  max-w-6xl grid gap-4 xs:grid-cols-1 md:grid-cols-3  ">
+        <div className=" mt-10 max-w-6xl grid gap-4 xs:grid-cols-1 md:grid-cols-3 ">
           <h1 className=" h-auto bg-slate-200 xs:col-span-1 md:col-span-3 mb-10 rounded-lg ">
             <div className="px-6">
               <div className="font-extrabold text-4xl w-[65%] ">
@@ -281,6 +281,11 @@ const LightCalculator = () => {
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg ">
             <BuisnessTripInfo type="forecast" />
           </div>
+
+          <h1  className="max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
+            <div className=" md:w-[65%]"></div>
+            <Results />
+          </h1>
 
           <h1 ref = {result} className="max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
