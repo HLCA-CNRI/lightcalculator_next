@@ -5,7 +5,7 @@ import SliderInput from "./LCcomponents/SliderInput";
 import { useSelector } from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 import Results from "./LCcomponents/Results";
-import { useRef } from "react";
+import { useRef, useEffect,useState } from "react";
 
 import {
   getBaselineState,
@@ -34,12 +34,34 @@ import {
 import CheckBox from "./LCcomponents/CheckBox";
 import GasInput from "./LCcomponents/GasInput";
 import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
-import { number } from "yup";
-import { scrollBehavior } from "tailwindcss-classnames";
-//useSelector => to get const values
 
 const LightCalculator = () => {
   const surveyStart = useRef<null | HTMLParagraphElement>(null);
+  const result = useRef<null | HTMLHeadingElement>(null)
+  // state the takes the survery start top position as scrollPosition
+  const [scrollPosition, setScrollPosition] = useState(1);
+  //observes updated changes in setScrollPosition
+  useEffect(() => {
+    const updatePosition = () => {
+      if(surveyStart && surveyStart.current ){
+        setScrollPosition(surveyStart.current.getBoundingClientRect().top)
+      }
+    }
+    window.addEventListener("scroll", updatePosition);
+    updatePosition();
+  }, []);
+  useEffect(() => {
+    if(result && result.current){
+      if (parseInt(scrollPosition.toString()) <= 0) {
+        result.current.style.animationFillMode = "forwards"
+        result.current.style.position = 'fixed'
+      }else{
+        result.current.style.position = ''
+      }
+
+    }
+  },[scrollPosition])
+
   const executeScroll = () => {
     if (surveyStart.current != undefined) {
       surveyStart.current.scrollIntoView({ behavior: "smooth" });
@@ -72,7 +94,7 @@ const LightCalculator = () => {
         <div className="m-10">
           <img src={logo.src} width={180} height={70} />
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-10">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-10">
           데모 신청하기
         </button>
       </nav>
@@ -97,7 +119,7 @@ const LightCalculator = () => {
               </div>
               <button
                 onClick={executeScroll}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5 w-40"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-5 w-40"
               >
                 시작하기
               </button>
@@ -106,7 +128,7 @@ const LightCalculator = () => {
             <img src={titleImage.src} className="rounded-lg " />
           </h1>
 
-          <p ref={surveyStart}></p>
+          <p ref={surveyStart}> </p>
           <p className="text-3xl font-semibold "> Baseline </p>
           <p className="text-3xl font-semibold "> Forecast</p>
 
@@ -260,29 +282,11 @@ const LightCalculator = () => {
             <BuisnessTripInfo type="forecast" />
           </div>
 
-          <h1 className="  max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg ">
+          <h1 ref = {result} className="max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
             <div className=" md:w-[65%]"></div>
             <Results />
           </h1>
 
-          <h1 className="  max-w-6xl h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
-            <div className=" md:w-[65%]"></div>
-            <Results />
-          </h1>
-
-          <div className = "max-w-6xl h-auto xs:col-span-1 md:col-span-3  rounded-lg accordion ">
-            <div className = "accordion-item">
-              <h2 className = "accordion-header"> 
-                <button className = "accordion-button relative">
-                  Accordion Item #1
-
-                </button>
-
-              </h2>
-
-            </div>
-
-          </div>
         </div>
       </div>
     </div>

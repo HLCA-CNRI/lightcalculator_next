@@ -71,14 +71,26 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
   },[fCommuting.setDefault])
 
-  const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (type == "baseline") {
+  //     dispatch(
+  //       bSetCommuting({ ...bCommuting, setDefault: event.target.checked })
+  //     );
+  //   } else {
+  //     dispatch(
+  //       fSetCommuting({ ...fCommuting, setDefault: event.target.checked })
+  //     );
+  //   }
+  // };
+
+  const handleDefaultChange = () => {
     if (type == "baseline") {
       dispatch(
-        bSetCommuting({ ...bCommuting, setDefault: event.target.checked })
+        bSetCommuting({ ...bCommuting, setDefault: !bCommuting.setDefault })
       );
     } else {
       dispatch(
-        fSetCommuting({ ...fCommuting, setDefault: event.target.checked })
+        fSetCommuting({ ...fCommuting, setDefault: !fCommuting.setDefault})
       );
     }
   };
@@ -100,17 +112,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
   return (
     <div className=" w-[100%] ">
-      <label className="inline-flex items-center w-[100%] justify-start pt-3 pl-3 ml-6 my-3">
-        <input
-          ref = {type == "baseline" ? bcheckBox:fcheckBox}
-          type="checkbox"
-          className={`form-checkbox h-4 w-4 
-          ${type == "baseline" ? "" : "accent-[#548235]"}`}
-          onChange={handleDefaultChange}
-        />
-      <span className="ml-2">기본값 적용</span>
-      </label>
-      <hr className="border-none h-[2px] bg-white"></hr>
+    
       <div className="flex w-[100%] justify-between">
         <div className=" w-[100%]  m-5 p-2 flex justify-between">
           <div className="mr-13">평균 출퇴근 거리</div>
@@ -141,8 +143,8 @@ const TransportationInput = ({ type }: TransportationInputType) => {
               type == "baseline" ? "bg-[#5b9bd5]" : "bg-[#70ad47]"
             } h-3`}  style={{width: `${(type == "baseline" ? (bCommuting.publicTransit/total)*100 :(fCommuting.publicTransit/total)*100  )}%`}}/>
         <div className  = {`${
-              type == "baseline" ? "bg-[#bdd7ee]" : "bg-[#c5e0b4] rounded-r-lg"
-            } h-3`} style={{width: `${(type == "baseline" ? (bCommuting.walkOrBike/total)*100 :(fCommuting.walkOrBike/total)*100  )}%`}}/>
+              type == "baseline" ? "bg-[#bdd7ee]" : "bg-[#c5e0b4]"
+            } rounded-r-lg h-3`} style={{width: `${(type == "baseline" ? (bCommuting.walkOrBike/total)*100 :(fCommuting.walkOrBike/total)*100  )}%`}}/>
       </div>
 
         <PercentInput
@@ -170,6 +172,12 @@ const TransportationInput = ({ type }: TransportationInputType) => {
           color={type == "baseline" ? "#bdd7ee" : "#c5e0b4"}
         />
       </div>
+      <hr className="border-none h-[2px] bg-white"></hr>
+      <label className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
+      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-green-700 hover:bg-lime-600`} text-white font-bold py-2 px-4 rounded-lg`}>
+      기본값 적용
+      </button>
+      </label>
     </div>
   );
 };

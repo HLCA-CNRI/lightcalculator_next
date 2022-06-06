@@ -30,10 +30,6 @@ const GasInput = ({ type }: GasInputType) => {
   const { fFuelType } = useSelector(getForecastState);
   const [total,setTotal] = useState(0)
 
-  const fcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
-  const bcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
-  
-
   useEffect(()=>{
     if(type == "baseline"){
       setTotal((bFuelType.diesel) + (bFuelType.electric) + (bFuelType.gasoline) + (bFuelType.hydrogen) + (bFuelType.lpg))
@@ -42,48 +38,21 @@ const GasInput = ({ type }: GasInputType) => {
     }
   },[bFuelType,fFuelType])
 
-
-  useEffect(()=>{
-    if(bcheckBox.current!=undefined && bcheckBox.current.checked){
-      bcheckBox.current.checked = false
-      dispatch(bSetFuelType({...bFuelType,setDefault:false}))
-    }
-  },[bFuelType.diesel,bFuelType.electric,bFuelType.gasoline,bFuelType.hydrogen,bFuelType.lpg])
-
-  useEffect(()=>{
-    if(fcheckBox.current!=undefined && fcheckBox.current.checked){
-      fcheckBox.current.checked = false
-      dispatch(fSetFuelType({...fFuelType,setDefault:false}))
-    }
-  },[fFuelType.diesel,fFuelType.electric,fFuelType.gasoline,fFuelType.hydrogen,fFuelType.lpg])
-
   const dispatch = useDispatch();
 
-  const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
+  // setFuel type will toggle between true and false true or false 이여도 기본 값이 적용됨
+  const handleDefaultChange = () =>{
     if (type == "baseline") {
-      dispatch(bSetFuelType({ ...bFuelType, setDefault: event.target.checked }));
+      dispatch(bSetFuelType({ ...bFuelType, setDefault: !bFuelType.setDefault }));
     } else {
       dispatch(
-        fSetFuelType({ ...fFuelType, setDefault: event.target.checked })
+        fSetFuelType({ ...fFuelType, setDefault: !fFuelType.setDefault })
       );
     }
-  };
+  }
 
   return (
     <div className="w-[100%]">
-      <label className="inline-flex items-center w-[100%] justify-start pt-2 pl-3 ml-6 my-3">
-          <input
-            type="checkbox"
-            ref = {type == "baseline" ? bcheckBox : fcheckBox}
-            className={`form-checkbox h-4 w-4 ${type == "baseline" ? "":"accent-[#548235]"} `}
-            onChange={handleDefaultChange}
-          />
-       
-        <span className="ml-2">기본값 적용</span>
-      </label>
-      <hr className="border-none h-[2px] bg-white"></hr>
-
      
       {type == "baseline" ? (
         <div className="rounded-lg p-2  m-5">
@@ -136,7 +105,16 @@ const GasInput = ({ type }: GasInputType) => {
             unit="대"
             color="#bdd7ee"
           />
-        </div>
+
+      {/* <label className="flex justify-end pt-4">
+      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-lime-600 hover:bg-lime-500`} text-white font-bold py-2 px-4 rounded-full`}>
+      기본값 적용
+      </button>
+          
+      </label> */}
+      
+      </div>
+      
       ) : (
         <div className="rounded-lg p-2  m-5">
           <div className="w-[100%] mt-2 flex">
@@ -187,8 +165,23 @@ const GasInput = ({ type }: GasInputType) => {
             unit="대"
             color="#c5e0b4"
           />
+
+      {/* <label className="flex justify-start pt-4">
+      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-lime-600 hover:bg-lime-500`} text-white font-bold py-2 px-4 rounded-lg`}>
+      기본값 적용
+      </button>
+          
+      </label> */}
         </div>
+
+        
       )}
+      <hr className="border-none h-[2px] bg-white"></hr>
+      <label className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
+      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-green-700 hover:bg-lime-600`} text-white font-bold py-2 px-4 rounded-lg`}>
+      기본값 적용
+      </button>
+      </label>
     </div>
   );
 };

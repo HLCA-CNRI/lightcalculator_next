@@ -45,8 +45,7 @@ const PercentInput = ({
   useEffect(() => {
     if (
       Objectkey == "commuting" &&
-      isBaseline &&
-      bCommuting.setDefault == true
+      isBaseline 
     ) {
       type ObjectKey = keyof typeof defaultBaseline.bCommuting;
       const myVar = value as ObjectKey;
@@ -64,7 +63,7 @@ const PercentInput = ({
   }, [bCommuting.setDefault]);
 
   useEffect(() => {
-    if (Objectkey == "fuel" && isBaseline && bFuelType.setDefault == true) {
+    if (Objectkey == "fuel" && isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bFuelType;
       const myVar = value as ObjectKey;
       inputField.current.value = defaultBaseline.bFuelType[myVar].toString();
@@ -84,8 +83,7 @@ const PercentInput = ({
   useEffect(() => {
     if (
       Objectkey == "commuting" &&
-      !isBaseline &&
-      fCommuting.setDefault == true
+      !isBaseline
     ) {
       type ObjectKey = keyof typeof DefualtForecast.fCommuting;
       const myVar = value as ObjectKey;
@@ -103,7 +101,7 @@ const PercentInput = ({
   }, [fCommuting.setDefault]);
 
   useEffect(() => {
-    if (Objectkey == "fuel" && !isBaseline && fFuelType.setDefault == true) {
+    if (Objectkey == "fuel" && !isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bFuelType;
       const myVar = value as ObjectKey;
       inputField.current.value = defaultBaseline.bFuelType[myVar].toString();
@@ -120,9 +118,9 @@ const PercentInput = ({
     }
   }, [fFuelType.setDefault]);
 
-  // const Dot = styled.li`
-  //   color: ${color};
-  // `;
+  const Dot = styled.li`
+    color: ${color};
+  `;
 
   let initialFuelObject = isBaseline ? bFuelType : fFuelType;
   let initialCommutingObject = isBaseline ? bCommuting : fCommuting;
@@ -173,9 +171,13 @@ const PercentInput = ({
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">
       <div className="flex flex-col content-center">
-        <li>
+        {/* <li>
         <span className="text-black">{title}</span>
-        </li>
+        </li> */}
+         <Dot>
+    {/* <span className={`text-${color}`}>{color}</span> */}
+    <span className="text-black">{title}</span>
+  </Dot>
    
 
         {/* <li className= {`text-${color}`}>
