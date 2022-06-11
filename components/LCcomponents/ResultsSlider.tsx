@@ -11,15 +11,16 @@ const ResultsSlider = () => {
 
   return (
     <div>
-     <div className = "flex w-[100%] border-2 justify-center py-4 rounded-t-lg">
+      <div >
+        <div>{open ? <Results /> : ""}</div>
+      </div>
+     <div className = "flex w-[100%] border-2 justify-center py-4 rounded-b-lg shadow-md">
           <button className = "pr-2" onClick={handleFilterOpening}>Open to view content</button>
           <button onClick={handleFilterOpening}>
               {open ? <div>↑</div> :<div>↓</div> }
           </button>
     </div>
-      <div >
-        <div>{open ? <Results /> : ""}</div>
-      </div>
+    
     </div>
   );
 };

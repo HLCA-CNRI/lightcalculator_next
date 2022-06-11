@@ -8,7 +8,7 @@ import ResultMessage from "./ResultComponents/ResultMessage";
 
 const Results = () => {
   return (
-    <div className="grid gap-4 xs:grid-cols-1 md:grid-cols-3 border shadow-md rounded-b-lg">
+    <div className="grid gap-4 xs:grid-cols-1 md:grid-cols-3 border shadow-md rounded-t-lg">
       <div className="w-[100%] h-[95%] px-3  pb-3 pr-10 ">
         <div className="pt-5 pl-2 h-[80%] text-lg font-semibold">
           <ResultMessage/>
