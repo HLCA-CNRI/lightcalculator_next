@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import CheckBox from "./CheckBox";
 import { useSelector } from "../../store/store";
@@ -11,7 +11,7 @@ import {
   getForecastState,
   fSetCommuting,
 } from "../../store/slices/forecastSlice";
-import { defaultBaseline , DefualtForecast } from "../../functions/Defaults";
+import { defaultBaseline, DefualtForecast } from "../../functions/Defaults";
 
 import PercentInput from "./PercentInput";
 
@@ -22,66 +22,66 @@ type TransportationInputType = {
 const TransportationInput = ({ type }: TransportationInputType) => {
   const { bCommuting } = useSelector(getBaselineState);
   const { fCommuting } = useSelector(getForecastState);
-  const [total,setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
 
-  const fcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
-  const bcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;  
-  const bDistanceInput = React.useRef() as React.MutableRefObject<HTMLInputElement>;
-  const fDistanceInput = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const fcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const bcheckBox = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const bDistanceInput =
+    React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const fDistanceInput =
+    React.useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const dispatch = useDispatch();
 
-
-  useEffect(()=>{
-    if(type == "baseline"){
-      setTotal(bCommuting.car + bCommuting.publicTransit + bCommuting.walkOrBike)
-    }else{
-      setTotal(fCommuting.car + fCommuting.publicTransit + fCommuting.walkOrBike)
+  useEffect(() => {
+    if (type == "baseline") {
+      setTotal(
+        bCommuting.car + bCommuting.publicTransit + bCommuting.walkOrBike
+      );
+    } else {
+      setTotal(
+        fCommuting.car + fCommuting.publicTransit + fCommuting.walkOrBike
+      );
     }
-  },[fCommuting,bCommuting])
+  }, [fCommuting, bCommuting]);
 
-  useEffect(()=>{
-    if(bcheckBox.current!=undefined && bcheckBox.current.checked){
-      bcheckBox.current.checked = false 
-      dispatch(bSetCommuting({...bCommuting,setDefault:false}))
+  useEffect(() => {
+    if (bcheckBox.current != undefined && bcheckBox.current.checked) {
+      bcheckBox.current.checked = false;
+      dispatch(bSetCommuting({ ...bCommuting, setDefault: false }));
     }
-  },[bCommuting.car,bCommuting.publicTransit,bCommuting.walkOrBike,bCommuting.distance])
+  }, [
+    bCommuting.car,
+    bCommuting.publicTransit,
+    bCommuting.walkOrBike,
+    bCommuting.distance,
+  ]);
 
-  useEffect(()=>{
-    if(fcheckBox.current!=undefined && fcheckBox.current.checked){
-      fcheckBox.current.checked = false 
-      dispatch(fSetCommuting({...fCommuting,setDefault:false}))
+  useEffect(() => {
+    if (fcheckBox.current != undefined && fcheckBox.current.checked) {
+      fcheckBox.current.checked = false;
+      dispatch(fSetCommuting({ ...fCommuting, setDefault: false }));
     }
+  }, [
+    fCommuting.car,
+    fCommuting.publicTransit,
+    fCommuting.walkOrBike,
+    fCommuting.distance,
+  ]);
 
-  },[fCommuting.car, fCommuting.publicTransit,fCommuting.walkOrBike,fCommuting.distance])
-
-
-  useEffect(()=>{
-    if(bDistanceInput.current!= undefined && bCommuting.setDefault == true){
-      bDistanceInput.current.value = defaultBaseline.bCommuting.distance.toString()
+  useEffect(() => {
+    if (bDistanceInput.current != undefined && bCommuting.setDefault == true) {
+      bDistanceInput.current.value =
+        defaultBaseline.bCommuting.distance.toString();
     }
+  }, [bCommuting.setDefault]);
 
-  },[bCommuting.setDefault])
-
-
-  useEffect(()=>{
-    if(fDistanceInput.current!= undefined && fCommuting.setDefault == true){
-      fDistanceInput.current.value = DefualtForecast.fCommuting.distance.toString()
+  useEffect(() => {
+    if (fDistanceInput.current != undefined && fCommuting.setDefault == true) {
+      fDistanceInput.current.value =
+        DefualtForecast.fCommuting.distance.toString();
     }
-
-  },[fCommuting.setDefault])
-
-  // const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (type == "baseline") {
-  //     dispatch(
-  //       bSetCommuting({ ...bCommuting, setDefault: event.target.checked })
-  //     );
-  //   } else {
-  //     dispatch(
-  //       fSetCommuting({ ...fCommuting, setDefault: event.target.checked })
-  //     );
-  //   }
-  // };
+  }, [fCommuting.setDefault]);
 
   const handleDefaultChange = () => {
     if (type == "baseline") {
@@ -90,7 +90,7 @@ const TransportationInput = ({ type }: TransportationInputType) => {
       );
     } else {
       dispatch(
-        fSetCommuting({ ...fCommuting, setDefault: !fCommuting.setDefault})
+        fSetCommuting({ ...fCommuting, setDefault: !fCommuting.setDefault })
       );
     }
   };
@@ -112,13 +112,17 @@ const TransportationInput = ({ type }: TransportationInputType) => {
 
   return (
     <div className=" w-[100%] ">
-    
+      <div className="  w-[100%] text-lg visible md:hidden">
+        {type == "baseline" ? <div className="ml-4 py-2">Baseline</div>:<div className="ml-4 py-2">Forecast</div>}
+        
+        <hr className="border-none  h-[2px] bg-white"></hr>
+      </div>
       <div className="flex w-[100%] justify-between">
         <div className=" w-[100%]  m-5 p-2 flex justify-between">
           <div className="mr-13">평균 출퇴근 거리</div>
-          <div className = "flex pr-q">
+          <div className="flex pr-q">
             <input
-              ref = {type == "baseline" ? bDistanceInput:fDistanceInput}
+              ref={type == "baseline" ? bDistanceInput : fDistanceInput}
               type="number"
               className="w-12 mr-2 rounded"
               min={0}
@@ -133,19 +137,44 @@ const TransportationInput = ({ type }: TransportationInputType) => {
       </div>
       <hr className="border-none  h-[2px] bg-white"></hr>
       <div className="rounded-lg p-2  m-5">
-
-
-      <div className="w-[100%] mt-2 flex">
-        <div className = { `${
+        <div className="w-[100%] mt-2 flex">
+          <div
+            className={`${
               type == "baseline" ? "bg-[#2f5597]" : "bg-[#385723]"
-            } h-3 rounded-l-lg`} style={{width: `${(type == "baseline" ? (bCommuting.car/total)*100 :(fCommuting.car/total)*100  )}%`}}/>
-        <div className = {`${
+            } h-3 rounded-l-lg`}
+            style={{
+              width: `${
+                type == "baseline"
+                  ? (bCommuting.car / total) * 100
+                  : (fCommuting.car / total) * 100
+              }%`,
+            }}
+          />
+          <div
+            className={`${
               type == "baseline" ? "bg-[#5b9bd5]" : "bg-[#70ad47]"
-            } h-3`}  style={{width: `${(type == "baseline" ? (bCommuting.publicTransit/total)*100 :(fCommuting.publicTransit/total)*100  )}%`}}/>
-        <div className  = {`${
+            } h-3`}
+            style={{
+              width: `${
+                type == "baseline"
+                  ? (bCommuting.publicTransit / total) * 100
+                  : (fCommuting.publicTransit / total) * 100
+              }%`,
+            }}
+          />
+          <div
+            className={`${
               type == "baseline" ? "bg-[#bdd7ee]" : "bg-[#c5e0b4]"
-            } rounded-r-lg h-3`} style={{width: `${(type == "baseline" ? (bCommuting.walkOrBike/total)*100 :(fCommuting.walkOrBike/total)*100  )}%`}}/>
-      </div>
+            } rounded-r-lg h-3`}
+            style={{
+              width: `${
+                type == "baseline"
+                  ? (bCommuting.walkOrBike / total) * 100
+                  : (fCommuting.walkOrBike / total) * 100
+              }%`,
+            }}
+          />
+        </div>
 
         <PercentInput
           Objectkey="commuting"
@@ -174,9 +203,16 @@ const TransportationInput = ({ type }: TransportationInputType) => {
       </div>
       <hr className="border-none h-[2px] bg-white"></hr>
       <label className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
-      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-green-700 hover:bg-lime-600`} text-white font-bold py-2 px-4 rounded-lg`}>
-      기본값 적용
-      </button>
+        <button
+          onClick={handleDefaultChange}
+          className={`${
+            type == "baseline"
+              ? `bg-blue-600 hover:bg-blue-400`
+              : `bg-green-700 hover:bg-lime-600`
+          } text-white font-bold py-2 px-4 rounded-lg`}
+        >
+          기본값 적용
+        </button>
       </label>
     </div>
   );

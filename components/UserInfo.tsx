@@ -55,7 +55,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="name"
                     type="text"
                     placeholder="Name"
-                    className="min-w-14 border to-black  w-[100%] p-1"
+                    className="min-w-14 border to-black  p-1 flex w-[100%] justify-start"
                   />
                   <div>
                     <ErrorMessage
