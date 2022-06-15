@@ -151,8 +151,8 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
                 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기
                 바랍니다. Light Calculator 이용을 관리하기 위해 필요한 최소한의 개인
                 정보를 수집합니다. Light Calculator 이용 시점에 Light Calculator 이용자로부터 수집하는
-                개인 정보는 아래와 같습니다. 또한, 서비스를 이용하시며
-                입력하시는 모든 개인 정보는 안전하게 저장 및 처리됨을
+                개인 정보는 아래와 같습니다. 또한, 서비스를 이용하며서
+                입력하는 모든 개인 정보는 안전하게 저장 및 처리됨을
                 알려드립니다.
                 <br />
                 <br />
