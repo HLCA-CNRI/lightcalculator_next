@@ -337,7 +337,7 @@ const LightCalculator = () => {
           </div>
 
 
-          <h1 ref = {result} className="h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1">
+          <h1 ref = {result} className="h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1 xs:h-[100%]">
             <div className=" md:w-[65%]"></div>
             <ResultsSlider />
           </h1>

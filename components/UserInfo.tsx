@@ -27,8 +27,10 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
 
   const handleSubmit = (values: any) => {
     setUser(values)
+    console.log(values)
     setAuthenticate(true)
   };
+
 
   return (
     <div className="flex justify-center items-center h-screen  flex-col bg-green-200">
@@ -55,7 +57,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="name"
                     type="text"
                     placeholder="Name"
-                    className="min-w-14 border to-black  p-1 flex w-[100%] justify-start"
+                    className="min-w-14 border to-black  p-1 flex w-[100%] justify-start text-left"
                   />
                   <div>
                     <ErrorMessage
@@ -72,7 +74,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="company"
                     type="text"
                     placeholder="Company"
-                    className="min-w-14 border to-black  w-[100%] p-1"
+                    className="min-w-14 border to-black  w-[100%] p-1 text-left"
                   />
                   <div>
                     <ErrorMessage
@@ -89,7 +91,7 @@ const UserInfo = ({setAuthenticate}:AuthenticateType) => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className="min-w-14  w-[100%] border to-black p-1"
+                    className="min-w-14  w-[100%] border to-black p-1 text-left"
                   />
                   <div>
                     <ErrorMessage
