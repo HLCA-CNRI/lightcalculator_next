@@ -80,6 +80,21 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
                     <ErrorMessage name="email" component="div" className="inline-block text-xs text text-blue-600" />
                   </div>
                 </div>
+                <div className="m-1">
+                  <input
+                    type="checkbox"
+                    id="agreeCheckbox"
+                    name="agreeCheckbox"
+                    className="form-checkbox h-4 w-4 align-middle"
+                    onChange={onAgreeChange}></input>
+                  <label htmlFor="agreeCheckbox" className="ml-2">
+                    이용신청자가 본{" "}
+                    <button onClick={() => openTerm(true)} className="text-blue-600">
+                      약관을
+                    </button>{" "}
+                    읽고 동의함 버튼을 누르거나 확인 등에 체크하는 방법을 취한 경우 본 약관에 동의한 것으로 간주합니다.
+                  </label>
+                </div>
 
                 <div className="mt-3 flex justify-center">
                   <button type="submit" className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-[100%] ">
@@ -91,15 +106,7 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
           </Form>
         </Formik>
 
-        <div className=" to-black text-sm my-3 mt-4 relative">
-          <input type="checkbox" className="form-checkbox h-4 w-4 ml-2 mt-2" onChange={onAgreeChange}></input>
-          <span className="ml-2 align-middle">
-            이용신청자가 본{" "}
-            <button onClick={() => openTerm(true)} className="text-blue-600">
-              약관을
-            </button>{" "}
-            읽고 동의함 버튼을 누르거나 확인 등에 체크하는 방법을 취한 경우 본 약관에 동의한 것으로 간주합니다.
-          </span>
+        <div className="to-black text-sm my-3 relative">
           {term == true ? (
             <div className="absolute bottom-12 left-0 p-10 bg-slate-100">
               <div className="w-[100%] flex justify-center mb-4 font-bold">CNRI Light Calculator 이용약관</div>
@@ -108,12 +115,12 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
                 개인정보보호법 및 기업정보 수집/이용/제공 및 활용 동의에 따라 수집하는 개인 정보의 항목, 개인 정보의 수집 및 이용목적, 개인 정보의 보유 및
                 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다. Light Calculator 이용을
                 관리하기 위해 필요한 최소한의 개인 정보를 수집합니다. Light Calculator 이용 시점에 Light Calculator 이용자로부터 수집하는 개인 정보는 아래와
-                같습니다. 또한, 서비스를 이용하며서 입력하는 모든 개인 정보는 안전하게 저장 및 처리됨을 알려드립니다.
+                같습니다. 또한, 서비스 이용을 위해 입력되는 모든 개인 정보는 안전하게 저장 및 처리됨을 알려드립니다.
                 <br />
                 <br />
                 개인정보
                 <br />
-                필수항목 : 이메일 주소, 이름, 회사명
+                필수항목 : 이름, 회사명, 이메일 주소
                 <br />
               </div>
 
@@ -127,8 +134,6 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
             ""
           )}
         </div>
-
-        {/* <div>{agree == false ? "이용약관에 동의해주세요":""}</div> */}
       </div>
     </div>
   );
