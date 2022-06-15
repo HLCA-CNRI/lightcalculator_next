@@ -6,7 +6,7 @@ import { useSelector } from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 // import Results from "./LCcomponents/Results";
 import ResultsSlider from "./LCcomponents/ResultsSlider";
-import { useRef, useEffect,useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import {
   getBaselineState,
@@ -38,30 +38,29 @@ import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
 
 const LightCalculator = () => {
   const surveyStart = useRef<null | HTMLParagraphElement>(null);
-  const result = useRef<null | HTMLHeadingElement>(null)
+  const result = useRef<null | HTMLHeadingElement>(null);
   // state the takes the survery start top position as scrollPosition
   const [scrollPosition, setScrollPosition] = useState(1);
   //observes updated changes in setScrollPosition
   useEffect(() => {
     const updatePosition = () => {
-      if(surveyStart && surveyStart.current ){
-        setScrollPosition(surveyStart.current.getBoundingClientRect().top)
+      if (surveyStart && surveyStart.current) {
+        setScrollPosition(surveyStart.current.getBoundingClientRect().top);
       }
-    }
+    };
     window.addEventListener("scroll", updatePosition);
     updatePosition();
   }, []);
   useEffect(() => {
-    if(result && result.current){
+    if (result && result.current) {
       if (parseInt(scrollPosition.toString()) <= 0) {
-        result.current.style.animationFillMode = "forwards"
-        result.current.style.position = 'sticky'
-      }else{
-        result.current.style.position = ''
+        result.current.style.animationFillMode = "forwards";
+        result.current.style.position = "sticky";
+      } else {
+        result.current.style.position = "";
       }
-
     }
-  },[scrollPosition])
+  }, [scrollPosition]);
 
   const executeScroll = () => {
     if (surveyStart.current != undefined) {
@@ -96,7 +95,14 @@ const LightCalculator = () => {
           <img src={logo.src} width={180} height={70} />
         </div>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-10">
-          데모 신청하기
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://cis.cnrikorea.net/register"
+            className="h-[100%] w-[100%]"
+          >
+            데모 신청하기
+          </a>
         </button>
       </nav>
       <hr className="border-none h-[1px] bg-slate-400"></hr>
@@ -129,9 +135,15 @@ const LightCalculator = () => {
             <img src={titleImage.src} className="rounded-lg " />
           </h1>
 
-          <p ref={surveyStart} > </p>
-          <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible "> Baseline </p>
-          <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible "> Forecast</p>
+          <p ref={surveyStart}> </p>
+          <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible ">
+            {" "}
+            Baseline{" "}
+          </p>
+          <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible ">
+            {" "}
+            Forecast
+          </p>
 
           <div className="mb-3 mr-2 pr-10">
             <h2 className="text-xl font-semibold mb-2 ">임직원 수</h2>
@@ -140,10 +152,10 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
             <NumberInput
               type="baseline"
               unit="명"
@@ -152,11 +164,11 @@ const LightCalculator = () => {
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <NumberInput
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <NumberInput
               type="forecast"
               unit="명"
               setNumber={fSetCompanyEmployeeSize}
@@ -172,18 +184,18 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>             
-          <GasInput type="baseline" />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <GasInput type="baseline" />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>             
-          <GasInput type="forecast" />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <GasInput type="forecast" />
           </div>
 
           <div className="mb-3 pr-10  ">
@@ -194,11 +206,11 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>             
-          <NumberInput
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <NumberInput
               type="baseline"
               unit="만원"
               setNumber={bSetCompanyGasPrice}
@@ -206,11 +218,11 @@ const LightCalculator = () => {
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <NumberInput
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <NumberInput
               type="forecast"
               unit="만원"
               setNumber={fSetCompanyGasPrice}
@@ -226,18 +238,18 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className="bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <SliderInput type="baseline" setNumber={bSetCommutingDays} />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <SliderInput type="baseline" setNumber={bSetCommutingDays} />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <SliderInput type="forecast" setNumber={fSetCommuntingDays} />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <SliderInput type="forecast" setNumber={fSetCommuntingDays} />
           </div>
 
           <div className="mb-3 pr-10  ">
@@ -263,20 +275,22 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            <CheckBox
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>{" "}
+            <CheckBox
               type="baseline"
               label="신재생 에너지 사용"
               setChecked={bSetUseRenewableEnergy}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            <CheckBox
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>{" "}
+            <CheckBox
               type="forecast"
               label="신재생 에너지 사용"
               setChecked={fSetUseRenewableEnergy}
@@ -291,10 +305,11 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg  ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            <NumberInput
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>{" "}
+            <NumberInput
               type="baseline"
               unit="m"
               setNumber={bSetCompanySize}
@@ -302,11 +317,11 @@ const LightCalculator = () => {
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <NumberInput
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <NumberInput
               type="forecast"
               unit="m"
               setNumber={fSetCompanySize}
@@ -322,26 +337,27 @@ const LightCalculator = () => {
             </p>
           </div>
           <div className=" bg-cnri_light_blue flex justify-center flex-col items-center rounded-lg">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Baseline</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>            
-          <BuisnessTripInfo type="baseline" />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Baseline</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <BuisnessTripInfo type="baseline" />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg ">
-          <div className = "  w-[100%] text-lg visible md:hidden">
-            <div className = "ml-4 py-2">Forecast</div>
-            <hr className="border-none  h-[2px] bg-white"></hr>
-          </div>           
-           <BuisnessTripInfo type="forecast" />
+            <div className="  w-[100%] text-lg visible md:hidden">
+              <div className="ml-4 py-2">Forecast</div>
+              <hr className="border-none  h-[2px] bg-white"></hr>
+            </div>
+            <BuisnessTripInfo type="forecast" />
           </div>
 
-
-          <h1 ref = {result} className="h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1 xs:h-[100%]">
+          <h1
+            ref={result}
+            className="h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1 xs:h-[100%]"
+          >
             <div className=" md:w-[65%]"></div>
             <ResultsSlider />
           </h1>
-
         </div>
       </div>
     </div>
