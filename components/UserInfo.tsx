@@ -1,7 +1,7 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import logo from "../image/logo.png";
-import React, { useState, useEffect } from "react";
+import { memo } from "react";
 import { apis } from "../functions/apis";
 
 const ValidationSchema = Yup.object().shape({
@@ -27,7 +27,6 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
     console.log("result", result);
     setAuthenticate(true);
   };
-
 
   return (
     <div className="flex justify-center items-center h-screen  flex-col bg-green-200">
@@ -86,4 +85,4 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
   );
 };
 
-export default UserInfo;
+export default memo(UserInfo);

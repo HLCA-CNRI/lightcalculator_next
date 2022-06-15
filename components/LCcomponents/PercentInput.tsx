@@ -1,20 +1,9 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useDispatch } from "../../store/store";
 import { useSelector } from "../../store/store";
 import { defaultBaseline, DefualtForecast } from "../../functions/Defaults";
-import {
-  getBaselineState,
-  bSetFuelType,
-  bSetCommuting,
-} from "../../store/slices/baselineSlice";
-
-import {
-  getForecastState,
-  fSetFuelType,
-  fSetCommuting,
-} from "../../store/slices/forecastSlice";
-import { object } from "yup";
+import { getBaselineState, bSetFuelType, bSetCommuting } from "../../store/slices/baselineSlice";
+import { getForecastState, fSetFuelType, fSetCommuting } from "../../store/slices/forecastSlice";
 import styled from "styled-components";
 
 type percentInputType = {
@@ -28,32 +17,22 @@ type percentInputType = {
 };
 
 //TODO: Change implementation
-const PercentInput = ({
-  Objectkey,
-  value,
-  isBaseline,
-  title,
-  unit,
-  color,
-}: percentInputType) => {
+const PercentInput = ({ Objectkey, value, isBaseline, title, unit, color }: percentInputType) => {
   const { bFuelType, bCommuting } = useSelector(getBaselineState);
   const { fFuelType, fCommuting } = useSelector(getForecastState);
   const dispatch = useDispatch();
-  const inputField = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const inputField = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   //TODO: clean up
   useEffect(() => {
-    if (
-      Objectkey == "commuting" &&
-      isBaseline 
-    ) {
+    if (Objectkey == "commuting" && isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bCommuting;
       const myVar = value as ObjectKey;
       inputField.current.value = defaultBaseline.bCommuting[myVar].toString();
       dispatch(
         bSetCommuting({
           ...bCommuting,
-          distance:defaultBaseline.bCommuting.distance,
+          distance: defaultBaseline.bCommuting.distance,
           car: defaultBaseline.bCommuting.car,
           publicTransit: defaultBaseline.bCommuting.publicTransit,
           walkOrBike: defaultBaseline.bCommuting.walkOrBike,
@@ -81,17 +60,14 @@ const PercentInput = ({
   }, [bFuelType.setDefault]);
 
   useEffect(() => {
-    if (
-      Objectkey == "commuting" &&
-      !isBaseline
-    ) {
+    if (Objectkey == "commuting" && !isBaseline) {
       type ObjectKey = keyof typeof DefualtForecast.fCommuting;
       const myVar = value as ObjectKey;
       inputField.current.value = DefualtForecast.fCommuting[myVar].toString();
       dispatch(
         fSetCommuting({
           ...fCommuting,
-          distance:DefualtForecast.fCommuting.distance,
+          distance: DefualtForecast.fCommuting.distance,
           car: DefualtForecast.fCommuting.car,
           publicTransit: DefualtForecast.fCommuting.publicTransit,
           walkOrBike: DefualtForecast.fCommuting.walkOrBike,
@@ -137,9 +113,7 @@ const PercentInput = ({
           })
         );
       } else if (Objectkey == "fuel" && isBaseline) {
-        dispatch(
-          bSetFuelType({ ...bFuelType, [value]: parseInt(event.target.value) })
-        );
+        dispatch(bSetFuelType({ ...bFuelType, [value]: parseInt(event.target.value) }));
       } else if (Objectkey == "commuting" && !isBaseline) {
         dispatch(
           fSetCommuting({
@@ -148,9 +122,7 @@ const PercentInput = ({
           })
         );
       } else if (Objectkey == "fuel" && !isBaseline) {
-        dispatch(
-          fSetFuelType({ ...fFuelType, [value]: parseInt(event.target.value) })
-        );
+        dispatch(fSetFuelType({ ...fFuelType, [value]: parseInt(event.target.value) }));
       }
     }
   };
@@ -174,11 +146,10 @@ const PercentInput = ({
         {/* <li>
         <span className="text-black">{title}</span>
         </li> */}
-         <Dot>
-    {/* <span className={`text-${color}`}>{color}</span> */}
-    <span className="text-black">{title}</span>
-  </Dot>
-   
+        <Dot>
+          {/* <span className={`text-${color}`}>{color}</span> */}
+          <span className="text-black">{title}</span>
+        </Dot>
 
         {/* <li className= {`text-${color}`}>
           <span>{title}</span>
@@ -192,8 +163,7 @@ const PercentInput = ({
           max={Objectkey == "commuting" ? 100 : ""}
           defaultValue={defaultValue}
           className="w-12 text-gray-700 bg-white rounded"
-          onChange={handleDefaultChange}
-        ></input>
+          onChange={handleDefaultChange}></input>
 
         <div className="ml-2">{unit}</div>
       </div>
@@ -201,4 +171,4 @@ const PercentInput = ({
   );
 };
 
-export default PercentInput;
+export default memo(PercentInput);
