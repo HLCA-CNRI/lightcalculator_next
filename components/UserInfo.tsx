@@ -149,13 +149,19 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
                 수집하는 개인 정보의 항목, 개인 정보의 수집 및 이용목적, 개인
                 정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에
                 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기
-                바랍니다. 회원제 서비스를 이용하기 위해 회원가입을 할 경우,
-                Light Calculator 이용을 관리하기 위해 필요한 최소한의 개인
-                정보를 수집합니다. 회원가입 시점에 Light Calculator 이용자로부터 수집하는
+                바랍니다. Light Calculator 이용을 관리하기 위해 필요한 최소한의 개인
+                정보를 수집합니다. Light Calculator 이용 시점에 Light Calculator 이용자로부터 수집하는
                 개인 정보는 아래와 같습니다. 또한, 서비스를 이용하시며
                 입력하시는 모든 개인 정보는 안전하게 저장 및 처리됨을
                 알려드립니다.
+                <br />
+                <br />
+                개인정보
+                <br />
+                필수항목 : 이메일 주소, 이름, 회사명
+                <br />
               </div>
+
 
               <div className="w-[100%] flex justify-end mt-4">
                 <button
