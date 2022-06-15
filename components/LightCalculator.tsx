@@ -94,7 +94,11 @@ const LightCalculator = () => {
         <div className="m-10">
           <img src={logo.src} width={180} height={70} />
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-10">데모 신청하기</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-10">
+          <a target="_blank" rel="noopener noreferrer" href="https://cis.cnrikorea.net/register" className="h-[100%] w-[100%]">
+            데모 신청하기
+          </a>
+        </button>
       </nav>
       <hr className="border-none h-[1px] bg-slate-400"></hr>
 
