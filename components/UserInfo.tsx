@@ -135,7 +135,7 @@ const UserInfo = ({ setAuthenticate }: AuthenticateType) => {
             <button onClick={() => openTerm(true)} className="text-blue-600">
               약관을
             </button>{" "}
-            읽고 "동의함" 버튼을 누르거나 "확인" 등에 체크하는 방법을 취한 경우
+            읽고 동의함 버튼을 누르거나 확인 등에 체크하는 방법을 취한 경우
             본 약관에 동의한 것으로 간주합니다.
           </span>
           {term == true ? (
