@@ -1,15 +1,8 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useState, useEffect } from "react";
+import { memo } from "react";
 import { useDispatch } from "../../store/store";
 import { useSelector } from "../../store/store";
-import {
-  getBaselineState,
-  bSetRoundTrip,
-} from "../../store/slices/baselineSlice";
-import {
-  getForecastState,
-  fSetRoundTrip,
-} from "../../store/slices/forecastSlice";
+import { getBaselineState, bSetRoundTrip } from "../../store/slices/baselineSlice";
+import { getForecastState, fSetRoundTrip } from "../../store/slices/forecastSlice";
 
 type BuissnessTripInputType = {
   country: string;
@@ -17,11 +10,7 @@ type BuissnessTripInputType = {
   isBaseline: boolean;
 };
 
-const BuissnessTripInput = ({
-  country,
-  value,
-  isBaseline,
-}: BuissnessTripInputType) => {
+const BuissnessTripInput = ({ country, value, isBaseline }: BuissnessTripInputType) => {
   const { bRoundTrip } = useSelector(getBaselineState);
   const { fRoundTrip } = useSelector(getForecastState);
   const dispatch = useDispatch();
@@ -41,21 +30,13 @@ const BuissnessTripInput = ({
 
   return (
     <div className="flex justify-between pb-3">
-      <div className="pl-2" >{country}</div>
+      <div className="pl-2">{country}</div>
       <div className="flex  pr-5">
-        <input
-          type="number"
-          className="w-12 rounded"
-          min={0}
-          defaultValue={isBaseline ? bRoundTrip[sVal]:fRoundTrip[sVal]}
-          onChange={handleChange}
-        ></input>
+        <input type="number" className="w-12 rounded" min={0} defaultValue={isBaseline ? bRoundTrip[sVal] : fRoundTrip[sVal]} onChange={handleChange}></input>
         <div>회</div>
       </div>
-    
     </div>
-
   );
 };
 
-export default BuissnessTripInput;
+export default memo(BuissnessTripInput);

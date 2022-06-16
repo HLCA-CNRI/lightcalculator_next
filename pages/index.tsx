@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import LightCalculator from "../components/LightCalculator";
 import UserInfo from "../components/UserInfo";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const Home: NextPage = () => {
   const [authenticate, setAuthenticate] = useState(false);
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Light_Calculator</title>
+        <title>Light Calculator | CNRIKOREA</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -23,4 +23,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default memo(Home);
