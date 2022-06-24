@@ -1,42 +1,38 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "../../../store/store";
-import {
-  bSetRoundTrip,
-  getBaselineState,
-} from "../../../store/slices/baselineSlice";
-import {
-  fSetRoundTrip,
-  getForecastState,
-} from "../../../store/slices/forecastSlice";
-import { getBaselineResultState,bSetFlightResult } from "../../../store/slices/baslineResultSlice";
-import {getForecastResultState, fSetFlightResult } from "../../../store/slices/forecastResultSlice";
 import { useSelector } from "react-redux";
-import { calculateFlight,numberWithCommas } from "../../../functions/ResultFunctions";
+import { useDispatch } from "../../../store/store";
+import { getBaselineState } from "../../../store/slices/baselineSlice";
+import { getForecastState } from "../../../store/slices/forecastSlice";
+import {
+  getBaselineResultState,
+  bSetFlightResult,
+} from "../../../store/slices/baslineResultSlice";
+import {
+  getForecastResultState,
+  fSetFlightResult,
+} from "../../../store/slices/forecastResultSlice";
+import {
+  calculateFlight,
+  numberWithCommas,
+} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type FlightResultType = {
   type: string;
 };
 
-const FlightResult = ({ type }: FlightResultType) => {
+function FlightResult({ type }: FlightResultType) {
   const { bRoundTrip } = useSelector(getBaselineState);
   const { fRoundTrip } = useSelector(getForecastState);
 
-  const currentRoundTrip = type == "baseline" ? bRoundTrip : fRoundTrip;
+  const currentRoundTrip = type === "baseline" ? bRoundTrip : fRoundTrip;
   const currentAction =
-    type == "baseline" ? bSetFlightResult : fSetFlightResult;
+    type === "baseline" ? bSetFlightResult : fSetFlightResult;
 
+  const { bAnnual } = useSelector(getBaselineResultState);
+  const { fAnnual } = useSelector(getForecastResultState);
 
-  const { 
-    bAnnual
-  } = useSelector(getBaselineResultState)
-  const { 
-    fAnnual
-  } = useSelector(getForecastResultState)
-
-  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
-
+  const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
 
   const dispatch = useDispatch();
 
@@ -67,26 +63,29 @@ const FlightResult = ({ type }: FlightResultType) => {
   return (
     <div>
       <div className="flex justify-between">
-      <li className="text-[#ffa573]">
+        <li className="text-[#ffa573]">
           <span className="text-black">출장</span>
         </li>
 
         <div className="flex">
           <div>
             {numberWithCommas(value)}
-            {(Math.round(value * 100) / 100) % 1 == 0 ? ".0" : ""}
+            {(Math.round(value * 100) / 100) % 1 === 0 ? ".0" : ""}
           </div>
-          {type == "forecast" ? <AddForcastInfo type="flightsResult" /> : ""}
+          {type === "forecast" ? <AddForcastInfo type="flightsResult" /> : ""}
         </div>
       </div>
       <div className="">
         <div className="relative h-3 rounded-lg">
-          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg" style={{width:`${(value/currentAnnual)*100}%`}}></div>
+          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
+          <div
+            className="absolute bg-[#bdd7ee] h-3 rounded-l-lg"
+            style={{ width: `${(value / currentAnnual) * 100}%` }}
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default FlightResult;

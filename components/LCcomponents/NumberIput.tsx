@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useDispatch } from "../../store/store";
 
 type NumberInputType = {
@@ -9,8 +9,9 @@ type NumberInputType = {
   setNumber: ActionCreatorWithPayload<number, string>;
 };
 
-const NumberInput = ({ type, initial, unit, setNumber }: NumberInputType) => {
-  const [number, setVal] = useState(0);
+// eslint-disable-next-line no-unused-vars
+function NumberInput({ type, initial, unit, setNumber }: NumberInputType) {
+  const [number] = useState(0);
 
   useEffect(() => {}, [number]);
 
@@ -22,19 +23,25 @@ const NumberInput = ({ type, initial, unit, setNumber }: NumberInputType) => {
       dispatch(setNumber(parseInt(currentVal, 10)));
     }
   };
-  //TODO: FIX --> when m2 is taken in, slice it and 적용해
+  // TODO: FIX --> when m2 is taken in, slice it and 적용해
   // There are no m units so when m is added to units it automatically changes the unit to m^2
 
   return (
     <div className="flex  m-2">
-      <input type="number" className="w-20 rounded text-right" defaultValue={initial} min={0} onChange={handleChange}></input>
+      <input
+        type="number"
+        className="w-20 rounded text-right"
+        defaultValue={initial}
+        min={0}
+        onChange={handleChange}
+      />
       <div className="ml-1">
         {unit}
-        {unit == "m" ? <sup>2</sup> : ""}
+        {unit === "m" ? <sup>2</sup> : ""}
       </div>
       {/* <div className = "ml-1">{unit}{ unit=="m2" ? <sup>2</sup>:""}</div> */}
     </div>
   );
-};
+}
 
 export default memo(NumberInput);

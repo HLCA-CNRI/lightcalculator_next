@@ -1,12 +1,10 @@
-import type { NextPage } from "next";
+import { memo, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+
 import LightCalculator from "../components/LightCalculator";
 import UserInfo from "../components/UserInfo";
-import { memo, useState } from "react";
 
-const Home: NextPage = () => {
+function Home() {
   const [authenticate, setAuthenticate] = useState(false);
 
   return (
@@ -16,11 +14,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {authenticate == false ? <UserInfo setAuthenticate={setAuthenticate}></UserInfo> : <LightCalculator />}
+      {authenticate === false ? (
+        <UserInfo setAuthenticate={setAuthenticate} />
+      ) : (
+        <LightCalculator />
+      )}
 
       {/* <UserCard/> */}
     </div>
   );
-};
+}
 
 export default memo(Home);

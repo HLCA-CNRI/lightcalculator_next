@@ -1,5 +1,5 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "../../../store/store";
 import { getBaselineState } from "../../../store/slices/baselineSlice";
 import { getForecastState } from "../../../store/slices/forecastSlice";
@@ -11,23 +11,22 @@ import {
   getForecastResultState,
   fSetBuildingResult,
 } from "../../../store/slices/forecastResultSlice";
-import { useSelector } from "react-redux";
-import { calculateBuilding,numberWithCommas } from "../../../functions/ResultFunctions";
+import {
+  calculateBuilding,
+  numberWithCommas,
+} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
-import AnnualResult from "./AnnualResult";
 
 type BuildingResultType = {
   type: string;
 };
 
-const BuildingResult = ({ type }: BuildingResultType) => {
+function BuildingResult({ type }: BuildingResultType) {
   const {
-    
     bCompanyEmployeeSize,
     bCommutingDays,
     bCompanysize,
     bUseRenewableEnergy,
-    
   } = useSelector(getBaselineState);
   const {
     fCompanyEmployeeSize,
@@ -36,28 +35,23 @@ const BuildingResult = ({ type }: BuildingResultType) => {
     fUseRenewableEnergy,
   } = useSelector(getForecastState);
 
-  const { 
-    bAnnual
-  } = useSelector(getBaselineResultState)
-  const { 
-    fAnnual
-  } = useSelector(getForecastResultState)
+  const { bAnnual } = useSelector(getBaselineResultState);
+  const { fAnnual } = useSelector(getForecastResultState);
 
-  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
+  const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
 
   const currentEmployeeSize =
-    type == "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
+    type === "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
   const currentCommutingDays =
-    type == "baseline" ? bCommutingDays : fCommutingDays;
-  const currentCompanySize = type == "baseline" ? bCompanysize : fCompanysize;
+    type === "baseline" ? bCommutingDays : fCommutingDays;
+  const currentCompanySize = type === "baseline" ? bCompanysize : fCompanysize;
   const currentRenewableEnergy =
-    type == "baseline" ? bUseRenewableEnergy : fUseRenewableEnergy;
+    type === "baseline" ? bUseRenewableEnergy : fUseRenewableEnergy;
   const currentAction =
-    type == "baseline" ? bSetBuildingResult : fSetBuildingResult;
+    type === "baseline" ? bSetBuildingResult : fSetBuildingResult;
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(
-
     calculateBuilding(
       currentEmployeeSize,
       currentCommutingDays,
@@ -65,7 +59,6 @@ const BuildingResult = ({ type }: BuildingResultType) => {
       currentRenewableEnergy
     )
   );
-  
 
   useEffect(() => {
     const num = calculateBuilding(
@@ -93,20 +86,22 @@ const BuildingResult = ({ type }: BuildingResultType) => {
         <div className="flex">
           <div>
             {numberWithCommas(value)}
-            {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
+            {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}
           </div>
-          {type == "forecast" ? <AddForcastInfo type="buildingResult" /> : ""}
+          {type === "forecast" ? <AddForcastInfo type="buildingResult" /> : ""}
         </div>
       </div>
       <div className="">
         <div className="relative h-3 rounded-lg">
-          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg " style={{width:`${(value/currentAnnual)*100}%`}}></div>
-       
+          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
+          <div
+            className="absolute bg-[#bdd7ee] h-3 rounded-l-lg "
+            style={{ width: `${(value / currentAnnual) * 100}%` }}
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default BuildingResult;

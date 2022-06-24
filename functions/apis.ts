@@ -1,19 +1,32 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-use-before-define */
 import axios, { AxiosRequestHeaders, Method } from "axios";
 
 class Api {
   private baseURL: string | undefined;
 
   constructor() {
-    this.baseURL = "https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/";
+    this.baseURL =
+      "https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/";
   }
 
-  saveUserInfo = async ({ email, username, company }: { email: string; username: string; company: string }) => {
+  saveUserInfo = async ({
+    email,
+    username,
+    company,
+  }: {
+    email: string;
+    username: string;
+    company: string;
+  }) => {
     const data = {
       email,
       username,
       company,
     };
     console.log("saveUserInfo data", data);
+    // eslint-disable-next-line no-underscore-dangle
     return this._post({
       uri: "/users",
       data,
@@ -21,7 +34,13 @@ class Api {
     });
   };
 
-  private _request = async ({ uri, method, params, headers, data, onSuccess }: IRequest): Promise<any> => {
+  private _request = async ({
+    uri,
+    method,
+    params,
+    data,
+    onSuccess,
+  }: IRequest): Promise<any> => {
     try {
       const res = await axios({
         method,
@@ -52,40 +71,35 @@ class Api {
     }
   };
 
-  private _get = async (reqData: IRequestData) => {
-    return this._request({
+  private _get = async (reqData: IRequestData) =>
+    this._request({
       method: "GET",
       ...reqData,
     });
-  };
 
-  private _post = async (reqData: IRequestData) => {
-    return this._request({
+  private _post = async (reqData: IRequestData) =>
+    this._request({
       method: "POST",
       ...reqData,
     });
-  };
 
-  private _put = async (reqData: IRequestData) => {
-    return this._request({
+  private _put = async (reqData: IRequestData) =>
+    this._request({
       method: "PUT",
       ...reqData,
     });
-  };
 
-  private _patch = async (reqData: IRequestData) => {
-    return this._request({
+  private _patch = async (reqData: IRequestData) =>
+    this._request({
       method: "PATCH",
       ...reqData,
     });
-  };
 
-  private _delete = async (reqData: IRequestData) => {
-    return this._request({
+  private _delete = async (reqData: IRequestData) =>
+    this._request({
       method: "DELETE",
       ...reqData,
     });
-  };
 }
 
 export const apis = new Api();

@@ -16,6 +16,31 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [1, {"extensions": [".jsx", ".tsx"]}],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
+   "no-restricted-globals":0,
+   "jsx-a11y/label-has-associated-control":0,
+   "react/jsx-props-no-spreading": 0,
+   "no-nested-ternary": 0,
+   "no-param-reassign":0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "@types"]
+      },
+      "typescript": {} // 프로젝트 Root의 tsconfig.json을 찾는다.
+    }
   }
 }

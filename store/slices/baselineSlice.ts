@@ -1,8 +1,7 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
-import { defaultBaseline,baselineState } from "../../functions/Defaults";
+import { defaultBaseline, baselineState } from "../../functions/Defaults";
 
-
-const initialBaselineState: baselineState = defaultBaseline
+const initialBaselineState: baselineState = defaultBaseline;
 
 export const baselineSlice = createSlice({
   name: "baseline",
@@ -63,14 +62,14 @@ export const getBaselineState = (state: { baseline: baselineState }) =>
   state.baseline;
 
 export const {
-  bSetCompanyEmployeeSize: bSetCompanyEmployeeSize,
-  bSetFuelType: bSetFuelType,
-  bSetCompanyGasPrice: bSetCompanyGasPrice,
-  bSetCommutingDays: bSetCommutingDays,
-  bSetCommuting: bSetCommuting,
-  bSetUseRenewableEnergy: bSetUseRenewableEnergy,
-  bSetRoundTrip: bSetRoundTrip,
-  bSetCompanySize:bSetCompanySize
+  bSetCompanyEmployeeSize,
+  bSetFuelType,
+  bSetCompanyGasPrice,
+  bSetCommutingDays,
+  bSetCommuting,
+  bSetUseRenewableEnergy,
+  bSetRoundTrip,
+  bSetCompanySize,
 } = baselineSlice.actions;
 
 // export const { bSetCompanySize: bSetCompanySize,bSetCompanyCarCount: bSetCompanyCarCount,bSetFuelType: setbThree,bSetCompanyGasPrice: setbFour,bSetCommuntingDays: setbFive ,bSetCommuting: setbSeven} = baselineSlice.actions;

@@ -1,5 +1,5 @@
-import classnames from "tailwindcss-classnames";
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "../../../store/store";
 import { getBaselineState } from "../../../store/slices/baselineSlice";
 import { getForecastState } from "../../../store/slices/forecastSlice";
@@ -11,33 +11,27 @@ import {
   getForecastResultState,
   fSetCarResult,
 } from "../../../store/slices/forecastResultSlice";
-import { useSelector } from "react-redux";
-import { calculateCars,numberWithCommas } from "../../../functions/ResultFunctions";
+import {
+  calculateCars,
+  numberWithCommas,
+} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type CarResultType = {
   type: string;
 };
 
-const CarResult = ({ type }: CarResultType) => {
+function CarResult({ type }: CarResultType) {
   const { bFuelType, bCompanyGasPrice } = useSelector(getBaselineState);
   const { fFuelType, fCompanyGasPrice } = useSelector(getForecastState);
-  const { bCalculateCar } = useSelector(getBaselineResultState);
-  const { fCalculateCar } = useSelector(getForecastResultState);
+  const { bAnnual } = useSelector(getBaselineResultState);
+  const { fAnnual } = useSelector(getForecastResultState);
 
-  const { 
-    bAnnual
-  } = useSelector(getBaselineResultState)
-  const { 
-    fAnnual
-  } = useSelector(getForecastResultState)
-
-  const currentAnnual = type == "baseline" ? bAnnual  : fAnnual
-  const currentFuelType = type == "baseline" ? bFuelType : fFuelType;
+  const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
+  const currentFuelType = type === "baseline" ? bFuelType : fFuelType;
   const currentGasType =
-    type == "baseline" ? bCompanyGasPrice : fCompanyGasPrice;
-  const currentType = type == "baseline" ? bCalculateCar : fCalculateCar;
-  const currentAction = type == "baseline" ? bSetCarResult : fSetCarResult;
+    type === "baseline" ? bCompanyGasPrice : fCompanyGasPrice;
+  const currentAction = type === "baseline" ? bSetCarResult : fSetCarResult;
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(
@@ -67,8 +61,7 @@ const CarResult = ({ type }: CarResultType) => {
   return (
     <div>
       <div className="flex justify-between my-1">
-
-        <li className = "text-[#11c28d]">
+        <li className="text-[#11c28d]">
           <span className="text-black">차량</span>
         </li>
         {/* TODO Change so that it reads the redux val  */}
@@ -76,19 +69,22 @@ const CarResult = ({ type }: CarResultType) => {
         <div className="flex">
           <div>
             {numberWithCommas(value)}
-            {(Math.round(value * 10) / 10) % 1 == 0 ? ".0" : ""}
+            {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}
           </div>
-          {type == "forecast" ? <AddForcastInfo type="carResult" /> : ""}
+          {type === "forecast" ? <AddForcastInfo type="carResult" /> : ""}
         </div>
       </div>
       <div className="">
         <div className="relative h-3 rounded-lg">
-          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]"></div>
-          <div className="absolute bg-[#bdd7ee] h-3 rounded-l-lg "style={{width:`${(value/currentAnnual)*100}%`}}></div>
+          <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
+          <div
+            className="absolute bg-[#bdd7ee] h-3 rounded-l-lg "
+            style={{ width: `${(value / currentAnnual) * 100}%` }}
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default CarResult;

@@ -1,36 +1,36 @@
 export interface baselineState {
-    bCompanyEmployeeSize: number;
-    bFuelType: {
-      setDefault: boolean;
-      gasoline: number;
-      diesel: number;
-      lpg: number;
-      hydrogen: number;
-      electric: number;
-    };
-    bCompanyGasPrice: number;
-    bCommutingDays: number;
-    bCommuting: {
-      setDefault: boolean;
-      distance: number;
-      car: number;
-      publicTransit: number;
-      walkOrBike: number;
-    };
-    bUseRenewableEnergy: boolean;
-    bCompanysize:number,
-    bRoundTrip: {
-      asia: number,
-      europe: number,
-      northAmerica: number,
-      southAmerica: number,
-      oceana: number,
-      africa: number,
-    };
-  }
+  bCompanyEmployeeSize: number;
+  bFuelType: {
+    setDefault: boolean;
+    gasoline: number;
+    diesel: number;
+    lpg: number;
+    hydrogen: number;
+    electric: number;
+  };
+  bCompanyGasPrice: number;
+  bCommutingDays: number;
+  bCommuting: {
+    setDefault: boolean;
+    distance: number;
+    car: number;
+    publicTransit: number;
+    walkOrBike: number;
+  };
+  bUseRenewableEnergy: boolean;
+  bCompanysize: number;
+  bRoundTrip: {
+    asia: number;
+    europe: number;
+    northAmerica: number;
+    southAmerica: number;
+    oceana: number;
+    africa: number;
+  };
+}
 
-export const defaultBaseline : baselineState = {
-    bCompanyEmployeeSize: 100,
+export const defaultBaseline: baselineState = {
+  bCompanyEmployeeSize: 100,
   bFuelType: {
     setDefault: false,
     gasoline: 47,
@@ -47,10 +47,9 @@ export const defaultBaseline : baselineState = {
     car: 36,
     publicTransit: 40,
     walkOrBike: 24,
-    
   },
   bUseRenewableEnergy: false,
-  bCompanysize:1000,
+  bCompanysize: 1000,
   bRoundTrip: {
     asia: 0,
     europe: 0,
@@ -59,42 +58,41 @@ export const defaultBaseline : baselineState = {
     oceana: 0,
     africa: 0,
   },
-}
+};
 
 export interface forecastState {
-    fCompanyEmployeeSize: number;
-    fFuelType: {
-      setDefault: boolean;
-      gasoline: number;
-      diesel: number;
-      lpg: number;
-      hydrogen: number;
-      electric: number;
-    };
-    fCompanyGasPrice: number;
-    fCommutingDays: number;
-    fCommuting: {
-      setDefault: boolean;
-      distance: number;
-      car: number;
-      publicTransit: number;
-      walkOrBike: number;
-    };
-    fUseRenewableEnergy: boolean;
-    fCompanysize:number,
-    fRoundTrip: {
-      asia: number,
-      europe: number,
-      northAmerica: number,
-      southAmerica: number,
-      oceana: number,
-      africa: number,
-    };
-  }
+  fCompanyEmployeeSize: number;
+  fFuelType: {
+    setDefault: boolean;
+    gasoline: number;
+    diesel: number;
+    lpg: number;
+    hydrogen: number;
+    electric: number;
+  };
+  fCompanyGasPrice: number;
+  fCommutingDays: number;
+  fCommuting: {
+    setDefault: boolean;
+    distance: number;
+    car: number;
+    publicTransit: number;
+    walkOrBike: number;
+  };
+  fUseRenewableEnergy: boolean;
+  fCompanysize: number;
+  fRoundTrip: {
+    asia: number;
+    europe: number;
+    northAmerica: number;
+    southAmerica: number;
+    oceana: number;
+    africa: number;
+  };
+}
 
-
-export const DefualtForecast : forecastState = {
-    fCompanyEmployeeSize: 100,
+export const DefualtForecast: forecastState = {
+  fCompanyEmployeeSize: 100,
   fFuelType: {
     setDefault: false,
     gasoline: 47,
@@ -111,10 +109,9 @@ export const DefualtForecast : forecastState = {
     car: 36,
     publicTransit: 40,
     walkOrBike: 24,
-    
   },
   fUseRenewableEnergy: false,
-  fCompanysize:1000,
+  fCompanysize: 1000,
   fRoundTrip: {
     asia: 0,
     europe: 0,
@@ -123,5 +120,4 @@ export const DefualtForecast : forecastState = {
     oceana: 0,
     africa: 0,
   },
-
-}
+};
