@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import {memo, useState} from "react";
 import Head from "next/head";
 
 import LightCalculator from "../components/LightCalculator";

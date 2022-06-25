@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-use-before-define */
-import axios, { AxiosRequestHeaders, Method } from "axios";
+import axios, {AxiosRequestHeaders, Method} from "axios";
 
 class Api {
   private baseURL: string | undefined;
 
   constructor() {
-    this.baseURL =
-      "https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/";
+    this.baseURL = "https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/";
   }
 
   saveUserInfo = async ({
@@ -34,13 +33,7 @@ class Api {
     });
   };
 
-  private _request = async ({
-    uri,
-    method,
-    params,
-    data,
-    onSuccess,
-  }: IRequest): Promise<any> => {
+  private _request = async ({uri, method, params, data, onSuccess}: IRequest): Promise<any> => {
     try {
       const res = await axios({
         method,

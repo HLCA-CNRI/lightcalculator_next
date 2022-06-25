@@ -1,4 +1,4 @@
-import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
 export interface baselineResultState {
   bAnnual: number;
@@ -61,9 +61,8 @@ export const baselineResultSlice = createSlice({
   },
 });
 
-export const getBaselineResultState = (state: {
-  baselineResult: baselineResultState;
-}) => state.baselineResult;
+export const getBaselineResultState = (state: {baselineResult: baselineResultState}) =>
+  state.baselineResult;
 
 export const {
   bSetAnnualResult,

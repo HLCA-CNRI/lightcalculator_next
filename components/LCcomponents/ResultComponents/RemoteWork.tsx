@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "../../../store/store";
-import { getBaselineState } from "../../../store/slices/baselineSlice";
-import { getForecastState } from "../../../store/slices/forecastSlice";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useDispatch} from "../../../store/store";
+import {getBaselineState} from "../../../store/slices/baselineSlice";
+import {getForecastState} from "../../../store/slices/forecastSlice";
 import {
   getBaselineResultState,
   bSetRemoteWorkResult,
@@ -11,31 +11,24 @@ import {
   getForecastResultState,
   fSetRemoteWorkResult,
 } from "../../../store/slices/forecastResultSlice";
-import {
-  calculateRemoteWork,
-  numberWithCommas,
-} from "../../../functions/ResultFunctions";
+import {calculateRemoteWork, numberWithCommas} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type RemoteWorkType = {
   type: string;
 };
 
-function RemoteWork({ type }: RemoteWorkType) {
-  const { bCompanyEmployeeSize, bCommutingDays } =
-    useSelector(getBaselineState);
-  const { fCompanyEmployeeSize, fCommutingDays } =
-    useSelector(getForecastState);
+function RemoteWork({type}: RemoteWorkType) {
+  const {bCompanyEmployeeSize, bCommutingDays} = useSelector(getBaselineState);
+  const {fCompanyEmployeeSize, fCommutingDays} = useSelector(getForecastState);
 
-  const { bAnnual } = useSelector(getBaselineResultState);
-  const { fAnnual } = useSelector(getForecastResultState);
+  const {bAnnual} = useSelector(getBaselineResultState);
+  const {fAnnual} = useSelector(getForecastResultState);
 
   const currentCompanyEmployeeSize =
     type === "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
-  const currentCommutingDays =
-    type === "baseline" ? bCommutingDays : fCommutingDays;
-  const currentAction =
-    type === "baseline" ? bSetRemoteWorkResult : fSetRemoteWorkResult;
+  const currentCommutingDays = type === "baseline" ? bCommutingDays : fCommutingDays;
+  const currentAction = type === "baseline" ? bSetRemoteWorkResult : fSetRemoteWorkResult;
 
   const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
 
@@ -45,10 +38,7 @@ function RemoteWork({ type }: RemoteWorkType) {
   );
 
   useEffect(() => {
-    const num = calculateRemoteWork(
-      currentCompanyEmployeeSize,
-      currentCommutingDays
-    );
+    const num = calculateRemoteWork(currentCompanyEmployeeSize, currentCommutingDays);
     setValue(Math.round(num * 10) / 10);
     dispatch(currentAction(num));
   }, [currentCompanyEmployeeSize, currentCommutingDays]);
@@ -64,11 +54,7 @@ function RemoteWork({ type }: RemoteWorkType) {
             {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 === 0 ? ".0" : ""}
           </div>
-          {type === "forecast" ? (
-            <AddForcastInfo type="remoteWorkResult" />
-          ) : (
-            ""
-          )}
+          {type === "forecast" ? <AddForcastInfo type="remoteWorkResult" /> : ""}
         </div>
       </div>
       <div className="">
@@ -76,7 +62,7 @@ function RemoteWork({ type }: RemoteWorkType) {
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
           <div
             className="absolute bg-[#bdd7ee] h-3 rounded-l-lg"
-            style={{ width: `${(value / currentAnnual) * 100}%` }}
+            style={{width: `${(value / currentAnnual) * 100}%`}}
           />
         </div>
       </div>

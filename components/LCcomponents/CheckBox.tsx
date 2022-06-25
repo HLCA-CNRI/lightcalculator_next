@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import React from "react";
-import { useDispatch } from "../../store/store";
+import {useDispatch} from "../../store/store";
 
 type CheckBoxType = {
   type: string;
@@ -9,7 +9,7 @@ type CheckBoxType = {
   setChecked: ActionCreatorWithPayload<boolean, string>;
 };
 
-function CheckBox({ type, label, setChecked }: CheckBoxType) {
+function CheckBox({type, label, setChecked}: CheckBoxType) {
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,11 +20,7 @@ function CheckBox({ type, label, setChecked }: CheckBoxType) {
     <div className="w-[100%] p-8">
       <label className="inline-flex items-center w-[100%] ">
         {type === "baseline" ? (
-          <input
-            type="checkbox"
-            className="form-checkbox h-4 w-4 "
-            onChange={handleChange}
-          />
+          <input type="checkbox" className="form-checkbox h-4 w-4 " onChange={handleChange} />
         ) : (
           <input
             type="checkbox"

@@ -1,4 +1,4 @@
-import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
 export interface forecastResultState {
   fAnnual: number;
@@ -61,9 +61,8 @@ export const forecastResultSlice = createSlice({
   },
 });
 
-export const getForecastResultState = (state: {
-  forecastResult: forecastResultState;
-}) => state.forecastResult;
+export const getForecastResultState = (state: {forecastResult: forecastResultState}) =>
+  state.forecastResult;
 
 export const {
   fSetAnnualResult,

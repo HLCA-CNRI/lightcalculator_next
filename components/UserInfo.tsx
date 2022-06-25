@@ -1,8 +1,8 @@
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import {Form, Formik, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
-import { memo, useState } from "react";
+import {memo, useState} from "react";
 import logo from "../image/logo.png";
-import { apis } from "../functions/apis";
+import {apis} from "../functions/apis";
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string().required("이름은 필수항목입니다"),
@@ -23,7 +23,7 @@ type AuthenticateType = {
   setAuthenticate: (authenticate: boolean) => void;
 };
 
-function UserInfo({ setAuthenticate }: AuthenticateType) {
+function UserInfo({setAuthenticate}: AuthenticateType) {
   const [agree, setAgree] = useState(false);
   const [term, openTerm] = useState(false);
 
@@ -50,14 +50,13 @@ function UserInfo({ setAuthenticate }: AuthenticateType) {
           <img alt="logo" src={logo.src} width={180} height={100} />
         </div>
         <Formik
-          initialValues={{ name: "", company: "", email: "" }}
+          initialValues={{name: "", company: "", email: ""}}
           validationSchema={ValidationSchema}
-          onSubmit={(data: User, { setSubmitting }) => {
+          onSubmit={(data: User, {setSubmitting}) => {
             setSubmitting(true);
             handleSubmit(data);
             setSubmitting(false);
-          }}
-        >
+          }}>
           <Form>
             <div>
               <div>
@@ -121,23 +120,18 @@ function UserInfo({ setAuthenticate }: AuthenticateType) {
                   />
                   <label htmlFor="agreeCheckbox" className="ml-2">
                     이용신청자가 본{" "}
-                    <button
-                      type="button"
-                      onClick={() => openTerm(true)}
-                      className="text-blue-600"
-                    >
+                    <button type="button" onClick={() => openTerm(true)} className="text-blue-600">
                       약관을
                     </button>{" "}
-                    읽고 동의함 버튼을 누르거나 확인 등에 체크하는 방법을 취한
-                    경우 본 약관에 동의한 것으로 간주합니다.
+                    읽고 동의함 버튼을 누르거나 확인 등에 체크하는 방법을 취한 경우 본 약관에 동의한
+                    것으로 간주합니다.
                   </label>
                 </div>
 
                 <div className="mt-3 flex justify-center">
                   <button
                     type="submit"
-                    className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-[100%] "
-                  >
+                    className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-[100%] ">
                     다음
                   </button>
                 </div>
@@ -154,15 +148,13 @@ function UserInfo({ setAuthenticate }: AuthenticateType) {
               </div>
 
               <div>
-                개인정보보호법 및 기업정보 수집/이용/제공 및 활용 동의에 따라
-                수집하는 개인 정보의 항목, 개인 정보의 수집 및 이용목적, 개인
-                정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에
-                관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기
-                바랍니다. Light Calculator 이용을 관리하기 위해 필요한 최소한의
-                개인 정보를 수집합니다. Light Calculator 이용 시점에 Light
-                Calculator 이용자로부터 수집하는 개인 정보는 아래와 같습니다.
-                또한, 서비스 이용을 위해 입력되는 모든 개인 정보는 안전하게 저장
-                및 처리됨을 알려드립니다.
+                개인정보보호법 및 기업정보 수집/이용/제공 및 활용 동의에 따라 수집하는 개인 정보의
+                항목, 개인 정보의 수집 및 이용목적, 개인 정보의 보유 및 이용기간, 동의 거부권 및
+                동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기
+                바랍니다. Light Calculator 이용을 관리하기 위해 필요한 최소한의 개인 정보를
+                수집합니다. Light Calculator 이용 시점에 Light Calculator 이용자로부터 수집하는 개인
+                정보는 아래와 같습니다. 또한, 서비스 이용을 위해 입력되는 모든 개인 정보는 안전하게
+                저장 및 처리됨을 알려드립니다.
                 <br />
                 <br />
                 개인정보
@@ -175,8 +167,7 @@ function UserInfo({ setAuthenticate }: AuthenticateType) {
                 <button
                   type="button"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-                  onClick={() => openTerm(false)}
-                >
+                  onClick={() => openTerm(false)}>
                   닫기
                 </button>
               </div>

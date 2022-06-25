@@ -8,10 +8,7 @@ export const calculateBuilding = (
   useRenewableEnergy: boolean
 ) => {
   const calculateRenewableEnergy = useRenewableEnergy ? 1 : 0;
-  return (
-    employee * 38.04 * commuteDays +
-    companySize * (39.9 - 30.7584 * calculateRenewableEnergy)
-  );
+  return employee * 38.04 * commuteDays + companySize * (39.9 - 30.7584 * calculateRenewableEnergy);
 };
 
 export const calculateCars = (
@@ -38,10 +35,8 @@ export const calculateCars = (
   return first * second;
 };
 
-export const calculateRemoteWork = (
-  employeeSize: number,
-  commutingDays: number
-) => employeeSize * 101.65 * (5 - commutingDays);
+export const calculateRemoteWork = (employeeSize: number, commutingDays: number) =>
+  employeeSize * 101.65 * (5 - commutingDays);
 
 export const calculateCommuting = (
   employeeSize: number,
@@ -86,42 +81,27 @@ export const annualTotal = (
   flights: number
 ) => building + cars + remoteWork + commuting + flights;
 
-export const calculateForecastInfo = (
-  forecastVal: number,
-  baselineVal: number
-) => {
+export const calculateForecastInfo = (forecastVal: number, baselineVal: number) => {
   const val = ((forecastVal - baselineVal) / baselineVal) * 100;
   return val;
 };
 
-export const annualEmissions = (
-  forecastAnnual: number,
-  baselineAnnual: number
-) => {
+export const annualEmissions = (forecastAnnual: number, baselineAnnual: number) => {
   const val = forecastAnnual - baselineAnnual;
   return val;
 };
 
-export const annualEmissionsReduction = (
-  forecastAnnual: number,
-  baselineAnnual: number
-) => {
+export const annualEmissionsReduction = (forecastAnnual: number, baselineAnnual: number) => {
   const val = calculateForecastInfo(forecastAnnual, baselineAnnual);
   return val;
 };
 
-export const GreenEmissionToVehicleComp = (
-  forecastAnnual: number,
-  baselineAnnual: number
-) => {
+export const GreenEmissionToVehicleComp = (forecastAnnual: number, baselineAnnual: number) => {
   const val = annualEmissions(forecastAnnual, baselineAnnual);
   return val / 2228.3;
 };
 
-export const RedEmissionToVehicleComp = (
-  forecastAnnual: number,
-  baselineAnnual: number
-) => {
+export const RedEmissionToVehicleComp = (forecastAnnual: number, baselineAnnual: number) => {
   const val = annualEmissions(forecastAnnual, baselineAnnual);
   return val / 3091.1;
 };

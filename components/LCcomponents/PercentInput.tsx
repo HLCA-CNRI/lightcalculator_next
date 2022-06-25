@@ -1,17 +1,9 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, {memo, useEffect, useRef} from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "../../store/store";
-import { defaultBaseline, DefualtForecast } from "../../functions/Defaults";
-import {
-  getBaselineState,
-  bSetFuelType,
-  bSetCommuting,
-} from "../../store/slices/baselineSlice";
-import {
-  getForecastState,
-  fSetFuelType,
-  fSetCommuting,
-} from "../../store/slices/forecastSlice";
+import {useDispatch, useSelector} from "../../store/store";
+import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
+import {getBaselineState, bSetFuelType, bSetCommuting} from "../../store/slices/baselineSlice";
+import {getForecastState, fSetFuelType, fSetCommuting} from "../../store/slices/forecastSlice";
 
 type percentInputType = {
   Objectkey: string;
@@ -24,16 +16,9 @@ type percentInputType = {
 };
 
 // TODO: Change implementation
-function PercentInput({
-  Objectkey,
-  value,
-  isBaseline,
-  title,
-  unit,
-  color,
-}: percentInputType) {
-  const { bFuelType, bCommuting } = useSelector(getBaselineState);
-  const { fFuelType, fCommuting } = useSelector(getForecastState);
+function PercentInput({Objectkey, value, isBaseline, title, unit, color}: percentInputType) {
+  const {bFuelType, bCommuting} = useSelector(getBaselineState);
+  const {fFuelType, fCommuting} = useSelector(getForecastState);
   const dispatch = useDispatch();
   const inputField = useRef() as React.MutableRefObject<HTMLInputElement>;
 

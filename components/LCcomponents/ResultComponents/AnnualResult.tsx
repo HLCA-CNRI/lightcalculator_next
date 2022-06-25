@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "../../../store/store";
-import {
-  getBaselineResultState,
-  bSetAnnualResult,
-} from "../../../store/slices/baslineResultSlice";
-import {
-  getForecastResultState,
-  fSetAnnualResult,
-} from "../../../store/slices/forecastResultSlice";
-import {
-  annualTotal,
-  numberWithCommas,
-} from "../../../functions/ResultFunctions";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useDispatch} from "../../../store/store";
+import {getBaselineResultState, bSetAnnualResult} from "../../../store/slices/baslineResultSlice";
+import {getForecastResultState, fSetAnnualResult} from "../../../store/slices/forecastResultSlice";
+import {annualTotal, numberWithCommas} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
-import { getBaselineState } from "../../../store/slices/baselineSlice";
+import {getBaselineState} from "../../../store/slices/baselineSlice";
 
 type AnnualResultType = {
   type: string;
   title: string;
 };
 
-function AnnualResult({ title, type }: AnnualResultType) {
+function AnnualResult({title, type}: AnnualResultType) {
   const {
     bAnnual,
     bCalculateBuilding,
@@ -39,20 +30,15 @@ function AnnualResult({ title, type }: AnnualResultType) {
     fCalculateFlights,
   } = useSelector(getForecastResultState);
 
-  const { bRoundTrip } = useSelector(getBaselineState);
+  const {bRoundTrip} = useSelector(getBaselineState);
 
   const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
-  const currentBuilding =
-    type === "baseline" ? bCalculateBuilding : fCalculateBuilding;
+  const currentBuilding = type === "baseline" ? bCalculateBuilding : fCalculateBuilding;
   const currentCar = type === "baseline" ? bCalculateCar : fCalculateCar;
-  const currentRemoteWork =
-    type === "baseline" ? bCalculteRemoteWork : fCalculateRemoteWork;
-  const currentCommuting =
-    type === "baseline" ? bCalculateCommuting : fCalculateCommuting;
-  const currentFlight =
-    type === "baseline" ? bClaculateFlights : fCalculateFlights;
-  const currentAction =
-    type === "baseline" ? bSetAnnualResult : fSetAnnualResult;
+  const currentRemoteWork = type === "baseline" ? bCalculteRemoteWork : fCalculateRemoteWork;
+  const currentCommuting = type === "baseline" ? bCalculateCommuting : fCalculateCommuting;
+  const currentFlight = type === "baseline" ? bClaculateFlights : fCalculateFlights;
+  const currentAction = type === "baseline" ? bSetAnnualResult : fSetAnnualResult;
   const dispatch = useDispatch();
   // change value to redux val Do not use useState
   const [value, setValue] = useState(0);
@@ -69,14 +55,7 @@ function AnnualResult({ title, type }: AnnualResultType) {
 
     setValue(Math.round(num * 10) / 10);
     dispatch(currentAction(num));
-  }, [
-    bRoundTrip,
-    currentBuilding,
-    currentCar,
-    currentRemoteWork,
-    currentCommuting,
-    currentFlight,
-  ]);
+  }, [bRoundTrip, currentBuilding, currentCar, currentRemoteWork, currentCommuting, currentFlight]);
 
   return (
     <div>
@@ -105,23 +84,23 @@ function AnnualResult({ title, type }: AnnualResultType) {
         <div className="w-[100%] mt-2 flex">
           <div
             className=" bg-[#11c28d] h-3 rounded-l-lg"
-            style={{ width: `${(currentCar / currentAnnual) * 100}%` }}
+            style={{width: `${(currentCar / currentAnnual) * 100}%`}}
           />
           <div
             className=" bg-[#59afff] h-3"
-            style={{ width: `${(currentBuilding / currentAnnual) * 100}%` }}
+            style={{width: `${(currentBuilding / currentAnnual) * 100}%`}}
           />
           <div
             className=" bg-[#916aff] h-3"
-            style={{ width: `${(currentCommuting / currentAnnual) * 100}%` }}
+            style={{width: `${(currentCommuting / currentAnnual) * 100}%`}}
           />
           <div
             className=" bg-[#ffa573] h-3"
-            style={{ width: `${(currentFlight / currentAnnual) * 100}%` }}
+            style={{width: `${(currentFlight / currentAnnual) * 100}%`}}
           />
           <div
             className=" bg-[#ffeb84] h-3 rounded-r-lg"
-            style={{ width: `${(currentRemoteWork / currentAnnual) * 100}%` }}
+            style={{width: `${(currentRemoteWork / currentAnnual) * 100}%`}}
           />
         </div>
       </div>

@@ -1,54 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "../../../store/store";
-import { getBaselineState } from "../../../store/slices/baselineSlice";
-import { getForecastState } from "../../../store/slices/forecastSlice";
-import {
-  getBaselineResultState,
-  bSetBuildingResult,
-} from "../../../store/slices/baslineResultSlice";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useDispatch} from "../../../store/store";
+import {getBaselineState} from "../../../store/slices/baselineSlice";
+import {getForecastState} from "../../../store/slices/forecastSlice";
+import {getBaselineResultState, bSetBuildingResult} from "../../../store/slices/baslineResultSlice";
 import {
   getForecastResultState,
   fSetBuildingResult,
 } from "../../../store/slices/forecastResultSlice";
-import {
-  calculateBuilding,
-  numberWithCommas,
-} from "../../../functions/ResultFunctions";
+import {calculateBuilding, numberWithCommas} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type BuildingResultType = {
   type: string;
 };
 
-function BuildingResult({ type }: BuildingResultType) {
-  const {
-    bCompanyEmployeeSize,
-    bCommutingDays,
-    bCompanysize,
-    bUseRenewableEnergy,
-  } = useSelector(getBaselineState);
-  const {
-    fCompanyEmployeeSize,
-    fCommutingDays,
-    fCompanysize,
-    fUseRenewableEnergy,
-  } = useSelector(getForecastState);
+function BuildingResult({type}: BuildingResultType) {
+  const {bCompanyEmployeeSize, bCommutingDays, bCompanysize, bUseRenewableEnergy} =
+    useSelector(getBaselineState);
+  const {fCompanyEmployeeSize, fCommutingDays, fCompanysize, fUseRenewableEnergy} =
+    useSelector(getForecastState);
 
-  const { bAnnual } = useSelector(getBaselineResultState);
-  const { fAnnual } = useSelector(getForecastResultState);
+  const {bAnnual} = useSelector(getBaselineResultState);
+  const {fAnnual} = useSelector(getForecastResultState);
 
   const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
 
-  const currentEmployeeSize =
-    type === "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
-  const currentCommutingDays =
-    type === "baseline" ? bCommutingDays : fCommutingDays;
+  const currentEmployeeSize = type === "baseline" ? bCompanyEmployeeSize : fCompanyEmployeeSize;
+  const currentCommutingDays = type === "baseline" ? bCommutingDays : fCommutingDays;
   const currentCompanySize = type === "baseline" ? bCompanysize : fCompanysize;
-  const currentRenewableEnergy =
-    type === "baseline" ? bUseRenewableEnergy : fUseRenewableEnergy;
-  const currentAction =
-    type === "baseline" ? bSetBuildingResult : fSetBuildingResult;
+  const currentRenewableEnergy = type === "baseline" ? bUseRenewableEnergy : fUseRenewableEnergy;
+  const currentAction = type === "baseline" ? bSetBuildingResult : fSetBuildingResult;
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(
@@ -70,12 +52,7 @@ function BuildingResult({ type }: BuildingResultType) {
     setValue(Math.round(num * 100) / 100);
 
     dispatch(currentAction(num));
-  }, [
-    currentEmployeeSize,
-    currentCommutingDays,
-    currentCompanySize,
-    currentRenewableEnergy,
-  ]);
+  }, [currentEmployeeSize, currentCommutingDays, currentCompanySize, currentRenewableEnergy]);
   return (
     <div>
       <div className="flex justify-between">
@@ -96,7 +73,7 @@ function BuildingResult({ type }: BuildingResultType) {
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
           <div
             className="absolute bg-[#bdd7ee] h-3 rounded-l-lg "
-            style={{ width: `${(value / currentAnnual) * 100}%` }}
+            style={{width: `${(value / currentAnnual) * 100}%`}}
           />
         </div>
       </div>

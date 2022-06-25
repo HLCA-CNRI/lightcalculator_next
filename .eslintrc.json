@@ -27,12 +27,13 @@
         "ts": "never",
         "tsx": "never"
       }
-   ],
-   "no-restricted-globals":0,
-   "jsx-a11y/label-has-associated-control":0,
-   "react/jsx-props-no-spreading": 0,
-   "no-nested-ternary": 0,
-   "no-param-reassign":0
+    ],
+    "no-restricted-globals": 0, //LC에서 !Nan이라는 global variable을 계산하때 테크하기 위해 사용함. 이 애러는 mute 시켜야함.
+    "jsx-a11y/label-has-associated-control": 0, //labelTag안에 htmlFor이라는 ID를 지정해야하는 rule. 불필요하다고 생각함 --> 경호님도 mute 시키심.
+    "react/jsx-props-no-spreading": 0, //spreading 사용해도된다고 판단. --> 경호님도 mute 시키심.
+    "no-nested-ternary": 0, // nested ternary 사용해도된다고 생각함 --> 경호님도 mute 시키심.
+    "no-param-reassign": ["warn", {"props": false}], //no-param-reassign 사용해도된다고 생각함 --> 경호님도 mute 시키심.
+    "jsx-a11y/click-events-have-key-events": 0 //div이나 span 안에 onClick이 있으면 안된다.-->Homepage에는 div를 누르면 onClick이 상황이 많다. 예) History. Div이나 span에서는 onClick과 함께 onKeyDown, onKeyUp, onKeyPress와 함께 쓰거나, button 태그를 사용하면 된다.
   },
   "settings": {
     "import/resolver": {

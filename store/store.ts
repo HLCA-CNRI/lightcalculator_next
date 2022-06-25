@@ -1,8 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import {
-  useDispatch as useDispatchBase,
-  useSelector as useSelectorBase,
-} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+import {useDispatch as useDispatchBase, useSelector as useSelectorBase} from "react-redux";
 import baselineSlice from "./slices/baselineSlice";
 import forecastSlice from "./slices/forecastSlice";
 import baselineResultSlice from "./slices/baslineResultSlice";

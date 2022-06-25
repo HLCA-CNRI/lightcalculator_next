@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getBaselineResultState } from "../../../store/slices/baslineResultSlice";
-import { getForecastResultState } from "../../../store/slices/forecastResultSlice";
-import { useSelector } from "../../../store/store";
-import { calculateForecastInfo } from "../../../functions/ResultFunctions";
+import React, {useState, useEffect} from "react";
+import {getBaselineResultState} from "../../../store/slices/baslineResultSlice";
+import {getForecastResultState} from "../../../store/slices/forecastResultSlice";
+import {useSelector} from "../../../store/store";
+import {calculateForecastInfo} from "../../../functions/ResultFunctions";
 
 type AddForcastInfoType = {
   type: string;
 };
-function AddForcastInfo({ type }: AddForcastInfoType) {
+function AddForcastInfo({type}: AddForcastInfoType) {
   const {
     bAnnual,
     bCalculateCar,
@@ -71,8 +71,7 @@ function AddForcastInfo({ type }: AddForcastInfoType) {
               : value > 0.05
               ? `bg-red-200 `
               : `bg-green-200`
-          }`}
-        >
+          }`}>
           {isNaN(value)
             ? "0.0%"
             : value > 0
@@ -90,8 +89,7 @@ function AddForcastInfo({ type }: AddForcastInfoType) {
               : value > 0.05
               ? `text-red-400 `
               : `text-green-600`
-          }`}
-        >
+          }`}>
           {isNaN(value)
             ? "0.0%"
             : value > 0

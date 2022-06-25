@@ -1,13 +1,7 @@
-import { memo } from "react";
-import { useDispatch, useSelector } from "../../store/store";
-import {
-  getBaselineState,
-  bSetRoundTrip,
-} from "../../store/slices/baselineSlice";
-import {
-  getForecastState,
-  fSetRoundTrip,
-} from "../../store/slices/forecastSlice";
+import {memo} from "react";
+import {useDispatch, useSelector} from "../../store/store";
+import {getBaselineState, bSetRoundTrip} from "../../store/slices/baselineSlice";
+import {getForecastState, fSetRoundTrip} from "../../store/slices/forecastSlice";
 
 type BuissnessTripInputType = {
   country: string;
@@ -15,22 +9,18 @@ type BuissnessTripInputType = {
   isBaseline: boolean;
 };
 
-function BuissnessTripInput({
-  country,
-  value,
-  isBaseline,
-}: BuissnessTripInputType) {
-  const { bRoundTrip } = useSelector(getBaselineState);
-  const { fRoundTrip } = useSelector(getForecastState);
+function BuissnessTripInput({country, value, isBaseline}: BuissnessTripInputType) {
+  const {bRoundTrip} = useSelector(getBaselineState);
+  const {fRoundTrip} = useSelector(getForecastState);
   const dispatch = useDispatch();
 
   const handleChange = (event: any) => {
     const currentVal = event.currentTarget.value;
     if (!isNaN(parseInt(currentVal, 10))) {
       if (isBaseline) {
-        dispatch(bSetRoundTrip({ ...bRoundTrip, [value]: event.target.value }));
+        dispatch(bSetRoundTrip({...bRoundTrip, [value]: event.target.value}));
       } else {
-        dispatch(fSetRoundTrip({ ...fRoundTrip, [value]: event.target.value }));
+        dispatch(fSetRoundTrip({...fRoundTrip, [value]: event.target.value}));
       }
     }
   };

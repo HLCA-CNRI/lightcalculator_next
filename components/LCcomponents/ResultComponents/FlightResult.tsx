@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "../../../store/store";
-import { getBaselineState } from "../../../store/slices/baselineSlice";
-import { getForecastState } from "../../../store/slices/forecastSlice";
-import {
-  getBaselineResultState,
-  bSetFlightResult,
-} from "../../../store/slices/baslineResultSlice";
-import {
-  getForecastResultState,
-  fSetFlightResult,
-} from "../../../store/slices/forecastResultSlice";
-import {
-  calculateFlight,
-  numberWithCommas,
-} from "../../../functions/ResultFunctions";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useDispatch} from "../../../store/store";
+import {getBaselineState} from "../../../store/slices/baselineSlice";
+import {getForecastState} from "../../../store/slices/forecastSlice";
+import {getBaselineResultState, bSetFlightResult} from "../../../store/slices/baslineResultSlice";
+import {getForecastResultState, fSetFlightResult} from "../../../store/slices/forecastResultSlice";
+import {calculateFlight, numberWithCommas} from "../../../functions/ResultFunctions";
 import AddForcastInfo from "./AddForcastInfo";
 
 type FlightResultType = {
   type: string;
 };
 
-function FlightResult({ type }: FlightResultType) {
-  const { bRoundTrip } = useSelector(getBaselineState);
-  const { fRoundTrip } = useSelector(getForecastState);
+function FlightResult({type}: FlightResultType) {
+  const {bRoundTrip} = useSelector(getBaselineState);
+  const {fRoundTrip} = useSelector(getForecastState);
 
   const currentRoundTrip = type === "baseline" ? bRoundTrip : fRoundTrip;
-  const currentAction =
-    type === "baseline" ? bSetFlightResult : fSetFlightResult;
+  const currentAction = type === "baseline" ? bSetFlightResult : fSetFlightResult;
 
-  const { bAnnual } = useSelector(getBaselineResultState);
-  const { fAnnual } = useSelector(getForecastResultState);
+  const {bAnnual} = useSelector(getBaselineResultState);
+  const {fAnnual} = useSelector(getForecastResultState);
 
   const currentAnnual = type === "baseline" ? bAnnual : fAnnual;
 
@@ -80,7 +70,7 @@ function FlightResult({ type }: FlightResultType) {
           <div className="absolute bg-[#e1e1e1] h-3 rounded-lg w-[100%]" />
           <div
             className="absolute bg-[#bdd7ee] h-3 rounded-l-lg"
-            style={{ width: `${(value / currentAnnual) * 100}%` }}
+            style={{width: `${(value / currentAnnual) * 100}%`}}
           />
         </div>
       </div>

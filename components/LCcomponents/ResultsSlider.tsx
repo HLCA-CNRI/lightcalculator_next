@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import { memo, useState } from "react";
+import {memo, useState} from "react";
 import Results from "./Results";
 
 function ResultsSlider() {
@@ -18,9 +18,7 @@ function ResultsSlider() {
           {" "}
           {open ? <div>결과 닫기</div> : <div>결과 보기</div>}
         </button>
-        <button onClick={handleFilterOpening}>
-          {open ? <div>↓</div> : <div>↑</div>}
-        </button>
+        <button onClick={handleFilterOpening}>{open ? <div>↓</div> : <div>↑</div>}</button>
       </div>
     </div>
   );

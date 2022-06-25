@@ -1,18 +1,18 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { memo } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "../../store/store";
-import { getBaselineState } from "../../store/slices/baselineSlice";
-import { getForecastState } from "../../store/slices/forecastSlice";
+import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
+import React, {memo} from "react";
+import {useDispatch} from "react-redux";
+import {useSelector} from "../../store/store";
+import {getBaselineState} from "../../store/slices/baselineSlice";
+import {getForecastState} from "../../store/slices/forecastSlice";
 
 type SliderInputType = {
   type: string;
   setNumber: ActionCreatorWithPayload<number, string>;
 };
 
-function SliderInput({ type, setNumber }: SliderInputType) {
-  const { bCommutingDays } = useSelector(getBaselineState);
-  const { fCommutingDays } = useSelector(getForecastState);
+function SliderInput({type, setNumber}: SliderInputType) {
+  const {bCommutingDays} = useSelector(getBaselineState);
+  const {fCommutingDays} = useSelector(getForecastState);
 
   const dispatch = useDispatch();
 
@@ -31,9 +31,7 @@ function SliderInput({ type, setNumber }: SliderInputType) {
       </div>
       <input
         type="range"
-        className={`${
-          type === "baseline" ? "" : "accent-[#548235]"
-        } w-[100%] border-none `}
+        className={`${type === "baseline" ? "" : "accent-[#548235]"} w-[100%] border-none `}
         defaultValue="6"
         min="1"
         max="6"

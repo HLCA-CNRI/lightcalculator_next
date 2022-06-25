@@ -1,6 +1,6 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { useState, useEffect, memo } from "react";
-import { useDispatch } from "../../store/store";
+import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
+import React, {useState, useEffect, memo} from "react";
+import {useDispatch} from "../../store/store";
 
 type NumberInputType = {
   type: string;
@@ -10,7 +10,7 @@ type NumberInputType = {
 };
 
 // eslint-disable-next-line no-unused-vars
-function NumberInput({ type, initial, unit, setNumber }: NumberInputType) {
+function NumberInput({type, initial, unit, setNumber}: NumberInputType) {
   const [number] = useState(0);
 
   useEffect(() => {}, [number]);

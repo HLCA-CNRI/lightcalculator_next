@@ -1,22 +1,16 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "../../store/store";
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "../../store/store";
 import PercentInput from "./PercentInput";
-import {
-  getBaselineState,
-  bSetFuelType,
-} from "../../store/slices/baselineSlice";
-import {
-  getForecastState,
-  fSetFuelType,
-} from "../../store/slices/forecastSlice";
+import {getBaselineState, bSetFuelType} from "../../store/slices/baselineSlice";
+import {getForecastState, fSetFuelType} from "../../store/slices/forecastSlice";
 
 type GasInputType = {
   type: string;
 };
 
-function GasInput({ type }: GasInputType) {
-  const { bFuelType } = useSelector(getBaselineState);
-  const { fFuelType } = useSelector(getForecastState);
+function GasInput({type}: GasInputType) {
+  const {bFuelType} = useSelector(getBaselineState);
+  const {fFuelType} = useSelector(getForecastState);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -44,13 +38,9 @@ function GasInput({ type }: GasInputType) {
   // setFuel type will toggle between true and false true or false 이여도 기본 값이 적용됨
   const handleDefaultChange = () => {
     if (type === "baseline") {
-      dispatch(
-        bSetFuelType({ ...bFuelType, setDefault: !bFuelType.setDefault })
-      );
+      dispatch(bSetFuelType({...bFuelType, setDefault: !bFuelType.setDefault}));
     } else {
-      dispatch(
-        fSetFuelType({ ...fFuelType, setDefault: !fFuelType.setDefault })
-      );
+      dispatch(fSetFuelType({...fFuelType, setDefault: !fFuelType.setDefault}));
     }
   };
 
@@ -61,23 +51,23 @@ function GasInput({ type }: GasInputType) {
           <div className="w-[100%] mt-2 flex">
             <div
               className="bg-[#2f5597] h-3 rounded-l-lg"
-              style={{ width: `${(bFuelType.gasoline / total) * 100}%` }}
+              style={{width: `${(bFuelType.gasoline / total) * 100}%`}}
             />
             <div
               className="bg-[#2e75b6] h-3"
-              style={{ width: `${(bFuelType.diesel / total) * 100}%` }}
+              style={{width: `${(bFuelType.diesel / total) * 100}%`}}
             />
             <div
               className="bg-[#5b9bd5] h-3"
-              style={{ width: `${(bFuelType.lpg / total) * 100}%` }}
+              style={{width: `${(bFuelType.lpg / total) * 100}%`}}
             />
             <div
               className="bg-[#9dc3e6] h-3 w-[2%]"
-              style={{ width: `${(bFuelType.hydrogen / total) * 100}%` }}
+              style={{width: `${(bFuelType.hydrogen / total) * 100}%`}}
             />
             <div
               className="bg-[#bdd7ee] h-3 w-[4%] rounded-r-lg"
-              style={{ width: `${(bFuelType.electric / total) * 100}%` }}
+              style={{width: `${(bFuelType.electric / total) * 100}%`}}
             />
           </div>
 
@@ -134,23 +124,23 @@ function GasInput({ type }: GasInputType) {
           <div className="w-[100%] mt-2 flex">
             <div
               className="bg-[#385723] h-3 rounded-l-lg"
-              style={{ width: `${(fFuelType.gasoline / total) * 100}%` }}
+              style={{width: `${(fFuelType.gasoline / total) * 100}%`}}
             />
             <div
               className="bg-[#548235] h-3"
-              style={{ width: `${(fFuelType.diesel / total) * 100}%` }}
+              style={{width: `${(fFuelType.diesel / total) * 100}%`}}
             />
             <div
               className="bg-[#70ad47] h-3"
-              style={{ width: `${(fFuelType.lpg / total) * 100}%` }}
+              style={{width: `${(fFuelType.lpg / total) * 100}%`}}
             />
             <div
               className="bg-[#a9d18e] h-3 w-[2%]"
-              style={{ width: `${(fFuelType.hydrogen / total) * 100}%` }}
+              style={{width: `${(fFuelType.hydrogen / total) * 100}%`}}
             />
             <div
               className="bg-[#c5e0b4] h-3 w-[4%] rounded-r-lg"
-              style={{ width: `${(fFuelType.electric / total) * 100}%` }}
+              style={{width: `${(fFuelType.electric / total) * 100}%`}}
             />
           </div>
 
@@ -209,11 +199,8 @@ function GasInput({ type }: GasInputType) {
           type="button"
           onClick={handleDefaultChange}
           className={`${
-            type === "baseline"
-              ? `bg-blue-600 hover:bg-blue-400`
-              : `bg-green-700 hover:bg-lime-600`
-          } text-white font-bold py-2 px-4 rounded-lg`}
-        >
+            type === "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-green-700 hover:bg-lime-600`
+          } text-white font-bold py-2 px-4 rounded-lg`}>
           기본값 적용
         </button>
       </label>

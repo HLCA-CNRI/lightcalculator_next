@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useRef, memo } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "../../store/store";
-import {
-  getBaselineState,
-  bSetCommuting,
-} from "../../store/slices/baselineSlice";
-import {
-  getForecastState,
-  fSetCommuting,
-} from "../../store/slices/forecastSlice";
-import { defaultBaseline, DefualtForecast } from "../../functions/Defaults";
+import React, {useState, useEffect, useRef, memo} from "react";
+import {useDispatch} from "react-redux";
+import {useSelector} from "../../store/store";
+import {getBaselineState, bSetCommuting} from "../../store/slices/baselineSlice";
+import {getForecastState, fSetCommuting} from "../../store/slices/forecastSlice";
+import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
 
 import PercentInput from "./PercentInput";
 
@@ -17,9 +11,9 @@ type TransportationInputType = {
   type: string;
 };
 
-function TransportationInput({ type }: TransportationInputType) {
-  const { bCommuting } = useSelector(getBaselineState);
-  const { fCommuting } = useSelector(getForecastState);
+function TransportationInput({type}: TransportationInputType) {
+  const {bCommuting} = useSelector(getBaselineState);
+  const {fCommuting} = useSelector(getForecastState);
   const [total, setTotal] = useState(0);
 
   const fcheckBox = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -31,69 +25,43 @@ function TransportationInput({ type }: TransportationInputType) {
 
   useEffect(() => {
     if (type === "baseline") {
-      setTotal(
-        bCommuting.car + bCommuting.publicTransit + bCommuting.walkOrBike
-      );
+      setTotal(bCommuting.car + bCommuting.publicTransit + bCommuting.walkOrBike);
     } else {
-      setTotal(
-        fCommuting.car + fCommuting.publicTransit + fCommuting.walkOrBike
-      );
+      setTotal(fCommuting.car + fCommuting.publicTransit + fCommuting.walkOrBike);
     }
   }, [fCommuting, bCommuting]);
 
   useEffect(() => {
     if (bcheckBox.current !== undefined && bcheckBox.current.checked) {
       bcheckBox.current.checked = false;
-      dispatch(bSetCommuting({ ...bCommuting, setDefault: false }));
+      dispatch(bSetCommuting({...bCommuting, setDefault: false}));
     }
-  }, [
-    bCommuting.car,
-    bCommuting.publicTransit,
-    bCommuting.walkOrBike,
-    bCommuting.distance,
-  ]);
+  }, [bCommuting.car, bCommuting.publicTransit, bCommuting.walkOrBike, bCommuting.distance]);
 
   useEffect(() => {
     if (fcheckBox.current !== undefined && fcheckBox.current.checked) {
       fcheckBox.current.checked = false;
-      dispatch(fSetCommuting({ ...fCommuting, setDefault: false }));
+      dispatch(fSetCommuting({...fCommuting, setDefault: false}));
     }
-  }, [
-    fCommuting.car,
-    fCommuting.publicTransit,
-    fCommuting.walkOrBike,
-    fCommuting.distance,
-  ]);
+  }, [fCommuting.car, fCommuting.publicTransit, fCommuting.walkOrBike, fCommuting.distance]);
 
   useEffect(() => {
-    if (
-      bDistanceInput.current !== undefined &&
-      bCommuting.setDefault === true
-    ) {
-      bDistanceInput.current.value =
-        defaultBaseline.bCommuting.distance.toString();
+    if (bDistanceInput.current !== undefined && bCommuting.setDefault === true) {
+      bDistanceInput.current.value = defaultBaseline.bCommuting.distance.toString();
     }
   }, [bCommuting.setDefault]);
 
   useEffect(() => {
-    if (
-      fDistanceInput.current !== undefined &&
-      fCommuting.setDefault === true
-    ) {
-      fDistanceInput.current.value =
-        DefualtForecast.fCommuting.distance.toString();
+    if (fDistanceInput.current !== undefined && fCommuting.setDefault === true) {
+      fDistanceInput.current.value = DefualtForecast.fCommuting.distance.toString();
     }
   }, [fCommuting.setDefault]);
 
   const handleDefaultChange = () => {
     if (type === "baseline") {
-      dispatch(
-        bSetCommuting({ ...bCommuting, setDefault: !bCommuting.setDefault })
-      );
+      dispatch(bSetCommuting({...bCommuting, setDefault: !bCommuting.setDefault}));
     } else {
-      dispatch(
-        fSetCommuting({ ...fCommuting, setDefault: !fCommuting.setDefault })
-      );
+      dispatch(fSetCommuting({...fCommuting, setDefault: !fCommuting.setDefault}));
     }
   };
 
@@ -101,13 +69,9 @@ function TransportationInput({ type }: TransportationInputType) {
     const currentVal = event.currentTarget.value;
     if (!isNaN(parseInt(currentVal, 10))) {
       if (type === "baseline") {
-        dispatch(
-          bSetCommuting({ ...bCommuting, distance: parseInt(currentVal, 10) })
-        );
+        dispatch(bSetCommuting({...bCommuting, distance: parseInt(currentVal, 10)}));
       } else {
-        dispatch(
-          fSetCommuting({ ...fCommuting, distance: parseInt(currentVal, 10) })
-        );
+        dispatch(fSetCommuting({...fCommuting, distance: parseInt(currentVal, 10)}));
       }
     }
   };
@@ -133,9 +97,7 @@ function TransportationInput({ type }: TransportationInputType) {
               className="w-12 mr-2 rounded"
               min={0}
               onChange={handleDistanceChange}
-              defaultValue={
-                type === "baseline" ? bCommuting.distance : fCommuting.distance
-              }
+              defaultValue={type === "baseline" ? bCommuting.distance : fCommuting.distance}
             />
             <div>km</div>
           </div>
@@ -145,9 +107,7 @@ function TransportationInput({ type }: TransportationInputType) {
       <div className="rounded-lg p-2  m-5">
         <div className="w-[100%] mt-2 flex">
           <div
-            className={`${
-              type === "baseline" ? "bg-[#2f5597]" : "bg-[#385723]"
-            } h-3 rounded-l-lg`}
+            className={`${type === "baseline" ? "bg-[#2f5597]" : "bg-[#385723]"} h-3 rounded-l-lg`}
             style={{
               width: `${
                 type === "baseline"
@@ -157,9 +117,7 @@ function TransportationInput({ type }: TransportationInputType) {
             }}
           />
           <div
-            className={`${
-              type === "baseline" ? "bg-[#5b9bd5]" : "bg-[#70ad47]"
-            } h-3`}
+            className={`${type === "baseline" ? "bg-[#5b9bd5]" : "bg-[#70ad47]"} h-3`}
             style={{
               width: `${
                 type === "baseline"
@@ -169,9 +127,7 @@ function TransportationInput({ type }: TransportationInputType) {
             }}
           />
           <div
-            className={`${
-              type === "baseline" ? "bg-[#bdd7ee]" : "bg-[#c5e0b4]"
-            } rounded-r-lg h-3`}
+            className={`${type === "baseline" ? "bg-[#bdd7ee]" : "bg-[#c5e0b4]"} rounded-r-lg h-3`}
             style={{
               width: `${
                 type === "baseline"
@@ -213,11 +169,8 @@ function TransportationInput({ type }: TransportationInputType) {
           type="button"
           onClick={handleDefaultChange}
           className={`${
-            type === "baseline"
-              ? `bg-blue-600 hover:bg-blue-400`
-              : `bg-green-700 hover:bg-lime-600`
-          } text-white font-bold py-2 px-4 rounded-lg`}
-        >
+            type === "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-green-700 hover:bg-lime-600`
+          } text-white font-bold py-2 px-4 rounded-lg`}>
           기본값 적용
         </button>
       </label>
