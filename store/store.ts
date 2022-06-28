@@ -1,19 +1,19 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch as useDispatchBase, useSelector as useSelectorBase} from "react-redux";
-import baselineSlice from "./slices/baselineSlice";
-import forecastSlice from "./slices/forecastSlice";
-import baselineResultSlice from "./slices/baslineResultSlice";
-import forecastResultSlice from "./slices/forecastResultSlice";
+import baseline from "./slices/baselineSlice";
+import forecast from "./slices/forecastSlice";
+import baselineResult from "./slices/baslineResultSlice";
+import forecastResult from "./slices/forecastResultSlice";
 
 /**
  * Creates a store and includes all the slices as reducers.
  */
 export const store = configureStore({
   reducer: {
-    baseline: baselineSlice,
-    forecast: forecastSlice,
-    baselineResult: baselineResultSlice,
-    forecastResult: forecastResultSlice,
+    baseline,
+    forecast,
+    baselineResult,
+    forecastResult,
   },
 });
 

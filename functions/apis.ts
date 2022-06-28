@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-use-before-define */
+/* eslint-disable @typescript-eslint/ban-types */
 import axios, {AxiosRequestHeaders, Method} from "axios";
 
 class Api {
@@ -25,7 +23,6 @@ class Api {
       company,
     };
     console.log("saveUserInfo data", data);
-    // eslint-disable-next-line no-underscore-dangle
     return this._post({
       uri: "/users",
       data,

@@ -1,4 +1,4 @@
-export interface baselineState {
+export interface BaselineState {
   bCompanyEmployeeSize: number;
   bFuelType: {
     setDefault: boolean;
@@ -29,7 +29,7 @@ export interface baselineState {
   };
 }
 
-export const defaultBaseline: baselineState = {
+export const defaultBaseline: BaselineState = {
   bCompanyEmployeeSize: 100,
   bFuelType: {
     setDefault: false,
@@ -60,7 +60,7 @@ export const defaultBaseline: baselineState = {
   },
 };
 
-export interface forecastState {
+export interface ForecastState {
   fCompanyEmployeeSize: number;
   fFuelType: {
     setDefault: boolean;
@@ -91,7 +91,7 @@ export interface forecastState {
   };
 }
 
-export const DefualtForecast: forecastState = {
+export const DefualtForecast: ForecastState = {
   fCompanyEmployeeSize: 100,
   fFuelType: {
     setDefault: false,

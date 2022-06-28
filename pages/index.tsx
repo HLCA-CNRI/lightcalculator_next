@@ -5,7 +5,7 @@ import LightCalculator from "../components/LightCalculator";
 import UserInfo from "../components/UserInfo";
 
 function Home() {
-  const [authenticate, setAuthenticate] = useState(false);
+  const [authenticate, setAuthenticate] = useState(true);
 
   return (
     <div>

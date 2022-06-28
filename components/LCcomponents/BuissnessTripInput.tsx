@@ -16,7 +16,7 @@ function BuissnessTripInput({country, value, isBaseline}: BuissnessTripInputType
 
   const handleChange = (event: any) => {
     const currentVal = event.currentTarget.value;
-    if (!isNaN(parseInt(currentVal, 10))) {
+    if (!Number.isNaN(parseInt(currentVal, 10))) {
       if (isBaseline) {
         dispatch(bSetRoundTrip({...bRoundTrip, [value]: event.target.value}));
       } else {

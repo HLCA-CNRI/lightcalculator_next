@@ -1,6 +1,6 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
-export interface baselineResultState {
+export interface BaselineResultState {
   bAnnual: number;
   bCalculateBuilding: number;
   bCalculateCar: number;
@@ -9,7 +9,7 @@ export interface baselineResultState {
   bClaculateFlights: number;
 }
 
-const initialBaselineResults: baselineResultState = {
+const initialBaselineResults: BaselineResultState = {
   bAnnual: 0,
   bCalculateBuilding: 0,
   bCalculateCar: 0,
@@ -61,7 +61,7 @@ export const baselineResultSlice = createSlice({
   },
 });
 
-export const getBaselineResultState = (state: {baselineResult: baselineResultState}) =>
+export const getBaselineResultState = (state: {baselineResult: BaselineResultState}) =>
   state.baselineResult;
 
 export const {

@@ -18,7 +18,7 @@ function SliderInput({type, setNumber}: SliderInputType) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
-    if (!isNaN(parseInt(currentVal, 10))) {
+    if (!Number.isNaN(parseInt(currentVal, 10))) {
       const numberCurrent = parseInt(currentVal, 10) - 1;
       dispatch(setNumber(numberCurrent));
     }

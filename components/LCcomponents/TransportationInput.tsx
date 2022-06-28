@@ -67,7 +67,7 @@ function TransportationInput({type}: TransportationInputType) {
 
   const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
-    if (!isNaN(parseInt(currentVal, 10))) {
+    if (!Number.isNaN(parseInt(currentVal, 10))) {
       if (type === "baseline") {
         dispatch(bSetCommuting({...bCommuting, distance: parseInt(currentVal, 10)}));
       } else {
@@ -164,7 +164,7 @@ function TransportationInput({type}: TransportationInputType) {
         />
       </div>
       <hr className="border-none h-[2px] bg-white" />
-      <label className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
+      <div className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
         <button
           type="button"
           onClick={handleDefaultChange}
@@ -173,7 +173,7 @@ function TransportationInput({type}: TransportationInputType) {
           } text-white font-bold py-2 px-4 rounded-lg`}>
           기본값 적용
         </button>
-      </label>
+      </div>
     </div>
   );
 }

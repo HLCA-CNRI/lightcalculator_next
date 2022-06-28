@@ -1,7 +1,7 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {defaultBaseline, baselineState} from "../../functions/Defaults";
+import {defaultBaseline, BaselineState} from "../../functions/Defaults";
 
-const initialBaselineState: baselineState = defaultBaseline;
+const initialBaselineState: BaselineState = defaultBaseline;
 
 export const baselineSlice = createSlice({
   name: "baseline",
@@ -58,7 +58,7 @@ export const baselineSlice = createSlice({
   },
 });
 
-export const getBaselineState = (state: {baseline: baselineState}) => state.baseline;
+export const getBaselineState = (state: {baseline: BaselineState}) => state.baseline;
 
 export const {
   bSetCompanyEmployeeSize,

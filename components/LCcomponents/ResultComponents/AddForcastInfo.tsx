@@ -72,32 +72,32 @@ function AddForcastInfo({type}: AddForcastInfoType) {
               ? `bg-red-200 `
               : `bg-green-200`
           }`}>
-          {isNaN(value)
+          {Number.isNaN(value)
             ? "0.0%"
             : value > 0
-            ? `+${isFinite(value) ? value.toFixed(1) : "∞"}`
+            ? `+${Number.isFinite(value) ? value.toFixed(1) : "∞"}`
             : value === 0
             ? "0.0"
             : value.toFixed(1)}
-          {!isFinite(value) ? "" : "%"}
+          {!Number.isFinite(value) ? "" : "%"}
         </div>
       ) : (
         <div
           className={`${
-            (value < 0.05 && value > -0.05) || isNaN(value)
+            (value < 0.05 && value > -0.05) || Number.isNaN(value)
               ? ``
               : value > 0.05
               ? `text-red-400 `
               : `text-green-600`
           }`}>
-          {isNaN(value)
+          {Number.isNaN(value)
             ? "0.0%"
             : value > 0
-            ? `+${isFinite(value) ? value.toFixed(1) : "∞"}`
+            ? `+${Number.isFinite(value) ? value.toFixed(1) : "∞"}`
             : value === 0
             ? "0.0"
             : value.toFixed(1)}
-          {!isFinite(value) ? "" : "%"}
+          {!Number.isFinite(value) ? "" : "%"}
         </div>
       )}
     </div>

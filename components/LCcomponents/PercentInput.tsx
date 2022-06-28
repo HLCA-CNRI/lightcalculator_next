@@ -5,7 +5,7 @@ import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
 import {getBaselineState, bSetFuelType, bSetCommuting} from "../../store/slices/baselineSlice";
 import {getForecastState, fSetFuelType, fSetCommuting} from "../../store/slices/forecastSlice";
 
-type percentInputType = {
+type PercentInputType = {
   Objectkey: string;
   value: string;
   isBaseline: boolean;
@@ -16,7 +16,7 @@ type percentInputType = {
 };
 
 // TODO: Change implementation
-function PercentInput({Objectkey, value, isBaseline, title, unit, color}: percentInputType) {
+function PercentInput({Objectkey, value, isBaseline, title, unit, color}: PercentInputType) {
   const {bFuelType, bCommuting} = useSelector(getBaselineState);
   const {fFuelType, fCommuting} = useSelector(getForecastState);
   const dispatch = useDispatch();
@@ -102,7 +102,7 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: percen
   // TODO: Not good implementation
   const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
-    if (!isNaN(parseInt(currentVal, 10))) {
+    if (!Number.isNaN(parseInt(currentVal, 10))) {
       if (Objectkey === "commuting" && isBaseline) {
         dispatch(
           bSetCommuting({

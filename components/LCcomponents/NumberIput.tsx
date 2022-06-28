@@ -19,7 +19,7 @@ function NumberInput({type, initial, unit, setNumber}: NumberInputType) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
-    if (!isNaN(parseInt(currentVal, 10))) {
+    if (!Number.isNaN(parseInt(currentVal, 10))) {
       dispatch(setNumber(parseInt(currentVal, 10)));
     }
   };
