@@ -3,9 +3,10 @@ import axios, {AxiosRequestHeaders, Method} from "axios";
 
 class Api {
   private baseURL: string | undefined;
+  // https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/
 
   constructor() {
-    this.baseURL = "https://p1j4s8lykj.execute-api.ap-northeast-2.amazonaws.com/";
+    this.baseURL = "https://sls.cnrikorea.net"; // 사용자 정보 안받아서 이걸로 바꿈
   }
 
   saveUserInfo = async ({
