@@ -1,7 +1,7 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {forecastState, DefualtForecast} from "../../functions/Defaults";
+import {ForecastState, DefualtForecast} from "../../functions/Defaults";
 
-const initialForecastState: forecastState = DefualtForecast;
+const initialForecastState: ForecastState = DefualtForecast;
 
 export const forecastSlice = createSlice({
   name: "forecast",
@@ -58,7 +58,7 @@ export const forecastSlice = createSlice({
   },
 });
 
-export const getForecastState = (state: {forecast: forecastState}) => state.forecast;
+export const getForecastState = (state: {forecast: ForecastState}) => state.forecast;
 
 export const {
   fSetCompanyEmployeeSize,
