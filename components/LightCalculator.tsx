@@ -81,7 +81,7 @@ function LightCalculator() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://cis.cnrikorea.net/register"
+            href="https://cis.cnrikorea.com/register"
             className="h-[100%] w-[100%]">
             데모 신청하기
           </a>
