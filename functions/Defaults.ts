@@ -1,3 +1,6 @@
+// baseline 이랑 forecast initial 값 저장 하는 곳
+
+// BaselineState interface 지정하는 부분
 export interface BaselineState {
   bCompanyEmployeeSize: number;
   bFuelType: {
@@ -28,38 +31,7 @@ export interface BaselineState {
     africa: number;
   };
 }
-
-export const defaultBaseline: BaselineState = {
-  bCompanyEmployeeSize: 100,
-  bFuelType: {
-    setDefault: false,
-    gasoline: 47,
-    diesel: 39,
-    lpg: 8,
-    hydrogen: 2,
-    electric: 4,
-  },
-  bCompanyGasPrice: 5000,
-  bCommutingDays: 5,
-  bCommuting: {
-    setDefault: false,
-    distance: 14,
-    car: 36,
-    publicTransit: 40,
-    walkOrBike: 24,
-  },
-  bUseRenewableEnergy: false,
-  bCompanysize: 1000,
-  bRoundTrip: {
-    asia: 0,
-    europe: 0,
-    northAmerica: 0,
-    southAmerica: 0,
-    oceana: 0,
-    africa: 0,
-  },
-};
-
+// ForecastState interface 지정하는 부분
 export interface ForecastState {
   fCompanyEmployeeSize: number;
   fFuelType: {
@@ -90,7 +62,38 @@ export interface ForecastState {
     africa: number;
   };
 }
-
+// BaselineState 디폴트 값
+export const defaultBaseline: BaselineState = {
+  bCompanyEmployeeSize: 100,
+  bFuelType: {
+    setDefault: false,
+    gasoline: 47,
+    diesel: 39,
+    lpg: 8,
+    hydrogen: 2,
+    electric: 4,
+  },
+  bCompanyGasPrice: 5000,
+  bCommutingDays: 5,
+  bCommuting: {
+    setDefault: false,
+    distance: 14,
+    car: 36,
+    publicTransit: 40,
+    walkOrBike: 24,
+  },
+  bUseRenewableEnergy: false,
+  bCompanysize: 1000,
+  bRoundTrip: {
+    asia: 0,
+    europe: 0,
+    northAmerica: 0,
+    southAmerica: 0,
+    oceana: 0,
+    africa: 0,
+  },
+};
+// ForecastState 디폴트 값
 export const DefualtForecast: ForecastState = {
   fCompanyEmployeeSize: 100,
   fFuelType: {

@@ -1,5 +1,4 @@
 import React, {memo, useEffect, useRef} from "react";
-import styled from "styled-components";
 import {useDispatch, useSelector} from "../../store/store";
 import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
 import {getBaselineState, bSetFuelType, bSetCommuting} from "../../store/slices/baselineSlice";
@@ -93,10 +92,6 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
     }
   }, [fFuelType.setDefault]);
 
-  const Dot = styled.li`
-    color: ${color};
-  `;
-
   const initialFuelObject = isBaseline ? bFuelType : fFuelType;
   const initialCommutingObject = isBaseline ? bCommuting : fCommuting;
   // TODO: Not good implementation
@@ -135,33 +130,18 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
     }
   };
 
-  // const color = "#bdd7ee"
-
   // TODO: Not good implementation
   const defaultValue =
     Objectkey === "commuting"
       ? initialCommutingObject[value as keyof typeof bCommuting].toString()
       : initialFuelObject[value as keyof typeof bFuelType].toString();
 
-  // <Dot>
-  //   {/* <span className={`text-${color}`}>{color}</span> */}
-  //   <span className="text-black">{title}</span>
-  // </Dot>;
-
   return (
     <div className="flex w-[100%]  h-[3] m-2 p-1 justify-between px-2">
       <div className="flex flex-col content-center">
-        {/* <li>
-        <span className="text-black">{title}</span>
-        </li> */}
-        <Dot>
-          {/* <span className={`text-${color}`}>{color}</span> */}
+        <li style={{color}}>
           <span className="text-black">{title}</span>
-        </Dot>
-
-        {/* <li className= {`text-${color}`}>
-          <span>{title}</span>
-        </li> */}
+        </li>
       </div>
       <div id="percentVal" className="mr-3 via-green-100 flex">
         <input

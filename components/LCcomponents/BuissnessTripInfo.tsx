@@ -1,10 +1,10 @@
 import {memo} from "react";
 import BuissnessTripInput from "./BuissnessTripInput";
 
-type BuisnessTripInfoType = {
+type BusinessTripInfoType = {
   type: string;
 };
-function BuisnessTripInfo({type}: BuisnessTripInfoType) {
+function BuisnessTripInfo({type}: BusinessTripInfoType) {
   return (
     <div className="w-full  p-5">
       <BuissnessTripInput country="아시아" value="asia" isBaseline={type === "baseline"} />

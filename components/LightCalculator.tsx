@@ -29,22 +29,26 @@ import {
 import CheckBox from "./LCcomponents/CheckBox";
 import GasInput from "./LCcomponents/GasInput";
 import BuisnessTripInfo from "./LCcomponents/BuissnessTripInfo";
-
+// 라이트 캘큐레이터 전체적인 뼈대
 function LightCalculator() {
-  const surveyStart = useRef<null | HTMLParagraphElement>(null);
-  const result = useRef<null | HTMLHeadingElement>(null);
-  // state the takes the survery start top position as scrollPosition
+  const {bCompanyEmployeeSize, bCompanyGasPrice, bCompanysize} = useSelector(getBaselineState);
+  const {fCompanyEmployeeSize, fCompanyGasPrice, fCompanysize} = useSelector(getForecastState);
+  const surveyStart = useRef<null | HTMLParagraphElement>(null); // 질문있는 부분을 reference 하는 useRef
+  const result = useRef<null | HTMLHeadingElement>(null); // result 를 reference 하는 useRef
+  // surveyStart 있는 부분을 window top 알 수 있는 state.
   const [scrollPosition, setScrollPosition] = useState(1);
-  // observes updated changes in setScrollPosition
+  // scroll position을 지정하는 useEffect, scroll event listener를 통해서 계속 업테이트 해줌
   useEffect(() => {
     const updatePosition = () => {
       if (surveyStart && surveyStart.current) {
         setScrollPosition(surveyStart.current.getBoundingClientRect().top);
+        console.log(surveyStart.current.getBoundingClientRect().top);
       }
     };
     window.addEventListener("scroll", updatePosition);
     updatePosition();
   }, []);
+  // scroll position을 통해서 result의 position 지정
   useEffect(() => {
     if (result && result.current) {
       if (parseInt(scrollPosition.toString(), 10) <= 0) {
@@ -55,21 +59,22 @@ function LightCalculator() {
       }
     }
   }, [scrollPosition]);
-
+  // 사용자 온클릭 이벤트 핸들러 --> 시작하기 누르면 surveyStart 지정 되있는 useRef으로 가기
   const executeScroll = () => {
     if (surveyStart.current !== undefined) {
       surveyStart.current?.scrollIntoView({behavior: "smooth"});
     }
   };
-  const {bCompanyEmployeeSize, bCompanyGasPrice, bCompanysize} = useSelector(getBaselineState);
-  const {fCompanyEmployeeSize, fCompanyGasPrice, fCompanysize} = useSelector(getForecastState);
 
   return (
     <div>
-      <nav className="lg:px-32 flex place-items-center justify-between h-[6em] min-w-[100%] bg-white">
-        <div className="m-10">
-          <img alt="logo" src={logo.src} width={180} height={70} />
-        </div>
+      {/* 네비게이션 바 */}
+      <nav className="lg:px-32 flex place-items-center justify-between h-[6em] min-w-[100%] bg-white border-b-2">
+        <button type="button" className="m-10">
+          <a className="" target="_blank" rel="noopener noreferrer" href="https://cnrikorea.com">
+            <img alt="logo" src={logo.src} width={180} height={70} />
+          </a>
+        </button>
         <button
           type="button"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg m-10">
@@ -82,11 +87,11 @@ function LightCalculator() {
           </a>
         </button>
       </nav>
-      <hr className="border-none h-[1px] bg-slate-400" />
-
-      <div className="px-6 md:px-12 lg:px-32 grid  place-items-center min-h-screen  ">
-        <div className=" mt-10  grid gap-4 xs:grid-cols-1 md:grid-cols-3 ">
-          <h1 className=" h-auto bg-slate-200 xs:col-span-1 md:col-span-3 mb-10 rounded-lg ">
+      <div className="px-6 md:px-12 lg:px-32 place-items-center min-h-screen  mt-10">
+        {/* When display is greater than md:3 칸으로 나눠지고,  When display is smaller than md:1칸으로 나눠짐 */}
+        <div className="  grid gap-4 xs:grid-cols-1 md:grid-cols-3">
+          {/* welcoming section */}
+          <section className=" h-auto bg-slate-200 xs:col-span-1 md:col-span-3 mb-10 rounded-lg ">
             <div className="px-6">
               <div className="font-extrabold text-4xl w-[65%] ">
                 <br />
@@ -110,15 +115,15 @@ function LightCalculator() {
             </div>
 
             <img alt="titleImage" src={titleImage.src} className="rounded-lg " />
-          </h1>
-
+          </section>
+          {/* 시작 */}
           <p ref={surveyStart}> </p>
           <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible ">
             {" "}
             Baseline{" "}
           </p>
           <p className="text-3xl font-semibold h-[0px] invisible md:h-fit md:visible "> Forecast</p>
-
+          {/* 임직원 수 */}
           <div className="mb-3 mr-2 pr-10">
             <h2 className="text-xl font-semibold mb-2 ">임직원 수</h2>
             <p className="text-gray-600">귀사에 종사하고 있는 임직원은 몇 명인가요?</p>
@@ -129,7 +134,6 @@ function LightCalculator() {
               <hr className="border-none  h-[2px] bg-white" />
             </div>
             <NumberInput
-              type="baseline"
               unit="명"
               setNumber={bSetCompanyEmployeeSize}
               initial={bCompanyEmployeeSize.toString()}
@@ -141,13 +145,12 @@ function LightCalculator() {
               <hr className="border-none  h-[2px] bg-white" />
             </div>
             <NumberInput
-              type="forecast"
               unit="명"
               setNumber={fSetCompanyEmployeeSize}
               initial={fCompanyEmployeeSize.toString()}
             />
           </div>
-
+          {/* 차량 종류별 대수 */}
           <div className="mb-3 pr-10 ">
             <h2 className="text-xl font-semibold mb-2">차량 종류별 대수</h2>
             <p className="text-gray-600">
@@ -169,7 +172,7 @@ function LightCalculator() {
             </div>
             <GasInput type="forecast" />
           </div>
-
+          {/* 차량 연료 비용 */}
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">차량 연료 비용</h2>
             <p className="text-gray-600">
@@ -183,7 +186,6 @@ function LightCalculator() {
               <hr className="border-none  h-[2px] bg-white" />
             </div>
             <NumberInput
-              type="baseline"
               unit="만원"
               setNumber={bSetCompanyGasPrice}
               initial={bCompanyGasPrice.toString()}
@@ -195,13 +197,12 @@ function LightCalculator() {
               <hr className="border-none  h-[2px] bg-white" />
             </div>
             <NumberInput
-              type="forecast"
               unit="만원"
               setNumber={fSetCompanyGasPrice}
               initial={fCompanyGasPrice.toString()}
             />
           </div>
-
+          {/* 근무 형태 */}
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">근무 형태</h2>
             <p className="text-gray-600">
@@ -223,7 +224,7 @@ function LightCalculator() {
             </div>
             <SliderInput type="forecast" setNumber={fSetCommuntingDays} />
           </div>
-
+          {/* 출퇴근 거리 및 방식 */}
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">출퇴근 거리 및 방식</h2>
             <p className="text-gray-600">
@@ -237,7 +238,7 @@ function LightCalculator() {
           <div className=" bg-cnri_light_green flex justify-start rounded-lg    ">
             <TransportationInput type="forecast" />
           </div>
-
+          {/* 신재생 에너지 */}
           <div className="mb-3  pr-10 ">
             <h2 className="text-xl font-semibold mb-2">신재생 에너지</h2>
             <p className="text-gray-600">
@@ -267,7 +268,7 @@ function LightCalculator() {
               setChecked={fSetUseRenewableEnergy}
             />
           </div>
-
+          {/* 사무실 면적 */}
           <div className="mb-3 pr-10  ">
             <h2 className="text-xl font-semibold mb-2">사무실 면적</h2>
             <p className="text-gray-600">
@@ -280,26 +281,16 @@ function LightCalculator() {
               <div className="ml-4 py-2">Baseline</div>
               <hr className="border-none  h-[2px] bg-white" />
             </div>{" "}
-            <NumberInput
-              type="baseline"
-              unit="m"
-              setNumber={bSetCompanySize}
-              initial={bCompanysize.toString()}
-            />
+            <NumberInput unit="m" setNumber={bSetCompanySize} initial={bCompanysize.toString()} />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <div className="  w-[100%] text-lg visible md:hidden">
               <div className="ml-4 py-2">Forecast</div>
               <hr className="border-none  h-[2px] bg-white" />
             </div>
-            <NumberInput
-              type="forecast"
-              unit="m"
-              setNumber={fSetCompanySize}
-              initial={fCompanysize.toString()}
-            />
+            <NumberInput unit="m" setNumber={fSetCompanySize} initial={fCompanysize.toString()} />
           </div>
-
+          {/* 왕복 비행 출장 */}
           <div className="mb-3  pr-10 ">
             <h2 className="text-xl font-semibold mb-2">왕복 비행 출장</h2>
             <p className="text-gray-600">
@@ -321,7 +312,7 @@ function LightCalculator() {
             </div>
             <BuisnessTripInfo type="forecast" />
           </div>
-
+          {/* 결과 부분 */}
           <h1
             ref={result}
             className="h-auto bg-white xs:col-span-1 md:col-span-3  rounded-lg bottom-1 xs:h-[100%]">

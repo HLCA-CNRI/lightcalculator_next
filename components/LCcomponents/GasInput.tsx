@@ -9,9 +9,9 @@ type GasInputType = {
 };
 
 function GasInput({type}: GasInputType) {
-  const {bFuelType} = useSelector(getBaselineState);
-  const {fFuelType} = useSelector(getForecastState);
-  const [total, setTotal] = useState(0);
+  const {bFuelType} = useSelector(getBaselineState); // baseline fuel 값들
+  const {fFuelType} = useSelector(getForecastState); // forecast fuel 값들
+  const [total, setTotal] = useState(0); //
 
   useEffect(() => {
     if (type === "baseline") {
@@ -48,6 +48,7 @@ function GasInput({type}: GasInputType) {
     <div className="w-[100%]">
       {type === "baseline" ? (
         <div className="rounded-lg p-2  m-5">
+          {/* baseline일 경우 프로그래스바 */}
           <div className="w-[100%] mt-2 flex">
             <div
               className="bg-[#2f5597] h-3 rounded-l-lg"
@@ -74,7 +75,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="gasoline"
-            isBaseline={type === "baseline"}
+            isBaseline
             title="휘발유"
             unit="대"
             color="#2f5597"
@@ -82,7 +83,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="diesel"
-            isBaseline={type === "baseline"}
+            isBaseline
             title="경유"
             unit="대"
             color="#2e75b6"
@@ -90,7 +91,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="lpg"
-            isBaseline={type === "baseline"}
+            isBaseline
             title="LPG"
             unit="대"
             color="#5b9bd5"
@@ -98,7 +99,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="hydrogen"
-            isBaseline={type === "baseline"}
+            isBaseline
             title="수소"
             unit="대"
             color="#9dc3e6"
@@ -106,21 +107,15 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="electric"
-            isBaseline={type === "baseline"}
+            isBaseline
             title="전기"
             unit="대"
             color="#bdd7ee"
           />
-
-          {/* <label className="flex justify-end pt-4">
-      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-lime-600 hover:bg-lime-500`} text-white font-bold py-2 px-4 rounded-full`}>
-      기본값 적용
-      </button>
-          
-      </label> */}
         </div>
       ) : (
         <div className="rounded-lg p-2  m-5">
+          {/* forecast일 경우 프로그래스바 */}
           <div className="w-[100%] mt-2 flex">
             <div
               className="bg-[#385723] h-3 rounded-l-lg"
@@ -147,7 +142,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="gasoline"
-            isBaseline={type === "baseline"}
+            isBaseline={false}
             title="휘발유"
             unit="대"
             color="#385723"
@@ -155,7 +150,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="diesel"
-            isBaseline={type === "baseline"}
+            isBaseline={false}
             title="경유"
             unit="대"
             color="#548235"
@@ -163,7 +158,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="lpg"
-            isBaseline={type === "baseline"}
+            isBaseline={false}
             title="LPG"
             unit="대"
             color="#70ad47"
@@ -171,7 +166,7 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="hydrogen"
-            isBaseline={type === "baseline"}
+            isBaseline={false}
             title="수소"
             unit="대"
             color="#a9d18e"
@@ -179,18 +174,11 @@ function GasInput({type}: GasInputType) {
           <PercentInput
             Objectkey="fuel"
             value="electric"
-            isBaseline={type === "baseline"}
+            isBaseline={false}
             title="전기"
             unit="대"
             color="#c5e0b4"
           />
-
-          {/* <label className="flex justify-start pt-4">
-      <button onClick={handleDefaultChange} className={`${type == "baseline" ? `bg-blue-600 hover:bg-blue-400` : `bg-lime-600 hover:bg-lime-500`} text-white font-bold py-2 px-4 rounded-lg`}>
-      기본값 적용
-      </button>
-          
-      </label> */}
         </div>
       )}
       <hr className="border-none h-[2px] bg-white" />

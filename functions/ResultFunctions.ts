@@ -1,6 +1,6 @@
-// TODO: ROUND VALUES HERE ex --> calculateForecastInfo
-// TODO : Number(val.toFixed(2)) instead of calculating
+// 수식 저장하는 곳 --> result 계산할때 활용함
 
+// result 건물
 export const calculateBuilding = (
   employee: number,
   commuteDays: number,
@@ -10,7 +10,7 @@ export const calculateBuilding = (
   const calculateRenewableEnergy = useRenewableEnergy ? 1 : 0;
   return employee * 38.04 * commuteDays + companySize * (39.9 - 30.7584 * calculateRenewableEnergy);
 };
-
+// result 차량
 export const calculateCars = (
   gasoline: number,
   diesel: number,
@@ -34,10 +34,10 @@ export const calculateCars = (
       (300 / 5.5) * electric);
   return first * second;
 };
-
+// result 재택근무
 export const calculateRemoteWork = (employeeSize: number, commutingDays: number) =>
   employeeSize * 101.65 * (5 - commutingDays);
-
+// result 출퇴근
 export const calculateCommuting = (
   employeeSize: number,
   commutingDays: number,
@@ -54,7 +54,7 @@ export const calculateCommuting = (
     (car + publicTransit + walkOrBike);
   return initial;
 };
-
+// result 출장
 export const calculateFlight = (
   asia: number,
   europe: number,
@@ -72,7 +72,7 @@ export const calculateFlight = (
     8311 * oceana;
   return values * 2 * 0.10113;
 };
-
+// result Annual
 export const annualTotal = (
   building: number,
   cars: number,
@@ -80,6 +80,8 @@ export const annualTotal = (
   commuting: number,
   flights: number
 ) => building + cars + remoteWork + commuting + flights;
+
+// 여기에서부터는 forecast에 %값 계산해주는 수식들
 
 export const calculateForecastInfo = (forecastVal: number, baselineVal: number) => {
   const val = ((forecastVal - baselineVal) / baselineVal) * 100;
@@ -106,6 +108,6 @@ export const RedEmissionToVehicleComp = (forecastAnnual: number, baselineAnnual:
   return val / 3091.1;
 };
 
-// Adding Comma
+// 별도 *** 숫자에 콤마 붙이기
 export const numberWithCommas = (val: number) =>
   val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
