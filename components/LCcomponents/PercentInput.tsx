@@ -5,23 +5,20 @@ import {getBaselineState, bSetFuelType, bSetCommuting} from "../../store/slices/
 import {getForecastState, fSetFuelType, fSetCommuting} from "../../store/slices/forecastSlice";
 
 type PercentInputType = {
-  Objectkey: string;
+  Objectkey: string; //
   value: string;
   isBaseline: boolean;
   title: string;
   unit: string;
   color: string;
-  // defaultVal:string;
 };
 
-// TODO: Change implementation
 function PercentInput({Objectkey, value, isBaseline, title, unit, color}: PercentInputType) {
   const {bFuelType, bCommuting} = useSelector(getBaselineState);
   const {fFuelType, fCommuting} = useSelector(getForecastState);
   const dispatch = useDispatch();
   const inputField = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  // TODO: clean up
+  // baseline 출퇴근 거리 및 방식 기본값 적용하는 useEffect
   useEffect(() => {
     if (Objectkey === "commuting" && isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bCommuting;
@@ -38,7 +35,7 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
       );
     }
   }, [bCommuting.setDefault]);
-
+  // baseline 차량 종류별 대수 기본값 적용하는 부분 useEffect
   useEffect(() => {
     if (Objectkey === "fuel" && isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bFuelType;
@@ -56,7 +53,7 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
       );
     }
   }, [bFuelType.setDefault]);
-
+  // forecast 출퇴근 거리 및 방식 기본값 적용하는 useEffect
   useEffect(() => {
     if (Objectkey === "commuting" && !isBaseline) {
       type ObjectKey = keyof typeof DefualtForecast.fCommuting;
@@ -73,7 +70,7 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
       );
     }
   }, [fCommuting.setDefault]);
-
+  // forecast 차량 종류별 대수 기본값 적용하는 부분 useEffect
   useEffect(() => {
     if (Objectkey === "fuel" && !isBaseline) {
       type ObjectKey = keyof typeof defaultBaseline.bFuelType;
@@ -92,10 +89,8 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
     }
   }, [fFuelType.setDefault]);
 
-  const initialFuelObject = isBaseline ? bFuelType : fFuelType;
-  const initialCommutingObject = isBaseline ? bCommuting : fCommuting;
-  // TODO: Not good implementation
-  const handleDefaultChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // onChange 이밴트 핸들러 --> 바뀌는 값 감시하고 적용시킴
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!Number.isNaN(parseInt(currentVal, 10))) {
       if (Objectkey === "commuting" && isBaseline) {
@@ -130,7 +125,9 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
     }
   };
 
-  // TODO: Not good implementation
+  const initialFuelObject = isBaseline ? bFuelType : fFuelType; // Objectkey 가 fuel 일 경우
+  const initialCommutingObject = isBaseline ? bCommuting : fCommuting; // Objectkey 가 commuting 일 경우
+  // initial value 값
   const defaultValue =
     Objectkey === "commuting"
       ? initialCommutingObject[value as keyof typeof bCommuting].toString()
@@ -151,7 +148,7 @@ function PercentInput({Objectkey, value, isBaseline, title, unit, color}: Percen
           max={Objectkey === "commuting" ? 100 : ""}
           defaultValue={defaultValue}
           className="w-12 text-gray-700 bg-white rounded"
-          onChange={handleDefaultChange}
+          onChange={handleChange}
         />
 
         <div className="ml-2">{unit}</div>

@@ -1,6 +1,9 @@
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
-import React, {memo} from "react";
-import {useDispatch} from "../../store/store";
+import React, {memo, useEffect, useRef} from "react";
+import {bSetCompanyEmployeeSize, getBaselineState} from "../../store/slices/baselineSlice";
+import {getForecastState} from "../../store/slices/forecastSlice";
+import {useDispatch, useSelector} from "../../store/store";
+import {defaultBaseline} from "../../functions/Defaults";
 
 type NumberInputType = {
   initial: string; // 초기값
@@ -9,7 +12,14 @@ type NumberInputType = {
 };
 
 function NumberInput({initial, unit, setNumber}: NumberInputType) {
+  const {bDefault} = useSelector(getBaselineState);
+  const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(bSetCompanyEmployeeSize(defaultBaseline.bCompanyEmployeeSize));
+  //   // console.log(typeof defaultBaseline.bCompanyEmployeeSize);
+  //   // console.log("yahoo!", inputRef.current.value);
+  // }, [bDefault]);
   // 사용자 onChange 이벤트 핸들러 --> input에 숫자가 바뀌면 dispatch(setNumber)를 통해서 redux state 값이 바뀜
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
@@ -22,6 +32,7 @@ function NumberInput({initial, unit, setNumber}: NumberInputType) {
     <div className="flex  m-2">
       {/* input */}
       <input
+        ref={inputRef}
         type="number"
         className="w-20 rounded text-right"
         defaultValue={initial}

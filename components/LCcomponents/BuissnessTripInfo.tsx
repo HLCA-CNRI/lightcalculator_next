@@ -2,7 +2,7 @@ import {memo} from "react";
 import BuissnessTripInput from "./BuissnessTripInput";
 
 type BusinessTripInfoType = {
-  type: string;
+  type: string; // baseline or forecast
 };
 function BuisnessTripInfo({type}: BusinessTripInfoType) {
   return (

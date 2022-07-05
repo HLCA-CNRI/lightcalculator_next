@@ -21,7 +21,7 @@ import {
   getForecastState,
   fSetCompanyEmployeeSize,
   fSetCompanyGasPrice,
-  fSetCommuntingDays,
+  fSetCommutingDays,
   fSetUseRenewableEnergy,
   fSetCompanySize,
 } from "../store/slices/forecastSlice";
@@ -42,7 +42,7 @@ function LightCalculator() {
     const updatePosition = () => {
       if (surveyStart && surveyStart.current) {
         setScrollPosition(surveyStart.current.getBoundingClientRect().top);
-        console.log(surveyStart.current.getBoundingClientRect().top);
+        // console.log(surveyStart.current.getBoundingClientRect().top);
       }
     };
     window.addEventListener("scroll", updatePosition);
@@ -222,7 +222,7 @@ function LightCalculator() {
               <div className="ml-4 py-2">Forecast</div>
               <hr className="border-none  h-[2px] bg-white" />
             </div>
-            <SliderInput type="forecast" setNumber={fSetCommuntingDays} />
+            <SliderInput type="forecast" setNumber={fSetCommutingDays} />
           </div>
           {/* 출퇴근 거리 및 방식 */}
           <div className="mb-3 pr-10  ">

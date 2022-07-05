@@ -1,17 +1,15 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import React from "react";
 import {useDispatch} from "../../store/store";
 
 type CheckBoxType = {
-  type: string;
-  label: string;
-  setChecked: ActionCreatorWithPayload<boolean, string>;
+  type: string; // baseline or forecast
+  label: string; // 체크박스 앞에 들어가는 내용
+  setChecked: ActionCreatorWithPayload<boolean, string>; // redux action
 };
-
 function CheckBox({type, label, setChecked}: CheckBoxType) {
   const dispatch = useDispatch();
-
+  // 사용자 onChange 이벤트 핸들러 --> input이 바뀌면 redux 값도 바뀜
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setChecked(event.target.checked));
   };

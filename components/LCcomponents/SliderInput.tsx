@@ -6,16 +6,16 @@ import {getBaselineState} from "../../store/slices/baselineSlice";
 import {getForecastState} from "../../store/slices/forecastSlice";
 
 type SliderInputType = {
-  type: string;
-  setNumber: ActionCreatorWithPayload<number, string>;
+  type: string; // baseline인지 forecast 인지
+  setNumber: ActionCreatorWithPayload<number, string>; // redux action
 };
 
 function SliderInput({type, setNumber}: SliderInputType) {
-  const {bCommutingDays} = useSelector(getBaselineState);
-  const {fCommutingDays} = useSelector(getForecastState);
+  const {bCommutingDays} = useSelector(getBaselineState); // baseline commuting 값들
+  const {fCommutingDays} = useSelector(getForecastState); // forecast commuting 값들
 
   const dispatch = useDispatch();
-
+  // onChange 이벤트 핸들러 change event 감시하고 값이 바뀔때마다 redux state 바꿔줌
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!Number.isNaN(parseInt(currentVal, 10))) {
@@ -26,9 +26,11 @@ function SliderInput({type, setNumber}: SliderInputType) {
 
   return (
     <div className="flex flex-col space-y-2 w-[80%] py-3">
+      {/* 설명 --> 주 n 일 출근 */}
       <div className="flex justify-center">
         주 {type === "baseline" ? bCommutingDays : fCommutingDays}일 출근
       </div>
+      {/* 인풋이 0-6 이고 onChange이벤트 감시 */}
       <input
         type="range"
         className={`${type === "baseline" ? "" : "accent-[#548235]"} w-[100%] border-none `}

@@ -64,7 +64,7 @@ export const {
   fSetCompanyEmployeeSize,
   fSetFuelType,
   fSetCompanyGasPrice,
-  fSetCommutingDays: fSetCommuntingDays,
+  fSetCommutingDays,
   fSetCommuting,
   fSetUseRenewableEnergy,
   fSetRoundTrip,

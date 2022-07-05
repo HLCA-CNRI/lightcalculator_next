@@ -55,6 +55,12 @@ export const baselineSlice = createSlice({
     ) => {
       state.bRoundTrip = action.payload;
     },
+    bSetDefault: (
+      state: Draft<typeof initialBaselineState>,
+      action: PayloadAction<typeof initialBaselineState.bDefault>
+    ) => {
+      state.bDefault = action.payload;
+    },
   },
 });
 
@@ -69,6 +75,7 @@ export const {
   bSetUseRenewableEnergy,
   bSetRoundTrip,
   bSetCompanySize,
+  bSetDefault,
 } = baselineSlice.actions;
 
 // export const { bSetCompanySize: bSetCompanySize,bSetCompanyCarCount: bSetCompanyCarCount,bSetFuelType: setbThree,bSetCompanyGasPrice: setbFour,bSetCommuntingDays: setbFive ,bSetCommuting: setbSeven} = baselineSlice.actions;

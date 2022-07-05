@@ -33,12 +33,11 @@ function UserInfo({setAuthenticate}: AuthenticateType) {
 
   const handleSubmit = async (values: User) => {
     if (agree === true) {
-      console.log("values", values);
+      // console.log("values", values);
       const result = await apis.saveUserInfo({
         username: values.name,
         ...values,
       });
-      console.log("result", result);
       setAuthenticate(true);
     }
   };

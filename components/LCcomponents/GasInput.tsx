@@ -9,10 +9,11 @@ type GasInputType = {
 };
 
 function GasInput({type}: GasInputType) {
+  const dispatch = useDispatch();
   const {bFuelType} = useSelector(getBaselineState); // baseline fuel 값들
   const {fFuelType} = useSelector(getForecastState); // forecast fuel 값들
-  const [total, setTotal] = useState(0); //
-
+  const [total, setTotal] = useState(0); // gas 정류 다 더한 값
+  // useEffect으로 total 값 업데이트
   useEffect(() => {
     if (type === "baseline") {
       setTotal(
@@ -33,9 +34,7 @@ function GasInput({type}: GasInputType) {
     }
   }, [bFuelType, fFuelType]);
 
-  const dispatch = useDispatch();
-
-  // setFuel type will toggle between true and false true or false 이여도 기본 값이 적용됨
+  // onClick 이벤트 핸들러 --> 기본 값 적용함
   const handleDefaultChange = () => {
     if (type === "baseline") {
       dispatch(bSetFuelType({...bFuelType, setDefault: !bFuelType.setDefault}));
@@ -182,6 +181,7 @@ function GasInput({type}: GasInputType) {
         </div>
       )}
       <hr className="border-none h-[2px] bg-white" />
+      {/* 기본 값 적용 부분 */}
       <div className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
         <button
           type="button"

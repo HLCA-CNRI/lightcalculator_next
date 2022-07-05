@@ -8,21 +8,19 @@ import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
 import PercentInput from "./PercentInput";
 
 type TransportationInputType = {
-  type: string;
+  type: string; // baseline or forecast
 };
 
 function TransportationInput({type}: TransportationInputType) {
-  const {bCommuting} = useSelector(getBaselineState);
-  const {fCommuting} = useSelector(getForecastState);
-  const [total, setTotal] = useState(0);
+  const {bCommuting} = useSelector(getBaselineState); // baseline commuting 값들
+  const {fCommuting} = useSelector(getForecastState); // forecast commuting 값들
+  const [total, setTotal] = useState(0); // commuting 종류 다 더한 값
 
-  const fcheckBox = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const bcheckBox = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const bDistanceInput = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const fDistanceInput = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const bDistanceInput = useRef() as React.MutableRefObject<HTMLInputElement>; // baseline 평균 출퇴근 거리 ref
+  const fDistanceInput = useRef() as React.MutableRefObject<HTMLInputElement>; // forecast 평균 출퇴근 거리 ref
 
   const dispatch = useDispatch();
-
+  // useEffect으로 total 값 업데이트
   useEffect(() => {
     if (type === "baseline") {
       setTotal(bCommuting.car + bCommuting.publicTransit + bCommuting.walkOrBike);
@@ -31,40 +29,17 @@ function TransportationInput({type}: TransportationInputType) {
     }
   }, [fCommuting, bCommuting]);
 
-  useEffect(() => {
-    if (bcheckBox.current !== undefined && bcheckBox.current.checked) {
-      bcheckBox.current.checked = false;
-      dispatch(bSetCommuting({...bCommuting, setDefault: false}));
-    }
-  }, [bCommuting.car, bCommuting.publicTransit, bCommuting.walkOrBike, bCommuting.distance]);
-
-  useEffect(() => {
-    if (fcheckBox.current !== undefined && fcheckBox.current.checked) {
-      fcheckBox.current.checked = false;
-      dispatch(fSetCommuting({...fCommuting, setDefault: false}));
-    }
-  }, [fCommuting.car, fCommuting.publicTransit, fCommuting.walkOrBike, fCommuting.distance]);
-
-  useEffect(() => {
-    if (bDistanceInput.current !== undefined && bCommuting.setDefault === true) {
-      bDistanceInput.current.value = defaultBaseline.bCommuting.distance.toString();
-    }
-  }, [bCommuting.setDefault]);
-
-  useEffect(() => {
-    if (fDistanceInput.current !== undefined && fCommuting.setDefault === true) {
-      fDistanceInput.current.value = DefualtForecast.fCommuting.distance.toString();
-    }
-  }, [fCommuting.setDefault]);
-
+  // onClick 이벤트 핸들러 --> 기본 값 적용함 1.방식 기본값, 2평균 출퇴근 거리 기본값
   const handleDefaultChange = () => {
     if (type === "baseline") {
       dispatch(bSetCommuting({...bCommuting, setDefault: !bCommuting.setDefault}));
+      bDistanceInput.current.value = defaultBaseline.bCommuting.distance.toString();
     } else {
       dispatch(fSetCommuting({...fCommuting, setDefault: !fCommuting.setDefault}));
+      fDistanceInput.current.value = DefualtForecast.fCommuting.distance.toString();
     }
   };
-
+  // onChange 이벤트 핸들러 --> 평균 출퇴근거리 값 바뀔때마다 감시하고 적용시킴
   const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!Number.isNaN(parseInt(currentVal, 10))) {
@@ -87,6 +62,7 @@ function TransportationInput({type}: TransportationInputType) {
 
         <hr className="border-none  h-[2px] bg-white" />
       </div>
+      {/* 평균 출퇴근 거리 input */}
       <div className="flex w-[100%] justify-between">
         <div className=" w-[100%]  m-5 p-2 flex justify-between">
           <div className="mr-13">평균 출퇴근 거리</div>
@@ -104,6 +80,7 @@ function TransportationInput({type}: TransportationInputType) {
         </div>
       </div>
       <hr className="border-none  h-[2px] bg-white" />
+      {/* 프로그래스 바 */}
       <div className="rounded-lg p-2  m-5">
         <div className="w-[100%] mt-2 flex">
           <div
@@ -164,6 +141,7 @@ function TransportationInput({type}: TransportationInputType) {
         />
       </div>
       <hr className="border-none h-[2px] bg-white" />
+      {/* 기본값 적용하는 부분 */}
       <div className="inline-flex items-center w-[100%] justify-end pr-5  my-5">
         <button
           type="button"
