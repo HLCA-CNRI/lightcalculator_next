@@ -60,9 +60,7 @@ function AddForcastInfo({type}: AddForcastInfoType) {
   ]);
 
   return (
-    // TODO : combine by setting conditional to style
-    // TODO : allow -infinity by setting second condition to isFinite instead of value > 0
-    <div className="ml-2">
+    <div className="ml-2 w-[4vw] flex justify-end ">
       {type === "annualResult" ? (
         <div
           className={` rounded-full px-1 ${
@@ -71,7 +69,7 @@ function AddForcastInfo({type}: AddForcastInfoType) {
               : value > 0.05
               ? `bg-red-200 `
               : `bg-green-200`
-          }`}>
+          } border`}>
           {Number.isNaN(value)
             ? "0.0%"
             : value > 0
