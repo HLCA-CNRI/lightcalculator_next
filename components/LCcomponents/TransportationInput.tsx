@@ -48,9 +48,12 @@ function TransportationInput({type}: TransportationInputType) {
       } else {
         dispatch(fSetCommuting({...fCommuting, distance: parseInt(currentVal, 10)}));
       }
+    } else if (type === "baseline") {
+      dispatch(bSetCommuting({...bCommuting, distance: 0}));
+    } else {
+      dispatch(fSetCommuting({...fCommuting, distance: 0}));
     }
   };
-
   return (
     <div className=" w-[100%] ">
       <div className="  w-[100%] text-lg visible md:hidden">
@@ -71,9 +74,13 @@ function TransportationInput({type}: TransportationInputType) {
               ref={type === "baseline" ? bDistanceInput : fDistanceInput}
               type="number"
               className="w-12 mr-2 rounded"
-              min={0}
+              min={-1}
               onChange={handleDistanceChange}
-              defaultValue={type === "baseline" ? bCommuting.distance : fCommuting.distance}
+              value={
+                type === "baseline"
+                  ? bCommuting.distance.toString()
+                  : fCommuting.distance.toString()
+              }
             />
             <div>km</div>
           </div>

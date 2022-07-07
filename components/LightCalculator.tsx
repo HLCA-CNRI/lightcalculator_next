@@ -1,13 +1,13 @@
 import {useRef, useEffect, useState, memo} from "react";
 import logo from "../image/logo.png";
 import titleImage from "../image/titleImage.svg";
-import NumberInput from "./LCcomponents/NumberIput";
+import NumberInput from "./LCcomponents/NumberInput";
 import SliderInput from "./LCcomponents/SliderInput";
 import {useSelector} from "../store/store";
 import TransportationInput from "./LCcomponents/TransportationInput";
 // import Results from "./LCcomponents/Results";
 import ResultsSlider from "./LCcomponents/ResultsSlider";
-
+import {defaultBaseline, DefualtForecast} from "../functions/Defaults";
 import {
   getBaselineState,
   bSetCompanyEmployeeSize,
@@ -137,6 +137,7 @@ function LightCalculator() {
               unit="명"
               setNumber={bSetCompanyEmployeeSize}
               initial={bCompanyEmployeeSize.toString()}
+              defaultVal={defaultBaseline.bCompanyEmployeeSize}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
@@ -148,6 +149,7 @@ function LightCalculator() {
               unit="명"
               setNumber={fSetCompanyEmployeeSize}
               initial={fCompanyEmployeeSize.toString()}
+              defaultVal={DefualtForecast.fCompanyEmployeeSize}
             />
           </div>
           {/* 차량 종류별 대수 */}
@@ -189,6 +191,7 @@ function LightCalculator() {
               unit="만원"
               setNumber={bSetCompanyGasPrice}
               initial={bCompanyGasPrice.toString()}
+              defaultVal={defaultBaseline.bCompanyGasPrice}
             />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
@@ -200,6 +203,7 @@ function LightCalculator() {
               unit="만원"
               setNumber={fSetCompanyGasPrice}
               initial={fCompanyGasPrice.toString()}
+              defaultVal={DefualtForecast.fCompanyGasPrice}
             />
           </div>
           {/* 근무 형태 */}
@@ -281,14 +285,24 @@ function LightCalculator() {
               <div className="ml-4 py-2">Baseline</div>
               <hr className="border-none  h-[2px] bg-white" />
             </div>{" "}
-            <NumberInput unit="m" setNumber={bSetCompanySize} initial={bCompanysize.toString()} />
+            <NumberInput
+              unit="m"
+              setNumber={bSetCompanySize}
+              initial={bCompanysize.toString()}
+              defaultVal={defaultBaseline.bCompanysize}
+            />
           </div>
           <div className=" bg-cnri_light_green flex justify-center flex-col items-center rounded-lg   ">
             <div className="  w-[100%] text-lg visible md:hidden">
               <div className="ml-4 py-2">Forecast</div>
               <hr className="border-none  h-[2px] bg-white" />
             </div>
-            <NumberInput unit="m" setNumber={fSetCompanySize} initial={fCompanysize.toString()} />
+            <NumberInput
+              unit="m"
+              setNumber={fSetCompanySize}
+              initial={fCompanysize.toString()}
+              defaultVal={DefualtForecast.fCompanysize}
+            />
           </div>
           {/* 왕복 비행 출장 */}
           <div className="mb-3  pr-10 ">

@@ -1,5 +1,5 @@
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
-import React, {memo} from "react";
+import React, {memo, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {useSelector} from "../../store/store";
 import {getBaselineState} from "../../store/slices/baselineSlice";
@@ -16,6 +16,12 @@ function SliderInput({type, setNumber}: SliderInputType) {
 
   const dispatch = useDispatch();
   // onChange 이벤트 핸들러 change event 감시하고 값이 바뀔때마다 redux state 바꿔줌
+  const {bDefault} = useSelector(getBaselineState);
+  const {fDefault} = useSelector(getForecastState);
+  useEffect(() => {
+    dispatch(setNumber(parseInt("5", 10)));
+  }, [bDefault, fDefault]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentVal = event.currentTarget.value;
     if (!Number.isNaN(parseInt(currentVal, 10))) {
@@ -34,7 +40,7 @@ function SliderInput({type, setNumber}: SliderInputType) {
       <input
         type="range"
         className={`${type === "baseline" ? "" : "accent-[#548235]"} w-[100%] border-none `}
-        defaultValue="6"
+        value={type === "baseline" ? bCommutingDays + 1 : fCommutingDays + 1}
         min="1"
         max="6"
         onChange={handleChange}

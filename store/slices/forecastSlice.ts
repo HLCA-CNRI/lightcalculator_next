@@ -55,6 +55,12 @@ export const forecastSlice = createSlice({
     ) => {
       state.fRoundTrip = action.payload;
     },
+    fSetDefault: (
+      state: Draft<typeof initialForecastState>,
+      action: PayloadAction<typeof initialForecastState.fDefault>
+    ) => {
+      state.fDefault = action.payload;
+    },
   },
 });
 
@@ -69,6 +75,7 @@ export const {
   fSetUseRenewableEnergy,
   fSetRoundTrip,
   fSetCompanySize,
+  fSetDefault,
 } = forecastSlice.actions;
 
 export default forecastSlice.reducer;

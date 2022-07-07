@@ -62,6 +62,7 @@ export interface ForecastState {
     oceana: number;
     africa: number;
   };
+  fDefault: boolean;
 }
 // BaselineState 디폴트 값
 export const defaultBaseline: BaselineState = {
@@ -125,4 +126,5 @@ export const DefualtForecast: ForecastState = {
     oceana: 0,
     africa: 0,
   },
+  fDefault: false,
 };

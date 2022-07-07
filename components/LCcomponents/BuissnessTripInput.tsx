@@ -1,31 +1,65 @@
-import {memo} from "react";
+/* eslint-disable use-isnan */
+import {memo, useEffect} from "react";
 import {useDispatch, useSelector} from "../../store/store";
+import {defaultBaseline, DefualtForecast} from "../../functions/Defaults";
 import {getBaselineState, bSetRoundTrip} from "../../store/slices/baselineSlice";
 import {getForecastState, fSetRoundTrip} from "../../store/slices/forecastSlice";
 
 type BuissnessTripInputType = {
-  country: string; // 화면에 보여지는 나라(한국어)
-  value: string; // 저장되는 redux 값(영어)
-  isBaseline: boolean; // baseline or forecast --> 불리언 값
+  country: string;
+  value: string;
+  isBaseline: boolean;
 };
 
 function BuissnessTripInput({country, value, isBaseline}: BuissnessTripInputType) {
-  const sVal = value as keyof typeof bRoundTrip; // 현제 값 baseline 이여도 forecast이여도 형식이 같아서 상과없음
-  const {bRoundTrip} = useSelector(getBaselineState); // baseline 왕복 비행 값들
-  const {fRoundTrip} = useSelector(getForecastState); // forecast 왕복 비행 값들
+  const {bRoundTrip, bDefault} = useSelector(getBaselineState);
+  const {fRoundTrip, fDefault} = useSelector(getForecastState);
   const dispatch = useDispatch();
 
-  // onChange 이벤트 핸들러 --> input 값 바뀔때마다 감시하고 적용시킴
+  useEffect(() => {
+    dispatch(
+      bSetRoundTrip({
+        ...bRoundTrip,
+        asia: defaultBaseline.bRoundTrip.asia,
+        europe: defaultBaseline.bRoundTrip.europe,
+        northAmerica: defaultBaseline.bRoundTrip.northAmerica,
+        southAmerica: defaultBaseline.bRoundTrip.southAmerica,
+        oceana: defaultBaseline.bRoundTrip.oceana,
+        africa: defaultBaseline.bRoundTrip.africa,
+      })
+    );
+    dispatch(
+      fSetRoundTrip({
+        ...fRoundTrip,
+        asia: DefualtForecast.fRoundTrip.asia,
+        europe: DefualtForecast.fRoundTrip.europe,
+        northAmerica: DefualtForecast.fRoundTrip.northAmerica,
+        southAmerica: DefualtForecast.fRoundTrip.southAmerica,
+        oceana: DefualtForecast.fRoundTrip.oceana,
+        africa: DefualtForecast.fRoundTrip.africa,
+      })
+    );
+  }, [bDefault, fDefault]);
+
   const handleChange = (event: any) => {
     const currentVal = event.currentTarget.value;
+    console.log(currentVal);
     if (!Number.isNaN(parseInt(currentVal, 10))) {
       if (isBaseline) {
-        dispatch(bSetRoundTrip({...bRoundTrip, [value]: event.target.value}));
+        dispatch(bSetRoundTrip({...bRoundTrip, [value]: parseInt(currentVal, 10)}));
       } else {
-        dispatch(fSetRoundTrip({...fRoundTrip, [value]: event.target.value}));
+        dispatch(fSetRoundTrip({...fRoundTrip, [value]: parseInt(currentVal, 10)}));
       }
+    } else if (isBaseline) {
+      dispatch(bSetRoundTrip({...bRoundTrip, [value]: 0}));
+    } else {
+      dispatch(fSetRoundTrip({...fRoundTrip, [value]: 0}));
     }
   };
+
+  const defaultValue = isBaseline
+    ? bRoundTrip[value as keyof typeof bRoundTrip]
+    : fRoundTrip[value as keyof typeof bRoundTrip];
 
   return (
     <div className="flex justify-between pb-3">
@@ -33,9 +67,9 @@ function BuissnessTripInput({country, value, isBaseline}: BuissnessTripInputType
       <div className="flex  pr-5">
         <input
           type="number"
-          className="w-12 rounded"
-          min={0}
-          defaultValue={isBaseline ? bRoundTrip[sVal] : fRoundTrip[sVal]}
+          min="0"
+          value={defaultValue.toString()}
+          className="w-12 text-gray-700 bg-white rounded"
           onChange={handleChange}
         />
         <div>회</div>
