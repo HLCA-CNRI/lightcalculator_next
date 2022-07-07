@@ -60,7 +60,7 @@ function AddForcastInfo({type}: AddForcastInfoType) {
   ]);
 
   return (
-    <div className="ml-2 w-[4vw] flex justify-end ">
+    <div className="ml-2 md:w-[4vw] flex justify-end ">
       {type === "annualResult" ? (
         <div
           className={` rounded-full px-1 ${
