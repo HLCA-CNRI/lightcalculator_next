@@ -49,7 +49,7 @@ function RemoteWork({type}: RemoteWorkType) {
           <span className="text-black">재택근무</span>
         </li>
 
-        <div className="flex text-[15px]">
+        <div className="flex ">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 === 0 ? ".0" : ""}

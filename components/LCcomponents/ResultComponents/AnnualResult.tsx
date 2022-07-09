@@ -62,16 +62,16 @@ function AnnualResult({title, type}: AnnualResultType) {
       <div className="w-[100%] flex justify-between pt-3 ">
         <div className="flex flex-col">
           <div className="flex text-base font-[2000]">
-            <div>{title} </div>
-            {/* <span className="ml-1">Annual</span> */}
+            <div>{title}</div>
+            <span className="ml-1">Annual</span>
             <div className="text-xs font-[2000] ml-1 pt-1">
-              (kgCO<sub>2</sub>e/year)
+              (kgCO<sub>2</sub>e)
             </div>
           </div>
 
           {/* <div className="font-light">(tCO2e)</div> */}
         </div>
-        <div className="flex text-[15px]">
+        <div className="flex ">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}

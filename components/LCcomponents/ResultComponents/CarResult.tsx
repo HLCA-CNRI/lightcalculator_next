@@ -55,7 +55,7 @@ function CarResult({type}: CarResultType) {
           <span className="text-black">차량</span>
         </li>
 
-        <div className="flex text-[15px]">
+        <div className="flex ">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}

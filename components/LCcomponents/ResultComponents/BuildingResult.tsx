@@ -60,7 +60,7 @@ function BuildingResult({type}: BuildingResultType) {
           <span className="text-black">건물</span>
         </li>
 
-        <div className="flex text-[15px]">
+        <div className="flex ">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}

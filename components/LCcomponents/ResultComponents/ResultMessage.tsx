@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import {useState, useEffect} from "react";
 import {getForecastResultState} from "../../../store/slices/forecastResultSlice";
 import {getBaselineResultState} from "../../../store/slices/baslineResultSlice";
@@ -10,7 +9,7 @@ import {
   numberWithCommas,
 } from "../../../functions/ResultFunctions";
 import {useSelector} from "../../../store/store";
-
+// results 에서 message 부분
 function ResultMessage() {
   const {bAnnual} = useSelector(getBaselineResultState);
   const {fAnnual} = useSelector(getForecastResultState);
@@ -23,7 +22,6 @@ function ResultMessage() {
     const reductionVal = annualEmissionsReduction(fAnnual, bAnnual);
     SetAnnualEmission(annualEmissions(fAnnual, bAnnual));
     SetAnnualEmissionReduction(reductionVal);
-
     if (reductionVal > 0.05) {
       SetEmissionToVehicleCompVal(RedEmissionToVehicleComp(fAnnual, bAnnual));
       setMessageColor("red");

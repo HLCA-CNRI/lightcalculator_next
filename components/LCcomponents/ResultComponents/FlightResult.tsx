@@ -57,7 +57,7 @@ function FlightResult({type}: FlightResultType) {
           <span className="text-black">출장</span>
         </li>
 
-        <div className="flex text-[15px]">
+        <div className="flex ">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 === 0 ? ".0" : ""}
