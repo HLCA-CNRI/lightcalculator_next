@@ -54,9 +54,8 @@ function CarResult({type}: CarResultType) {
         <li className="text-[#11c28d]">
           <span className="text-black">차량</span>
         </li>
-        {/* TODO Change so that it reads the redux val  */}
 
-        <div className="flex">
+        <div className="flex text-[15px]">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 10) / 10) % 1 === 0 ? ".0" : ""}

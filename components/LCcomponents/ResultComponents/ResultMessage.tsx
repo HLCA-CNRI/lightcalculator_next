@@ -36,7 +36,6 @@ function ResultMessage() {
   }, [bAnnual, fAnnual]);
 
   return (
-    // TODO Change to if Else
     <div className="font-bold">
       {messageColor === "gray" ? (
         <span>

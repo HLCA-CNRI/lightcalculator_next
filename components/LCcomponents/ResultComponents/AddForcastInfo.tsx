@@ -27,7 +27,6 @@ function AddForcastInfo({type}: AddForcastInfoType) {
 
   const [value, setVal] = useState(0);
 
-  // TODO: Not good implementation
   useEffect(() => {
     if (type === "annualResult") {
       setVal(calculateForecastInfo(fAnnual, bAnnual));
@@ -60,7 +59,7 @@ function AddForcastInfo({type}: AddForcastInfoType) {
   ]);
 
   return (
-    <div className="ml-2 md:w-[4vw] flex justify-end ">
+    <div className="flex justify-end w-[70px] text-[15px]">
       {type === "annualResult" ? (
         <div
           className={` rounded-full px-1 ${

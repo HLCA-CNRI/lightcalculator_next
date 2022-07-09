@@ -66,7 +66,7 @@ function CommutingResult({type}: CommutingResultType) {
           <span className="text-black">출퇴근</span>
         </li>
 
-        <div className="flex">
+        <div className="flex text-[15px]">
           <div>
             {numberWithCommas(value)}
             {(Math.round(value * 100) / 100) % 1 === 0 ? ".0" : ""}

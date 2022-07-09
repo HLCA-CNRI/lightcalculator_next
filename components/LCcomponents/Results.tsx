@@ -9,10 +9,10 @@ import ResetButton from "./ResultComponents/ResetButton";
 
 function Results() {
   return (
-    <div className="grid gap-4 xs:grid-cols-1 md:grid-cols-3 border rounded-t-lg overflow-y-auto h-[50vh] sm:h-auto  overflow-x-hidden">
+    <div className=" md:flex overflow-y-auto h-[40vh] md:h-auto  overflow-x-hidden border-2 rounded-t-lg">
       {/* Result Message + reset Button */}
-      <div className="w-[100%] h-[95%] px-3  pb-3 pr-10 ">
-        <div className="pt-5 pl-2 h-[80%] text-lg font-semibold">
+      <div className="w-[100%] px-3  pb-3  ">
+        <div className="pt-5 pl-2 md:h-[80%] text-lg font-semibold">
           <ResultMessage />
         </div>
         <div className="flex h-[100%]border-2 mt-4 justify-start">
